@@ -5,24 +5,48 @@ end
 
 local dashboard = require "alpha.themes.dashboard"
 dashboard.section.header.val = {
-  [[                               __                ]],
-  [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-  [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-  [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-  [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-  [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+[[                              __                   '                '            ]],
+[[                     /\    .-" /           *                                     ]],
+[[                    /  ; .'  .'                     *          *        '        ]],
+[[                   :   :/  .'                  .                                 ]],
+[[                    \  ;-.'                              .                       ]],
+[[       .--""""--..__/     `.                                       *        .    ]],
+[[     .'           .'    `o  \                                                    ]],
+[[    /                    `   ;                                            *      ]],
+[[   :                  \      :     ___                               _          *]],
+[[ .-;        -.         `.__.-'    / __\_   _ _ __  _ __  _   _/\   /(_)_ __ ___  ]],
+[[:  ;          \     ,   ;        /__\// | | | '_ \| '_ \| | | \ \ / / | '_ ` _ \ ]],
+[['._:           ;   :   (        / \/  \ |_| | | | | | | | |_| |\ V /| | | | | | |]],
+[[    \/  .__    ;    \   `-.     \_____/\__,_|_| |_|_| |_|\__, | \_/ |_|_| |_| |_|]],
+[[     ;     "-,/_..--"`-..__)                             |___/                   ]],
+[[     '""--.._:                                                                   ]]
 }
+
+-- |
+-- |
+-- |
+-- |
+-- |
+-- |
+
 dashboard.section.buttons.val = {
-  dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-  dashboard.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
-  dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-  dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
-  dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-  dashboard.button("q", " " .. " Quit", ":qa<CR>"),
+	dashboard.button("SPC SPC", "  Find file", ":Telescope find_files <CR>"),
+	dashboard.button("SPC f n", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("SPC f r", "  Recently used files", ":Telescope oldfiles <CR>"),
+	dashboard.button("SPC p p", "  Find project", ":Telescope projects <CR>"),
+	dashboard.button("SPC p a", "  Add project", ":ProjectAddMuanually <CR>"),
+	dashboard.button("SPC p t", "  Find text", ":Telescope live_grep <CR>"),
+	dashboard.button("SPC h c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+	dashboard.button("SPC q q", "  Quit Neovim", ":qa<CR>"),
 }
+
 local function footer()
-  return "chrisatmachine.com"
+-- NOTE: requires the fortune-mod package to work
+	-- local handle = io.popen("fortune")
+	-- local fortune = handle:read("*a")
+	-- handle:close()
+	-- return fortune
+	return "Eat ass. Smoke grass."
 end
 
 dashboard.section.footer.val = footer()
