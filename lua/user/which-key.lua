@@ -82,7 +82,7 @@ local opts = {
 local mappings = {
   ["<leader>"] = { "<cmd>Telescope find_files<cr>", "Fuzzy Find" },
   ["."] = {
-    "<cmd><cr>",
+    "<cmd>Telescope file_browser<cr>",
     "File Browser",
   },
 
@@ -122,7 +122,7 @@ local mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -156,7 +156,7 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
       "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
       "Next Diagnostic",
