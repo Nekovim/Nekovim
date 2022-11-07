@@ -33,7 +33,7 @@ keymap("n", "U", "I", noremap)
 keymap("n", "l", "u", noremap)
 keymap("n", "L", "U", noremap)
 
--- Rebinding displaced keys.
+-- Rebinding displacedno keys.
 keymap("n", "h", "m", noremap)
 keymap("n", "H", "M", noremap)
 keymap("n", "j", "e", noremap)
@@ -53,25 +53,25 @@ keymap("i", "<c-g>k", "<c-g>k", noremap)
 
 -- VISUAL MODE --
 -- Movement Keys
-keymap("v", "m", "h", noremap)
-keymap("v", "M", "H", noremap)
-keymap("v", "n", "j", noremap)
-keymap("v", "N", "J", noremap)
-keymap("v", "e", "k", noremap)
-keymap("v", "E", "K", noremap)
-keymap("v", "i", "l", noremap)
-keymap("v", "I", "L", noremap)
+keymap("x", "m", "h", noremap)
+keymap("x", "M", "H", noremap)
+keymap("x", "n", "j", noremap)
+keymap("x", "N", "J", noremap)
+keymap("x", "e", "k", noremap)
+keymap("x", "E", "K", noremap)
+keymap("x", "i", "l", noremap)
+keymap("x", "I", "L", noremap)
 
 -- Insert and Undo
-keymap("v", "u", "i", noremap)
-keymap("v", "U", "I", noremap)
-keymap("v", "l", "u", noremap)
-keymap("v", "L", "U", noremap)
+keymap("x", "u", "i", noremap)
+keymap("x", "U", "I", noremap)
+keymap("x", "l", "u", noremap)
+keymap("x", "L", "U", noremap)
 
 -- Rebinding displaced keys.
-keymap("v", "h", "m", noremap)
-keymap("v", "H", "M", noremap)
-keymap("v", "j", "e", noremap)
-keymap("v", "J", "E", noremap)
-keymap("v", "k", "n", noremap)
-keymap("v", "K", "N", noremap)
+keymap("x", "h", "m", noremap)
+keymap("x", "H", "M", noremap)
+keymap("x", "j", "e", noremap)
+keymap("x", "J", "E", noremap)
+keymap("x", "k", "n", noremap)
+keymap("x", "K", "N", noremap)
