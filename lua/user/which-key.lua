@@ -107,7 +107,7 @@ local mappings = {
   f = {
     name = "File",
     s = { "<cmd>:w<CR>", "Save" },
-    f = { "<cmd>:Format<CR>", "Format" },
+    f = { vim.lsp.buf.format, "Format" },
     p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
   },
 
