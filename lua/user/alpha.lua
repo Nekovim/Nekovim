@@ -34,7 +34,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("SPC f n", "  New file", ":ene <BAR> startinsert <CR>"),
 	dashboard.button("SPC f r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("SPC p p", "  Find project", ":Telescope projects <CR>"),
-	dashboard.button("SPC p a", "  Add project", ":ProjectAddMuanually <CR>"),
+	dashboard.button("SPC p a", "  Add project", ":ProjectAddManually <CR>"),
 	dashboard.button("SPC p t", "  Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("SPC h c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 	dashboard.button("SPC q q", "  Quit Neovim", ":qa<CR>"),

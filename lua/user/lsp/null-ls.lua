@@ -19,6 +19,16 @@ null_ls.setup {
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     formatting.google_java_format,
+    formatting.clang_format,
     diagnostics.flake8,
   },
 }
+
+-- local notify = vim.notify
+-- vim.notify = function(msg, ...)
+--     if msg:match("warning: multiple different client offset_encodings") then
+--         return
+--     end
+--
+--     notify(msg, ...)
+-- end
