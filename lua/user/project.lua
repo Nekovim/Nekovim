@@ -9,6 +9,9 @@ project.setup({
 
 	-- patterns used to detect root dir, when **"pattern"** is in detection_methods
 	patterns = { ".git", "Makefile", "package.json", ".nvimproj" },
+    exclude_dirs = {
+        "~/Repos/personal/learning-rust",
+    }
 })
 
 local tele_status_ok, telescope = pcall(require, "telescope")
