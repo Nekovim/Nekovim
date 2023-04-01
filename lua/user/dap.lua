@@ -16,6 +16,7 @@ end
 dap_install.setup({})
 
 dap_install.config("python", {})
+dap_install.config("codelldb", {})
 -- add other configs here
 
 dapui.setup({
@@ -33,18 +34,18 @@ dapui.setup({
 	layouts = {
 		{
 			elements = {
-				{ id = "scopes", size = 0.33 },
-				{ id = "breakpoints", size = 0.17 },
-				{ id = "stacks", size = 0.25 },
-				{ id = "watches", size = 0.25 },
+				{ id = "watches", size = 0.24 },
+				{ id = "scopes", size = 0.24 },
+				{ id = "breakpoints", size = 0.24 },
+				{ id = "stacks", size = 0.28 },
 			},
-			size = 0.33,
-			position = "right",
+			size = 0.23,
+			position = "left",
 		},
 		{
 			elements = {
-				{ id = "repl", size = 0.45 },
-				{ id = "console", size = 0.55 },
+				{ id = "repl", size = 0.55 },
+				{ id = "console", size = 0.45 },
 			},
 			size = 0.27,
 			position = "bottom",
@@ -63,7 +64,7 @@ dapui.setup({
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
+	dapui.open({reset = true})
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()

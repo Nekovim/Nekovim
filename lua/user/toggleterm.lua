@@ -18,10 +18,10 @@ toggleterm.setup({
 	float_opts = {
 		border = "curved",
 	},
+	highlights = require("rose-pine.plugins.toggleterm"),
 })
 
-function _G.set_terminal_keymaps()
-end
+function _G.set_terminal_keymaps() end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 

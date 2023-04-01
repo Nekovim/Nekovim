@@ -75,3 +75,6 @@ keymap("x", "j", "e", noremap)
 keymap("x", "J", "E", noremap)
 keymap("x", "k", "n", noremap)
 keymap("x", "K", "N", noremap)
+
+keymap("n", "n", "gj", noremap)
+keymap("n", "e", "gk", noremap)

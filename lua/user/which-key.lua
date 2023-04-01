@@ -59,7 +59,7 @@ local setup = {
 	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
 	show_help = true, -- show help message on the command line when the popup is visible
 	triggers = "auto", -- automatically setup triggers
-	-- triggers = {"<leader>"} -- or specify a list manually
+	-- triggers = {"<leader>"} -- or specify a list manuallyneovim call local lua function from keymapping
 	triggers_blacklist = {
 		-- list of mode / prefixes that should never be hooked by WhichKey
 		-- this is mostly relevant for key maps that start with a native binding
@@ -74,14 +74,14 @@ local opts = {
 	prefix = "<leader>",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
 local mappings = {
-	["<leader>"] = { "<cmd>Telescope find_files<cr>", "Fuzzy Find" },
+	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Fuzzy Find" },
 	["."] = {
-		"<cmd>Telescope file_browser<cr>",
+		"<cmd>Telescope file_browser theme=ivy<cr>",
 		"File Browser",
 	},
 
@@ -93,6 +93,19 @@ local mappings = {
 		},
 		c = { "<cmd>Bdelete<cr>", "Close Buffer" },
 		k = { "<cmd>Bdelete!<cr>", "Kill Buffer" },
+	},
+
+	d = {
+		name = "Debug",
+		b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+		c = { "<cmd>DapContinue<cr>", "Run Dap" },
+		i = { "<cmd>DapStepInto<cr>", "Step Into" },
+		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
+		o = { "<cmd>DapStepOver<cr>", "Step Over" },
+		q = { "<cmd>DapTerminate<cr>", "Terminate" },
+		t = { "<cmd>lua require'dapui'.toggle({reset = true})<CR>", "Toggle UI" },
+		r = { "<cmd>DapToggleRepl<CR>", "Toggle Repl" },
+		x = { "<cmd>DapStepOut<cr>", "Step Out" },
 	},
 
 	f = {
@@ -137,8 +150,9 @@ local mappings = {
 		},
 		t = {
 			name = "Theme",
-			f = { "<cmd>Telescope colorscheme<cr>", "Find Theme" },
+			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
 			c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
+			r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
 			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
 		},
 	},
@@ -165,7 +179,7 @@ local mappings = {
 	p = {
 		name = "Project",
 		h = { "<cmd>cd %:h<cr>", "CD Here" },
-		p = { "<cmd>Telescope projects<cr>", "Open Project" },
+		p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
 		r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
 	},
 
@@ -189,8 +203,20 @@ local mappings = {
 
 	t = {
 		name = "Toggle",
+		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
+		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
+		m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview" },
 		v = { "<cmd>NvimTreeToggle<cr>", "Nvim Tree" },
-		t = { "<cmd>ToggleTerm<cr>", "Toggle Term" },
+		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+		w = { "<cmd>lua SetWrapped()<CR>", "Set Wrapped Mode" },
+		W = { "<cmd>lua UnsetWrapped()<CR>", "Unset Wrapped Mode" },
+		z = {
+			name = "Zen Mode",
+			a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
+			f = { "<cmd>TZFocus<cr>", "Focus" },
+			m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
+			n = { "<cmd>TZNarrow<cr>", "Narrow" },
+		},
 	},
 }
 

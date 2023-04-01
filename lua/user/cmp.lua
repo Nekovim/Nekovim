@@ -43,6 +43,11 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
+luasnip.setup({
+	history = false,
+	region_check_events = "CursorMoved",
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -65,12 +70,12 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-                cmp.confirm({ select = true })
+				cmp.confirm({ select = true })
 				-- cmp.select_next_item()
 			elseif luasnip.expandable() then
 				luasnip.expand()
 			elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
 			else
@@ -107,11 +112,11 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "path" },
+		{ name = "nvim_lsp", max_item_count = 30, keyword_length = 1 },
+		{ name = "nvim_lua", keyword_length = 3 },
+		{ name = "luasnip", keyword_length = 3 },
+		{ name = "buffer", keyword_length = 3 },
+		{ name = "path", keyword_length = 3 },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
