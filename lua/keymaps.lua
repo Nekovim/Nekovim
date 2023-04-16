@@ -22,8 +22,6 @@ keymap("n", "<leader>wm", "<C-w>h", noremap)
 keymap("n", "<leader>wn", "<C-w>j", noremap)
 keymap("n", "<leader>we", "<C-w>k", noremap)
 keymap("n", "<leader>wi", "<C-w>l", noremap)
--- <C-w>i
-keymap("n", "<leader>te", ":NvimTreeToggle<CR>", noremap)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", noremap)
@@ -31,14 +29,10 @@ keymap("n", "<C-Down>", ":resize -2<CR>", noremap)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", noremap)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", noremap)
 
--- Navigate buffers
-keymap("n", "<S-i>", ":bnext<CR>", noremap)
-keymap("n", "<S-m>", ":bprevious<CR>", noremap)
-
 -- Insert --
 -- Easier Escape sequence.
-keymap("i", "uu", "<ESC>", noremap)
-keymap("v", "uu", "<ESC>", noremap)
+keymap("i", "<C-u>", "<ESC>", noremap)
+keymap("v", "<C-u>", "<ESC>", noremap)
 
 -- Visual --
 -- Stay in indent mode
@@ -67,3 +61,6 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Other Unsorted Junk
 keymap("n", "<leader>qq", ":qa<CR>", noremap)
 keymap("n", "<leader>qQ", ":qa!<CR>", noremap)
+
+keymap("n", "<C-/>", ":nohlsearch<CR>", noremap)
+keymap("i", "<C-/>", ":nohlsearch<CR>", noremap)

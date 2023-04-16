@@ -1,10 +1,13 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
-end
+local M = {
+  "goolord/alpha-nvim",
+  event = "VimEnter",
+  commit = "dafa11a6218c2296df044e00f88d9187222ba6b0",
+}
 
-local dashboard = require "alpha.themes.dashboard"
-dashboard.section.header.val = {
+function M.config()
+  local alpha = require "alpha"
+  local dashboard = require "alpha.themes.dashboard"
+  dashboard.section.header.val = {
 [[                              __                   '                '            ]],
 [[                     /\    .-" /           *                                     ]],
 [[                    /  ; .'  .'                     *          *        '        ]],
@@ -20,14 +23,7 @@ dashboard.section.header.val = {
 [[    \/  .__    ;    \   `-.     \_____/\__,_|_| |_|_| |_|\__, | \_/ |_|_| |_| |_|]],
 [[     ;     "-,/_..--"`-..__)                             |___/                   ]],
 [[     '""--.._:                                                                   ]]
-}
-
--- |
--- |
--- |
--- |
--- |
--- |
+}  
 
 dashboard.section.buttons.val = {
 	dashboard.button("SPC SPC", "  Find file", ":Telescope find_files <CR>"),
@@ -55,4 +51,6 @@ dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true
-alpha.setup(dashboard.opts)
+alpha.setup(dashboard.opts)end
+
+return M
