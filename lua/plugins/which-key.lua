@@ -228,7 +228,11 @@ function M.config()
         w = {
 			name = "Window",
 			c = { "<cmd>q<cr>", "Close Window" },
+			e = { "<C-w>k", "Close Up" },
+			i = { "<C-w>l", "Close Right" },
 			k = { "<cmd>q!<cr>", "Kill Window" },
+			m = { "<C-w>h", "Focus Left" },
+			n = { "<C-w>j", "Focus Down" },
 		},
 
 		["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
