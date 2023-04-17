@@ -224,6 +224,13 @@ function M.config()
 				n = { "<cmd>TZNarrow<cr>", "Narrow" },
 			},
 		},
+
+        w = {
+			name = "Window",
+			c = { "<cmd>q<cr>", "Close Window" },
+			k = { "<cmd>q!<cr>", "Kill Window" },
+		},
+
 		["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 	}
 
