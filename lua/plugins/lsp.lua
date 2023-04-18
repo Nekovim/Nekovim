@@ -86,10 +86,6 @@ function M.config()
 			client.server_capabilities.documentFormattingProvider = false
 		end
 
-		if client.name == "clangd" then
-            capabilities.offsetEncoding = 'utf-8'
-		end
-
 		lsp_keymaps(bufnr)
 		require("illuminate").on_attach(client)
 	end

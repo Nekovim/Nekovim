@@ -30,4 +30,3 @@
 
 ## Usage
 Just `git clone https://github.com/NiamhFerns/nvim.git` into your .config or wherever you store your nvim config and start nvim.
-
