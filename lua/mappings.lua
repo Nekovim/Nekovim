@@ -108,10 +108,6 @@ M.which_key = {
 		Q = { "<cmd>qa!<cr>", "Force Quit" },
 	},
 
-	r = {
-		name = "Refactor",
-	},
-
 	s = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -154,6 +150,29 @@ M.which_key = {
 	},
 
 	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
+}
+
+-- LSP Mappings to be registered with which-key.
+M.lsp = {
+	c = {
+		name = "Code Actions",
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Actions" },
+		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
+		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
+		l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Code Hover" },
+		I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
+		n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
+		p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
+		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
+		s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature_help()" },
+		q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "setloclist()" },
+	},
+
+	r = {
+		name = "Refactor",
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+	},
 }
 
 -- Quality of life changes to default bindings.
