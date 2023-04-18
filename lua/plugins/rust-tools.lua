@@ -19,15 +19,21 @@ function M.config()
 		},
 		server = {
 			on_attach = function(_, bufnr)
-				-- Hover actions
-				vim.keymap.set("n", "<leader>ch", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
-				-- Code action groups
-				vim.keymap.set(
-					"n",
-					"<Leader>ca",
-					require("rust-tools").code_action_group.code_action_group,
-					{ buffer = bufnr }
-				)
+				local opts = {
+					mode = "n", -- NORMAL mode
+					prefix = "<leader>",
+					buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+					silent = true, -- use `silent` when creating keymaps
+					noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
+					nowait = true, -- use `nowait` when creating keymaps
+				}
+
+                -- These need to be here because rust tools has it's own weird thing going on.
+				local mappings = require("mappings").lsp
+				mappings.c.a = { "<cmd>require('rust-tools').code_action_group.code_action_group<cr>", "Code Actions" }
+				mappings.c.h = { "<cmd>require('rust-tools').hover_actions.hover_actions<cr>", "Code Hover" }
+
+				require("which-key").register(mappings, opts)
 			end,
 		},
 	})
