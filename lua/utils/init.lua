@@ -8,8 +8,6 @@ M.servers = {
 	"yamlls",
 	"clangd",
 	"cmake",
-	-- Uncomment if you don't have rust analyzer installed on your system some other way.
-	--"rust_analyzer",
 }
 
 return M

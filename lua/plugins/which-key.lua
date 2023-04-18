@@ -194,6 +194,10 @@ function M.config()
 			Q = { "<cmd>qa!<cr>", "Force Quit" },
 		},
 
+		r = {
+			name = "Refactor",
+		},
+
 		s = {
 			name = "Search",
 			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -225,7 +229,7 @@ function M.config()
 			},
 		},
 
-        w = {
+		w = {
 			name = "Window",
 			c = { "<cmd>q<cr>", "Close Window" },
 			e = { "<C-w>k", "Close Up" },

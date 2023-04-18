@@ -1,6 +1,6 @@
 local M = {
 	"simrat39/rust-tools.nvim",
-    ft = "rust",
+	ft = "rust",
 	dependencies = {
 		{
 			"nvim-lua/plenary.nvim",
@@ -11,6 +11,10 @@ local M = {
 
 function M.config()
 	require("rust-tools").setup({
+		inlay_hints = {
+			auto = true,
+			only_current_line = false,
+		},
 		server = {
 			on_attach = function(_, bufnr)
 				-- Hover actions
@@ -22,7 +26,6 @@ function M.config()
 					require("rust-tools").code_action_group.code_action_group,
 					{ buffer = bufnr }
 				)
-				vim.keymap.set("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr })
 			end,
 		},
 	})

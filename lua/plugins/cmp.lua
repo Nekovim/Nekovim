@@ -80,6 +80,11 @@ function M.config()
 		TypeParameter = "",
 	}
 
+	luasnip.setup({
+		history = false,
+		region_check_events = "CursorMoved",
+	})
+
 	cmp.setup({
 		snippet = {
 			expand = function(args)
