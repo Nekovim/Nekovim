@@ -1,6 +1,6 @@
 local M = {}
 
--- Which-key bindings imported by which-key.lua.
+-- Which-key bindings registered by which-key.lua.
 M.which_key = {
 	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Fuzzy Find" },
 	["."] = {
@@ -36,7 +36,6 @@ M.which_key = {
 	f = {
 		name = "File",
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-		p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
 		s = { "<cmd>:w<CR>", "Save" },
 	},
 
@@ -65,8 +64,7 @@ M.which_key = {
 	},
 
 	h = {
-		name = "Help",
-		l = { "<cmd>Lazy<cr>", "Lazy UI" },
+		name = "Help & Settings",
 		t = {
 			name = "Theme",
 			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
@@ -74,30 +72,12 @@ M.which_key = {
 			r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
 			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
 		},
-	},
-
-	l = {
-		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		i = { "<cmd>LspInfo<cr>", "Info" },
-		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-			"Prev Diagnostic",
-		},
-		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		I = { "<cmd>Mason<cr>", "Installer Info" },
-		S = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
+		p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
 	},
 
 	p = {
 		name = "Project",
-		h = { "<cmd>cd %:h<cr>", "CD Here" },
+		a = { "<cmd>!touch .nvimproj<cr>", "Add Project" },
 		p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
 		r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
 	},
@@ -124,7 +104,6 @@ M.which_key = {
 		name = "Toggle",
 		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
 		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
-		m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview" },
 		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
 		e = { "<cmd>NeoTreeFocusToggle<cr>", "Toggle Neotree" },
 		w = { "<cmd>lua SetWrapped()<CR>", "Set Wrapped Mode" },
@@ -136,6 +115,20 @@ M.which_key = {
 			f = { "<cmd>TZFocus<cr>", "Focus" },
 			m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
 			n = { "<cmd>TZNarrow<cr>", "Narrow" },
+		},
+	},
+
+	v = {
+		name = "View",
+		l = { "<cmd>Lazy<cr>", "Lazy UI" },
+		i = { "<cmd>LspInfo<cr>", "LSP Info" },
+		m = { "<cmd>Mason<cr>", "Mason UI" },
+		t = {
+			name = "Theme",
+			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
+			c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
+			r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
+			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
 		},
 	},
 
@@ -156,17 +149,23 @@ M.which_key = {
 M.lsp = {
 	c = {
 		name = "Code Actions",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Actions" },
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
 		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
-		l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Code Hover" },
+		e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
 		I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
 		n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
 		p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
+		q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
 		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
-		s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature_help()" },
-		q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "setloclist()" },
+		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+		S = {
+			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+			"Workspace Symbols",
+		},
+		-- s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature_help()" },
 	},
 
 	r = {
