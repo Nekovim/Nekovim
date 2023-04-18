@@ -4,7 +4,7 @@
 ## Plugins Used
 *Package Manager:* Lazy.nvim
 
-## General
+### General
 - Alpha
 - Comment.nvim
 - Gitsigns
