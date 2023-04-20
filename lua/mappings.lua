@@ -56,6 +56,7 @@ M.which_key = {
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
 		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+		S = { "<cmd>Neotree float git_status<cr>", "Open Neotree Git Status" },
 		t = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle Gitsigns" },
 		u = {
 			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",

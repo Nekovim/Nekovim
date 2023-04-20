@@ -147,13 +147,13 @@ function M.config()
 				return vim_item
 			end,
 		},
-		matching = {
-			disallow_fuzzy_matching = true,
-			disallow_fullfuzzy_matching = true,
-			disallow_partial_fuzzy_matching = true,
-			disallow_partial_matching = true,
-			disallow_prefix_unmatching = false,
-		},
+		-- matching = {
+		-- 	disallow_fuzzy_matching = true,
+		-- 	disallow_fullfuzzy_matching = true,
+		-- 	disallow_partial_fuzzy_matching = true,
+		-- 	disallow_partial_matching = true,
+		-- 	disallow_prefix_unmatching = false,
+		-- },
 		sources = {
 			{ name = "nvim_lsp", max_item_count = 30, keyword_length = 1 },
 			{ name = "nvim_lua", keyword_length = 3 },

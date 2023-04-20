@@ -6,7 +6,48 @@ local M = {
 		"nvim-lua/plenary.nvim",
 		"kyazdani42/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+		"s1n7ax/nvim-window-picker",
 	},
+}
+
+M.window_picker_opts = {
+	autoselect_one = true,
+	include_current_win = false,
+	selection_chars = "mneiokhjluyarstgzxcdvqwfpb",
+	use_winbar = "smart",
+	show_prompt = false,
+
+	filter_func = nil,
+	filter_rules = {
+		-- filter using buffer options
+		bo = {
+			-- if the file type is one of following, the window will be ignored
+			filetype = { "NvimTree", "neo-tree", "notify" },
+
+			-- if the buffer type is one of following, the window will be ignored
+			buftype = { "terminal" },
+		},
+
+		-- filter using window options
+		wo = {},
+
+		-- if the file path contains one of following names, the window
+		-- will be ignored
+		file_path_contains = {},
+
+		-- if the file name contains one of following names, the window will be
+		-- ignored
+		file_name_contains = {},
+	},
+
+    -- Themeing
+	fg_color = "#ebbcba",
+	current_win_hl_color = "#eb6f92",
+	other_win_hl_color = "#403d52",
+
+	selection_display = function(char)
+		return char
+	end,
 }
 
 M.opts = {
@@ -84,43 +125,7 @@ M.opts = {
 			},
 		},
 	},
-	-- renderer = {
-	--   icons = {
-	--     glyphs = {
-	--       default = "",
-	--       symlink = "",
-	--       folder = {
-	--         arrow_open = "",
-	--         arrow_closed = "",
-	--         default = "",
-	--         open = "",
-	--         empty = "",
-	--         empty_open = "",
-	--         symlink = "",
-	--         symlink_open = "",
-	--       },
-	--       git = {
-	--         unstaged = "",
-	--         staged = "S",
-	--         unmerged = "",
-	--         renamed = "➜",
-	--         untracked = "U",
-	--         deleted = "",
-	--         ignored = "◌",
-	--       },
-	--     },
-	--   },
-	-- },
-	-- diagnostics = {
-	--   enable = true,
-	--   show_on_dirs = true,
-	--   icons = {
-	--     hint = "",
-	--     info = "",
-	--     warning = "",
-	--     error = "",
-	--   },
-	-- },
+
 	window = {
 		position = "left",
 		width = 40,
@@ -168,10 +173,10 @@ M.opts = {
 			["i"] = "open",
 			["q"] = "close_window",
 
-			["S"] = "open_split",
-			["s"] = "open_vsplit",
-			-- ["S"] = "split_with_window_picker",
-			-- ["s"] = "vsplit_with_window_picker",
+			-- ["<C-x>"] = "open_split",
+			-- ["<C-v>"] = "open_vsplit",
+			["<C-x>"] = "split_with_window_picker",
+			["<C-v>"] = "vsplit_with_window_picker",
 			["t"] = "open_tabnew",
 			-- ["<cr>"] = "open_drop",
 			-- ["t"] = "open_tab_drop",
@@ -242,7 +247,7 @@ M.opts = {
 				["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 				-- ["D"] = "fuzzy_sorter_directory",
 				["f"] = "filter_on_submit",
-				["<c-x>"] = "clear_filter",
+				["<C-f>"] = "clear_filter",
 				["[g"] = "prev_git_modified",
 				["]g"] = "next_git_modified",
 			},
@@ -282,5 +287,10 @@ M.opts = {
 		},
 	},
 }
+
+function M.config()
+	require("window-picker").setup(M.window_picker_opts)
+	require("neo-tree").setup(M.opts)
+end
 
 return M
