@@ -22,11 +22,11 @@ M[#M + 1] = {
 		end
 
 		dap.listeners.before.event_terminated["dapui_config"] = function()
-			dapui.close()
+			-- dapui.close()
 		end
 
 		dap.listeners.before.event_exited["dapui_config"] = function()
-			dapui.close()
+			-- dapui.close()
 		end
 
 		dap.configurations.c = {
@@ -66,7 +66,6 @@ M[#M + 1] = {
 
 
 		dap.configurations.c = dap.configurations.cpp
-		dap.configurations.rust = dap.configurations.cpp
 
 		local dap_install = require("dap-install")
 		dap_install.setup({})
@@ -113,7 +112,7 @@ M[#M + 1] = {
 						{ id = "stacks", size = 0.28 },
 					},
 					size = 0.23,
-					position = "left",
+					position = "right",
 				},
 				{
 					elements = {

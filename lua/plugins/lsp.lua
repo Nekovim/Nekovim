@@ -38,6 +38,7 @@ function M.config()
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
+		code_lens_refresh = true,
 		float = {
 			focusable = true,
 			style = "minimal",
@@ -85,6 +86,14 @@ function M.config()
 		-- lsp_keymaps(bufnr)
 		register_mappings(bufnr)
 		require("illuminate").on_attach(client)
+
+        -- Refresh codelens on TextChange or leaving insert mode.
+		vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+			buffer = bufnr,
+			callback = vim.lsp.codelens.refresh,
+		})
+
+		vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 	end
 
 	for _, server in pairs(require("utils").servers) do

@@ -154,7 +154,7 @@ M.lsp = {
 		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
 		e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 		I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
 		n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
 		p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
