@@ -91,7 +91,8 @@ function M.config()
 				luasnip.lsp_expand(args.body) -- For `luasnip` users.
 			end,
 		},
-		mapping = cmp.mapping.preset.insert({
+		
+        mapping = cmp.mapping.preset.insert({
 			["<C-e>"] = cmp.mapping.select_prev_item(),
 			["<C-n>"] = cmp.mapping.select_next_item(),
 			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -132,7 +133,8 @@ function M.config()
 				"s",
 			}),
 		}),
-		formatting = {
+		
+        formatting = {
 			fields = { "kind", "abbr", "menu" },
 			format = function(entry, vim_item)
 				vim_item.kind = kind_icons[vim_item.kind]
@@ -147,6 +149,7 @@ function M.config()
 				return vim_item
 			end,
 		},
+
 		-- matching = {
 		-- 	disallow_fuzzy_matching = true,
 		-- 	disallow_fullfuzzy_matching = true,
@@ -154,6 +157,7 @@ function M.config()
 		-- 	disallow_partial_matching = true,
 		-- 	disallow_prefix_unmatching = false,
 		-- },
+
 		sources = {
 			{ name = "nvim_lsp", max_item_count = 30, keyword_length = 1 },
 			{ name = "nvim_lua", keyword_length = 3 },
@@ -161,15 +165,18 @@ function M.config()
 			{ name = "buffer", keyword_length = 3 },
 			{ name = "path", keyword_length = 3 },
 		},
-		confirm_opts = {
+		
+        confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		},
-		window = {
+		
+        window = {
 			completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
 		},
-		experimental = {
+		
+        experimental = {
 			ghost_text = true,
 		},
 	})

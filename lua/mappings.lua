@@ -104,6 +104,7 @@ M.which_key = {
 
 	t = {
 		name = "Toggle",
+        c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Toggle Auto-Completions"},
 		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
 		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
 		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
