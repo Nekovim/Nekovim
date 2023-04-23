@@ -79,8 +79,8 @@ M.which_key = {
 
 	p = {
 		name = "Projects & Sessions",
-		a = { "<cmd>!touch .nvimproj<cr>", "Add Project" },
-		g = { "<cmd>lua require('auto-session.session-lens').search_session()<cr>", "View General Sessions" },
+		a = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
+		g = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View General Sessions" },
 		G = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save General Session" },
 		p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
 		r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
