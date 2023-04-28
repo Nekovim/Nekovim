@@ -7,3 +7,6 @@ require("mappings").set_colemak()
 
 -- Plugins
 require("Lazy")
+
+-- Useful functions for writing plugins.
+require("globals")

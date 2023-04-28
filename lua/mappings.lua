@@ -67,7 +67,8 @@ M.which_key = {
 
 	h = {
 		name = "Help & Settings",
-		t = {
+		t = { "<cmd>Telescope help_tags<cr>", "Tags" },
+		T = {
 			name = "Theme",
 			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
 			c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
@@ -99,7 +100,6 @@ M.which_key = {
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
 		g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
