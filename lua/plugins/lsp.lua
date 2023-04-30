@@ -88,12 +88,12 @@ function M.config()
 		require("illuminate").on_attach(client)
 
         -- Refresh codelens on TextChange or leaving insert mode.
-		vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
-			buffer = bufnr,
-			callback = vim.lsp.codelens.refresh,
-		})
-
-		vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+		-- vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+		-- 	buffer = bufnr,
+		-- 	callback = vim.lsp.codelens.refresh,
+		-- })
+		--
+		-- vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 	end
 
 	for _, server in pairs(require("utils").servers) do
