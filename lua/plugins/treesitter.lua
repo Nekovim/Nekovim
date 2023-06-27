@@ -1,17 +1,14 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	commit = "226c1475a46a2ef6d840af9caa0117a439465500",
 	event = "BufReadPost",
 	dependencies = {
 		{
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			event = "VeryLazy",
-			commit = "729d83ecb990dc2b30272833c213cc6d49ed5214",
 		},
 		{
 			"kyazdani42/nvim-web-devicons",
 			event = "VeryLazy",
-			commit = "0568104bf8d0c3ab16395433fcc5c1638efc25d4",
 		},
 	},
 }
@@ -31,6 +28,7 @@ function M.config()
             "toml",
 			"json",
 			"rust",
+            "go",
 			"c",
 			"cpp",
 			"make",

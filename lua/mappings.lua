@@ -203,8 +203,15 @@ M.set_qol = function()
 	keymap("n", "<C-Left>", ":vertical resize -2<CR>", noremap)
 	keymap("n", "<C-Right>", ":vertical resize +2<CR>", noremap)
 
+    -- Better scrolling
+	keymap("n", "<C-n>", "<C-e>", noremap)
+	keymap("n", "<C-e>", "<C-y>", noremap)
+	keymap("n", "<C-k>", "<C-d>", noremap)
+	keymap("n", "<C-j>", "<C-u>", noremap)
+
 	-- Insert --
 	-- Easier Escape sequence.
+	keymap("n", "<C-u>", "<ESC>", noremap)
 	keymap("i", "<C-u>", "<ESC>", noremap)
 	keymap("v", "<C-u>", "<ESC>", noremap)
 

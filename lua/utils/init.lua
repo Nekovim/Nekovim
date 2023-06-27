@@ -21,6 +21,7 @@ M.servers = {
 
     -- Compiled
 	"clangd",               -- C/C++ LSP
+    "gopls",                -- Go LSP & Formatting
 
     -- Language Management
 	"cmake",                -- CMake LSP
