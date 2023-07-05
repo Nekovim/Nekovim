@@ -1,5 +1,6 @@
 local M = {
 	"nvim-neorg/neorg",
+    lazy = false,
 	event = "VimEnter",
 	build = ":Neorg sync-parsers",
 	dependencies = {
