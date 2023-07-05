@@ -22,8 +22,8 @@ M.which_key = {
 
 	d = {
 		name = "Debug",
-        ["."] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
-        ["/"] = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoint" },
+		["."] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+		["/"] = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoint" },
 		c = { "<cmd>DapContinue<cr>", "Run Dap" },
 		i = { "<cmd>DapStepInto<cr>", "Step Into" },
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
@@ -108,7 +108,7 @@ M.which_key = {
 
 	t = {
 		name = "Toggle",
-        c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Toggle Auto-Completions"},
+		c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Toggle Auto-Completions" },
 		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
 		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
 		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
@@ -153,25 +153,40 @@ M.which_key = {
 }
 
 M.neorg = {
-    n = {
-        name = "Neorg Mode",
-        i = {
-            name = "Insert"
-        },
-        l = {
-            name = "List"
-        },
-        m = {
-            name = "Mode"
-        },
-        n = {
-            name = "Note"
-        },
-        t = {
-            name = "Task"
-        }
-
-    },
+	n = {
+		name = "Neorg Mode",
+		["."] = { "Cycle Task" },
+        ["Space"] = { "Open Table of Contents" },
+		i = {
+			name = "Insert",
+			d = { "Date" },
+		},
+		l = {
+			name = "List",
+			i = { "Invert" },
+			t = { "Toggle (Un)ordered" },
+		},
+		m = {
+			name = "Mode",
+            h = { "Enter Heading Traversal Mode "},
+			n = { "Enter Neorg Mode" },
+		},
+		n = {
+			name = "Note",
+			n = { "New Note" },
+		},
+		t = {
+			name = "Task",
+			a = { "Mark Ambiguous" },
+			c = { "Mark Cancelled" },
+			d = { "Mark Done" },
+			h = { "Mark On Hold" },
+			i = { "Mark Important" },
+			p = { "Mark Pending" },
+			r = { "Mark Recurring" },
+			u = { "Mark Undone" },
+		},
+	},
 }
 
 -- LSP Mappings to be registered with which-key.
@@ -211,7 +226,7 @@ M.set_qol = function()
 
 	keymap("", "<Space>", "<Nop>", noremap)
 	vim.g.mapleader = " "
-	vim.g.maplocalleader= ","
+	vim.g.maplocalleader = ","
 
 	-- Normal --
 	-- Better window navigation
@@ -226,7 +241,7 @@ M.set_qol = function()
 	keymap("n", "<C-Left>", ":vertical resize -2<CR>", noremap)
 	keymap("n", "<C-Right>", ":vertical resize +2<CR>", noremap)
 
-    -- Better scrolling
+	-- Better scrolling
 	keymap("n", "<C-n>", "<C-e>", noremap)
 	keymap("n", "<C-e>", "<C-y>", noremap)
 	keymap("n", "<C-k>", "<C-d>", noremap)
