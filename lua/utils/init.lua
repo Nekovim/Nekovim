@@ -9,15 +9,10 @@ M.servers = {
     -- "typst-lsp",            -- Tyspt LSP
 	"jsonls",               -- JSON LSP
 	"yamlls",               -- YAML LSP
-    "html",                 -- HTML LSP
-
-    -- Styling & Framework
-    "cssls",                -- CSS LSP
 
     -- Scripting/Interpreted
 	"pyright",              -- Python LSP
-    "tsserver",             -- Typescript & Javascript LSP
-    "eslint",               -- Typescript & Javascript Linting
+    "omnisharp",            -- C#
 
     -- Compiled
 	"clangd",               -- C/C++ LSP
@@ -25,6 +20,12 @@ M.servers = {
 
     -- Language Management
 	"cmake",                -- CMake LSP
+
+    -- By & For Stupid People
+    "html",                 -- HTML LSP
+    "cssls",                -- CSS LSP
+    "tsserver",             -- Typescript & Javascript LSP
+    "eslint",               -- Typescript & Javascript Linting
 }
 
 return M

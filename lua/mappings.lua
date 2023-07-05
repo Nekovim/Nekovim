@@ -189,6 +189,7 @@ M.set_qol = function()
 
 	keymap("", "<Space>", "<Nop>", noremap)
 	vim.g.mapleader = " "
+	vim.g.maplocalleader= ","
 
 	-- Normal --
 	-- Better window navigation
