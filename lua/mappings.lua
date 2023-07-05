@@ -152,6 +152,28 @@ M.which_key = {
 	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 }
 
+M.neorg = {
+    n = {
+        name = "Neorg Mode",
+        i = {
+            name = "Insert"
+        },
+        l = {
+            name = "List"
+        },
+        m = {
+            name = "Mode"
+        },
+        n = {
+            name = "Note"
+        },
+        t = {
+            name = "Task"
+        }
+
+    },
+}
+
 -- LSP Mappings to be registered with which-key.
 M.lsp = {
 	c = {
