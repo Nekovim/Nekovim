@@ -5,8 +5,8 @@ vim.api.nvim_create_autocmd("User", {
 	callback = vim.lsp.codelens.refresh,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "norg",
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = "*.norg",
 	callback = function()
 		require("which-key").register(require("mappings").neorg, {
 			mode = "n",

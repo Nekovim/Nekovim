@@ -1,5 +1,6 @@
 -- Sane Options
 require("options")
+require("autocommands")
 
 -- Key Mappings
 require("mappings").set_qol()

@@ -152,11 +152,13 @@ M.which_key = {
 	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 }
 
+-- Mappings for Neorg mode.
+-- NOTE: These are only the labels. You need to change these in neorg.lua ["core.keybinds"] for them to take effect.
 M.neorg = {
 	n = {
 		name = "Neorg Mode",
 		["."] = { "Cycle Task" },
-        ["Space"] = { "Open Table of Contents" },
+		["Space"] = { "Open Table of Contents" },
 		i = {
 			name = "Insert",
 			d = { "Date" },
@@ -168,7 +170,7 @@ M.neorg = {
 		},
 		m = {
 			name = "Mode",
-            h = { "Enter Heading Traversal Mode "},
+			h = { "Enter Heading Traversal Mode" },
 			n = { "Enter Neorg Mode" },
 		},
 		n = {
