@@ -76,6 +76,7 @@ function M.config()
         region_check_events = "CursorMoved",
 	})
 
+    -- Has to be this way without M.opts because CMP is weird. (I think...? Maybe.)
 	cmp.setup({
 		snippet = {
 			expand = function(args)

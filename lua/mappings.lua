@@ -71,11 +71,25 @@ M.which_key = {
 		T = {
 			name = "Theme",
 			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
+			["<C-d>"] = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
+			["<C-l>"] = { "<cmd>set background=light<cr>", "Set Light Mode" },
 			c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
 			r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
 			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
 		},
 		p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
+	},
+
+	n = {
+		name = "Neorg Mode",
+		["<leader>"] = { "<cmd>Neorg index<CR>", "Default Workspace" },
+		["<BS>"] = { "<cmd>Neorg return<CR>", "Return" },
+		o = {
+			name = "Open",
+			c = { "<cmd>Neorg workspace code<CR>", "Code Notes" },
+			l = { "<cmd>Neorg workspace linux<CR>", "Linux Notes" },
+			w = { "<cmd>Neorg workspace writing<CR>", "Writing" },
+		},
 	},
 
 	p = {
@@ -108,21 +122,20 @@ M.which_key = {
 
 	t = {
 		name = "Toggle",
-		c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Toggle Auto-Completions" },
-		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
-		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
-		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-		e = { "<cmd>NeoTreeFocusToggle<cr>", "Toggle Neotree" },
-		w = { "<cmd>lua SetWrapped()<CR>", "Set Wrapped Mode" },
+		c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Auto-Completions" },
+		l = { "<cmd>set colorcolumn=121<cr>", "Linewrap Indicator" },
+		t = { "<cmd>Twilight<cr>", "Twilight" },
+		e = { "<cmd>NeoTreeFocusToggle<cr>", "Neotree" },
+		w = { "<cmd>lua ToggleWrapped()<CR>", "Wrapped Mode" },
 		E = { "<cmd>NeoTreeShowToggle<cr>", "Show Neotree" },
-		W = { "<cmd>lua UnsetWrapped()<CR>", "Unset Wrapped Mode" },
-		z = {
-			name = "Zen Mode",
-			a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
-			f = { "<cmd>TZFocus<cr>", "Focus" },
-			m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
-			n = { "<cmd>TZNarrow<cr>", "Narrow" },
-		},
+		z = { "<cmd>ZenMode<cr>", "Zen Mode" },
+		-- z = {
+		-- 	name = "Zen Mode",
+		-- 	a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
+		-- 	f = { "<cmd>TZFocus<cr>", "Focus" },
+		-- 	m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
+		-- 	n = { "<cmd>TZNarrow<cr>", "Narrow" },
+		-- },
 	},
 
 	v = {
@@ -154,14 +167,30 @@ M.which_key = {
 
 -- Mappings for Neorg mode.
 -- NOTE: These are only the labels. You need to change these in neorg.lua ["core.keybinds"] for them to take effect.
-M.neorg = {
+M.neorg_leader = "<leader>n"
+
+-- Callback used to bind keys when entering neorg buffer. Can't be done directly through which-key.
+M.neorg_bindings = function(keybinds)
+	keybinds.remap_key("norg", "n", "<C-Space>", "<C-cr>")
+	keybinds.map("all", "n", "<leader>n<C-/>", "<cmd>:Neorg toc qflist<CR>")
+	keybinds.map("all", "n", "<leader><leader>", "<cmd>:Telescope neorg find_norg_files<CR>")
+	keybinds.map("all", "n", "<leader>n.", "<cmd>:Telescope neorg search_headings<CR>")
+	keybinds.map("norg", "n", "<leader>nil", "<cmd>:Telescope neorg insert_link<CR>")
+	keybinds.map("norg", "i", "<C-.>l", "<cmd>:Telescope neorg insert_link<CR>")
+	keybinds.map("norg", "n", "<leader>nif", "<cmd>:Telescope neorg insert_file_link<CR>")
+	keybinds.map("norg", "i", "<C-.>f", "<cmd>:Telescope neorg insert_file_link<CR>")
+end
+
+M.neorg_labels = {
 	n = {
 		name = "Neorg Mode",
-		["."] = { "Cycle Task" },
-		["Space"] = { "Open Table of Contents" },
+        ["."] = { "Find Heading" },
+		["<C-/>"] = { "Open Table of Contents" },
 		i = {
 			name = "Insert",
 			d = { "Date" },
+			f = { "File Link" },
+			l = { "Link" },
 		},
 		l = {
 			name = "List",

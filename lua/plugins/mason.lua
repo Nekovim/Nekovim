@@ -13,7 +13,7 @@ local M = {
 	},
 }
 
-local settings = {
+M.opts = {
 	ui = {
 		border = "none",
 		icons = {
@@ -26,12 +26,14 @@ local settings = {
 	max_concurrent_installers = 4,
 }
 
-function M.config()
-	require("mason").setup(settings)
-	require("mason-lspconfig").setup({
+function M.config(_, opts)
+	local lsp_opts = {
 		ensure_installed = require("utils").servers,
 		automatic_installation = true,
-	})
+	}
+
+	require("mason").setup(opts)
+	require("mason-lspconfig").setup(lsp_opts)
 end
 
 return M

@@ -13,11 +13,7 @@ local M = {
 	},
 }
 
-function M.config()
-	local treesitter = require("nvim-treesitter")
-	local configs = require("nvim-treesitter.configs")
-
-	configs.setup({
+M.opts = {
 		ensure_installed = {
 			"lua",
 			"bash",
@@ -57,7 +53,11 @@ function M.config()
 			enable = true,
 			enable_autocmd = false,
 		},
-	})
+	}
+
+function M.config(_, opts)
+	require("nvim-treesitter")
+	require("nvim-treesitter.configs").setup(opts)
 end
 
 return M

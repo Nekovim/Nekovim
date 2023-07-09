@@ -17,9 +17,9 @@ M.opts = {
 	},
 }
 
-function M.config()
+function M.config(_, opts)
     M.opts.highlights = require("rose-pine.plugins.bufferline")
-    require("bufferline").setup(M.opts)
+    require("bufferline").setup(opts)
 end
 
 return M

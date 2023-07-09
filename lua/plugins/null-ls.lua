@@ -9,6 +9,7 @@ local M = {
 	},
 }
 
+-- No M.opts needed.
 function M.config()
 	local null_ls = require("null-ls")
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting

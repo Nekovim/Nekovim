@@ -1,5 +1,8 @@
 local M = {}
 
+-- We need to append to the M both DAP and DAPUI's info and config stuff.
+-- This is done because the keys need to be in numerical order starting from 1.
+
 -- DAP
 M[#M + 1] = {
 	"mfussenegger/nvim-dap",

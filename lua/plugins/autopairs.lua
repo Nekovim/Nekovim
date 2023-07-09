@@ -12,12 +12,7 @@ local M = {
 	},
 }
 
-function M.config()
-	local npairs = require("nvim-autopairs")
-	local cond = require("nvim-autopairs.conds")
-	local Rule = require("nvim-autopairs.rule")
-
-	npairs.setup({
+M.opts = {
 		check_ts = true, -- treesitter integration
 		disable_filetype = { "TelescopePrompt", "text" },
 		ts_config = {
@@ -36,7 +31,14 @@ function M.config()
 			highlight = "PmenuSel",
 			highlight_grey = "LineNr",
 		},
-	})
+}
+
+function M.config(_, opts)
+	local npairs = require("nvim-autopairs")
+	local cond = require("nvim-autopairs.conds")
+	local Rule = require("nvim-autopairs.rule")
+
+	npairs.setup(opts)
 
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	local cmp = require("cmp")

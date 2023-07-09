@@ -103,8 +103,8 @@ M.opts = {
 	},
 }
 
-function M.config()
-	require("telescope").setup(M.opts)
+function M.config(_, opts)
+	require("telescope").setup(opts)
 	require("telescope").load_extension("file_browser")
 end
 

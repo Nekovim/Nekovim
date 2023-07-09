@@ -1,19 +1,39 @@
+-- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#191724 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1f1d2e gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineContextChar guifg=#ebbcba gui=nocombine]]
+
 local M = {
 	"lukas-reineke/indent-blankline.nvim",
 	event = "BufReadPre",
 }
 
 M.opts = {
-	char = "▏",
-	show_trailing_blankline_indent = false,
-	show_first_indent_level = true,
 	use_treesitter = true,
+	space_char_blankline = " ",
+
+	show_first_indent_level = true,
+	show_end_of_line = true,
 	show_current_context = true,
+	show_current_context_start = false,
+
+    char = "▏",
+    -- char = "",
+	-- char_highlight_list = {
+	-- 	"IndentBlanklineIndent1",
+	-- 	"IndentBlanklineIndent2",
+	-- },
+	-- space_char_highlight_list = {
+	-- 	"IndentBlanklineIndent1",
+	-- 	"IndentBlanklineIndent2",
+	-- },
+	show_trailing_blankline_indent = false,
+
 	buftype_exclude = { "terminal", "nofile" },
 	filetype_exclude = {
 		"help",
 		"packer",
 		"NvimTree",
+		"norg",
 	},
 }
 

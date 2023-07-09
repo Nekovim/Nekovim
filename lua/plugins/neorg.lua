@@ -1,39 +1,62 @@
 local M = {
 	"nvim-neorg/neorg",
-    lazy = false,
+	lazy = false,
 	event = "VimEnter",
 	build = ":Neorg sync-parsers",
 	dependencies = {
 		{
 			"nvim-lua/plenary.nvim",
 		},
+		{
+			"nvim-neorg/neorg-telescope",
+		},
 	},
 }
 
 M.opts = {
 	load = {
-		["core.defaults"] = {}, -- Loads default behaviour
-		["core.concealer"] = {}, -- Adds pretty icons to your documents
-		["core.dirman"] = { -- Manages Neorg workspaces
+        -- Core Features
+		["core.defaults"] = {},
+
+        -- Make things readable.
+		["core.concealer"] = {
 			config = {
-				workspaces = {
-					code = "~/Repos/programming-notes/",
-					writing = "~/Repos/personal/non-code_related/writing/",
-				},
+				folds = false,
+				icon_preset = "basic",
 			},
 		},
+
+        -- Manage workspaces.
+		["core.dirman"] = {
+			config = {
+				workspaces = require("neorg-workspaces").workspaces,
+				default_workspace = require("neorg-workspaces").default_workspace,
+			},
+		},
+
+        -- Kebindings. Actual mappings should be defined in mappings.lua
 		["core.keybinds"] = {
 			config = { -- Custom User Keybinds
 				default_keybinds = true,
-				neorg_leader = "<leader>n",
-                -- Remop Cycle Task
+				neorg_leader = require("mappings").neorg_leader,
+				hook = require("mappings").neorg_bindings,
 			},
 		},
+
+        -- Table of Contents
+		["core.qol.toc"] = {
+			config = {
+				close_after_use = true,
+			},
+		},
+
+        -- Telescope integrations.
+		["core.integrations.telescope"] = {},
 	},
 }
 
-function M.config()
-	require("neorg").setup(M.opts)
+function M.config(_, opts)
+	require("neorg").setup(opts)
 end
 
 return M
