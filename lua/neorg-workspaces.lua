@@ -7,6 +7,7 @@ M.workspaces = {
 	code = "~/Repos/programming-notes/",
 	game = "~/Repos/gamedev-notes/",
 	writing = "~/Repos/personal/non-code_related/writing/",
+	university = "~/Repos/personal/non-code_related/university/",
 }
 
 return M

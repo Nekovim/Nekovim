@@ -76,4 +76,8 @@ return {
 			require("catppuccin").setup(opts)
 		end,
 	},
+    {
+        "sophacles/vim-processing",
+        ft = { "processing", "pde" },
+    },
 }

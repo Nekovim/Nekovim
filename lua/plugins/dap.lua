@@ -66,6 +66,22 @@ M[#M + 1] = {
 
 		dap.configurations.c = dap.configurations.cpp
 
+		dap.adapters.godot = {
+			type = "server",
+			host = "127.0.0.1",
+			port = "6006",
+		}
+
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch",
+				name = "Launch scene",
+				project = "${workspaceFolder}",
+				launch_scene = true,
+			},
+		}
+
 		local dap_install = require("dap-install")
 		dap_install.setup({})
 		dap_install.config("python", {})

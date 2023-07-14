@@ -15,6 +15,8 @@ function M.config()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
+    require("diagflow")
+
 	-- Set up the signs for diagnostics.
 	local signs = {
 

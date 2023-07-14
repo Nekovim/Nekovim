@@ -17,6 +17,7 @@ M.servers = {
     -- Scripting/Interpreted
 	"pyright",              -- Python LSP
     "omnisharp",            -- C#
+    -- "gdscript",             -- Godot Scripting Language
 
     -- Compiled
 	"clangd",               -- C/C++ LSP

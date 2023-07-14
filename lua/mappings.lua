@@ -42,6 +42,7 @@ M.which_key = {
 
 	g = {
 		name = "Git",
+		B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Gitblame" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		d = {
@@ -84,10 +85,13 @@ M.which_key = {
 		name = "Neorg Mode",
 		["<leader>"] = { "<cmd>Neorg index<CR>", "Default Workspace" },
 		["<BS>"] = { "<cmd>Neorg return<CR>", "Return" },
+		["."] = { "<cmd>Telescope neorg switch_workspace<CR>", "Switch Workspace" },
 		o = {
 			name = "Open",
 			c = { "<cmd>Neorg workspace code<CR>", "Code Notes" },
+			g = { "<cmd>Neorg workspace game<CR>", "Gamedev Notes" },
 			l = { "<cmd>Neorg workspace linux<CR>", "Linux Notes" },
+			u = { "<cmd>Neorg workspace university<CR>", "University Notes" },
 			w = { "<cmd>Neorg workspace writing<CR>", "Writing" },
 		},
 	},
@@ -165,32 +169,47 @@ M.which_key = {
 	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 }
 
--- Mappings for Neorg mode.
+-- Mappings for Neorg mode (Only visible in Neorg mode).
 -- NOTE: These are only the labels. You need to change these in neorg.lua ["core.keybinds"] for them to take effect.
 M.neorg_leader = "<leader>n"
 
 -- Callback used to bind keys when entering neorg buffer. Can't be done directly through which-key.
 M.neorg_bindings = function(keybinds)
+	-- View Table of Contents
 	keybinds.remap_key("norg", "n", "<C-Space>", "<C-cr>")
 	keybinds.map("all", "n", "<leader>n<C-/>", "<cmd>:Neorg toc qflist<CR>")
+
+	-- Telescope Find Neorg Files
 	keybinds.map("all", "n", "<leader><leader>", "<cmd>:Telescope neorg find_norg_files<CR>")
-	keybinds.map("all", "n", "<leader>n.", "<cmd>:Telescope neorg search_headings<CR>")
+	keybinds.map("all", "n", "<leader>n,", "<cmd>:Telescope neorg search_headings<CR>")
+
+	-- Telescope Insert Normal Link
 	keybinds.map("norg", "n", "<leader>nil", "<cmd>:Telescope neorg insert_link<CR>")
 	keybinds.map("norg", "i", "<C-.>l", "<cmd>:Telescope neorg insert_link<CR>")
+
+	-- Telescope Insert File Link
 	keybinds.map("norg", "n", "<leader>nif", "<cmd>:Telescope neorg insert_file_link<CR>")
 	keybinds.map("norg", "i", "<C-.>f", "<cmd>:Telescope neorg insert_file_link<CR>")
+
+	-- Open Code Looking Glass
+	keybinds.remap_event("all", "n", "<leader>nvl", "core.looking-glass.magnify-code-block")
+	keybinds.remap_event("all", "i", "<C-.><cr>", "core.looking-glass.magnify-code-block")
+
+	-- Insert Meta Data
+	keybinds.map("norg", "n", "<leader>nim", "<cmd>:Neorg inject-metadata<CR>")
 end
 
 M.neorg_labels = {
 	n = {
 		name = "Neorg Mode",
-        ["."] = { "Find Heading" },
+		[","] = { "Find Heading" },
 		["<C-/>"] = { "Open Table of Contents" },
 		i = {
 			name = "Insert",
 			d = { "Date" },
 			f = { "File Link" },
 			l = { "Link" },
+			m = { "Meta Data" },
 		},
 		l = {
 			name = "List",
@@ -216,6 +235,10 @@ M.neorg_labels = {
 			p = { "Mark Pending" },
 			r = { "Mark Recurring" },
 			u = { "Mark Undone" },
+		},
+		v = {
+			name = "View",
+			l = { "Looking Glass" },
 		},
 	},
 }

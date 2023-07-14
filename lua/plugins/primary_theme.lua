@@ -1,5 +1,6 @@
 local M = {
-	"rose-pine/neovim",
+	"NiamhFerns/rose-pine.nvim",
+	dir = "/home/niamh/Repos/forks/neovim/rose-pine.nvim/",
 	name = "rose-pine",
 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
 	priority = 1000, -- make sure to load this before all the other start plugins
@@ -11,40 +12,29 @@ M.opts = {
 	--- @usage 'main'|'moon'|'dawn'
 	dark_variant = "main",
 	bold_vert_split = false,
-	dim_nc_background = true,
-	disable_background = false,
-	disable_float_background = false,
+	dim_nc_background = false,
+	disable_background = true,
+	disable_float_background = true,
 	disable_italics = false,
 
-	--- @usage string hex value or named color from rosepinetheme.com/palette
-	groups = {
-		background = "base",
-		background_nc = "_experimental_nc",
-		panel = "surface",
-		panel_nc = "base",
-		border = "highlight_med",
-		comment = "muted",
-		link = "iris",
-		punctuation = "subtle",
-
-		error = "love",
-		hint = "iris",
-		info = "foam",
-		warn = "gold",
-
-		headings = {
-			h1 = "iris",
-			h2 = "foam",
-			h3 = "rose",
-			h4 = "gold",
-			h5 = "pine",
-			h6 = "foam",
-		},
-	},
-
+	respect_default_highlight_groups = true,
 	-- Change specific vim highlight groups
 	-- https://github.com/rose-pine/neovim/wiki/Recipes
 	highlight_groups = {
+		-- Editor
+		CursorLine = { bg = "foam", blend = 10 },
+
+		Keyword = { italic = true },
+		Function = { italic = false },
+		String = { italic = true },
+		Boolean = { italic = true },
+		Conditional = { italic = true },
+		Repeat = { italic = true },
+		["@variable"] = { italic = false },
+		["@parameter"] = { italic = true },
+		["@property"] = { italic = false },
+
+		-- Transparent Telescope
 		TelescopeBorder = { fg = "highlight_high", bg = "none" },
 		TelescopeNormal = { bg = "none" },
 		TelescopePromptNormal = { bg = "base" },
