@@ -1,6 +1,6 @@
 local M = {
-	"NiamhFerns/rose-pine.nvim",
-	dir = "/home/niamh/Repos/forks/neovim/rose-pine.nvim/",
+	"rose-pine/neovim",
+	-- dir = "/home/niamh/Repos/forks/neovim/rose-pine.nvim/",
 	name = "rose-pine",
 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
 	priority = 1000, -- make sure to load this before all the other start plugins
@@ -41,6 +41,32 @@ M.opts = {
 		TelescopeResultsNormal = { fg = "subtle", bg = "none" },
 		TelescopeSelection = { fg = "text", bg = "base" },
 		TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+
+		-- Norg
+		["@neorg.markup.bold.norg"] = { fg = "iris", bold = true },
+		["@neorg.markup.italic.norg"] = { fg = "foam", italic = true },
+		["@neorg.links.location.url.norg"] = { fg = "muted", italic = true },
+
+		["@neorg.headings.1.prefix"] = { fg = "gold" },
+		["@neorg.headings.1.title"] = { fg = "gold", bold = true },
+		["@neorg.headings.2.prefix"] = { fg = "rose" },
+		["@neorg.headings.2.title"] = { fg = "rose", bold = true },
+		["@neorg.headings.3.prefix"] = { fg = "love" },
+		["@neorg.headings.3.title"] = { fg = "love" },
+		["@neorg.headings.4.prefix"] = { fg = "iris" },
+		["@neorg.headings.4.title"] = { fg = "iris" },
+		["@neorg.headings.5.prefix"] = { fg = "foam" },
+		["@neorg.headings.5.title"] = { fg = "foam" },
+		["@neorg.headings.6.prefix"] = { fg = "pine" },
+		["@neorg.headings.6.title"] = { fg = "pine" },
+
+		["@neorg.tags.ranged_verbatim.document_meta.title"] = { fg = "love" },
+		["@neorg.tags.ranged_verbatim.document_meta.description"] = { fg = "rose", italic = true },
+		["@neorg.tags.ranged_verbatim.document_meta.authors"] = { fg = "gold" },
+		["@neorg.tags.ranged_verbatim.document_meta.categories"] = { fg = "iris" },
+		["@neorg.tags.ranged_verbatim.document_meta.created"] = { fg = "muted" },
+		["@neorg.tags.ranged_verbatim.document_meta.updated"] = { fg = "muted" },
+		["@neorg.tags.ranged_verbatim.document_meta.version"] = { fg = "muted" },
 	},
 }
 

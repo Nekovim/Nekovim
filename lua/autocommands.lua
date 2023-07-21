@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("User", {
 	callback = vim.lsp.codelens.refresh,
 })
 
+-- Norg Mappings in Which-Key
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = "*.norg",
 	callback = function()
@@ -17,3 +18,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 		})
 	end,
 })
+
+-- Autosave
+-- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+-- 	pattern = {"*.txt", "*.norg", "*.md"},
+-- 	callback = function ()
+-- 	   vim.cmd.write()
+-- 	end,
+-- })

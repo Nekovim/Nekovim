@@ -13,7 +13,7 @@ M.opts = {
 	detection_methods = { "pattern" },
 
 	-- patterns used to detect root dir, when **"pattern"** is in detection_methods
-	patterns = { ".git", "Makefile", "package.json", ".nvimproj", "cargo.toml" },
+	patterns = { ".git", "Makefile", "package.json", ".nvimproj", "cargo.toml", "csproj" },
 }
 
 function M.config(_, opts)

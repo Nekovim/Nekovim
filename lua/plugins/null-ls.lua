@@ -29,6 +29,7 @@ function M.config()
 			formatting.stylua,
 			formatting.google_java_format,
 			formatting.clang_format,
+			formatting.csharpier,
             formatting.gofmt,
             formatting.goimports_reviser,
             formatting.golines,

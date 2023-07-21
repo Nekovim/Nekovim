@@ -2,18 +2,21 @@ local M = {}
 
 -- Which-key bindings registered by which-key.lua.
 M.which_key = {
-	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Fuzzy Find" },
+	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Find File" },
 	["."] = {
 		"<cmd>Telescope file_browser theme=ivy<cr>",
 		"File Browser",
 	},
-
+	[","] = {
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Find Buffer",
+	},
+	["/"] = {
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Harpoon",
+	},
 	b = {
 		name = "Buffer",
-		b = {
-			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-			"Search Buffers",
-		},
 		c = { "<cmd>Bdelete<cr>", "Close Buffer" },
 		k = { "<cmd>Bdelete!<cr>", "Kill Buffer" },
 		n = { "<cmd>bnext<cr>", "Next Buffer" },
@@ -42,6 +45,8 @@ M.which_key = {
 
 	g = {
 		name = "Git",
+		["."] = { "<cmd>LazyGit<cr>", "LazyGit Toggle" },
+		["<leader>"] = { "<cmd>LazyGitFilter<cr>", "Current Project Commits" },
 		B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Gitblame" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
@@ -49,10 +54,15 @@ M.which_key = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"Diff",
 		},
-		g = { "<cmd><cr>", "Lazygit" },
+		l = {
+			name = "LazyGit",
+			b = { "<cmd>LazyGitFilterCurrentFile<cr>", "Current Buffer Commits" },
+			c = { "<cmd>LazyGitConfig<cr>", "Config" },
+			p = { "<cmd>LazyGitFilter<cr>", "Current Project Commits" },
+			t = { "<cmd>LazyGit<cr>", "Toggle" },
+		},
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
@@ -79,6 +89,12 @@ M.which_key = {
 			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
 		},
 		p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
+	},
+
+	m = {
+		name = "Move",
+		e = { "<C-o>", "Jumplist Up" },
+		n = { "<C-i>", "Jumplist Down" },
 	},
 
 	n = {
