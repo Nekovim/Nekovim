@@ -2,18 +2,21 @@ local M = {}
 
 -- Which-key bindings registered by which-key.lua.
 M.which_key = {
-	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Fuzzy Find" },
+	["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Find File" },
 	["."] = {
 		"<cmd>Telescope file_browser theme=ivy<cr>",
 		"File Browser",
 	},
-
+	[","] = {
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Find Buffer",
+	},
+	["/"] = {
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Harpoon",
+	},
 	b = {
 		name = "Buffer",
-		b = {
-			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-			"Search Buffers",
-		},
 		c = { "<cmd>Bdelete<cr>", "Close Buffer" },
 		k = { "<cmd>Bdelete!<cr>", "Kill Buffer" },
 		n = { "<cmd>bnext<cr>", "Next Buffer" },
@@ -22,8 +25,8 @@ M.which_key = {
 
 	d = {
 		name = "Debug",
-        ["."] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
-        ["/"] = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoint" },
+		["."] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+		["/"] = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoint" },
 		c = { "<cmd>DapContinue<cr>", "Run Dap" },
 		i = { "<cmd>DapStepInto<cr>", "Step Into" },
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
@@ -42,16 +45,24 @@ M.which_key = {
 
 	g = {
 		name = "Git",
+		["."] = { "<cmd>LazyGit<cr>", "LazyGit Toggle" },
+		["<leader>"] = { "<cmd>LazyGitFilter<cr>", "Current Project Commits" },
+		B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Gitblame" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		d = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"Diff",
 		},
-		g = { "<cmd><cr>", "Lazygit" },
+		l = {
+			name = "LazyGit",
+			b = { "<cmd>LazyGitFilterCurrentFile<cr>", "Current Buffer Commits" },
+			c = { "<cmd>LazyGitConfig<cr>", "Config" },
+			p = { "<cmd>LazyGitFilter<cr>", "Current Project Commits" },
+			t = { "<cmd>LazyGit<cr>", "Toggle" },
+		},
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
@@ -67,9 +78,12 @@ M.which_key = {
 
 	h = {
 		name = "Help & Settings",
-		t = {
+		t = { "<cmd>Telescope help_tags<cr>", "Tags" },
+		T = {
 			name = "Theme",
 			["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
+			["<C-d>"] = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
+			["<C-l>"] = { "<cmd>set background=light<cr>", "Set Light Mode" },
 			c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
 			r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
 			t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
@@ -77,11 +91,36 @@ M.which_key = {
 		p = { "<cmd>:cd $HOME/.config/nvim<CR>", "Personal Config" },
 	},
 
+	m = {
+		name = "Move",
+		e = { "<C-o>", "Jumplist Up" },
+		n = { "<C-i>", "Jumplist Down" },
+	},
+
+	n = {
+		name = "Neorg Mode",
+		["<leader>"] = { "<cmd>Neorg index<CR>", "Default Workspace" },
+		["<BS>"] = { "<cmd>Neorg return<CR>", "Return" },
+		["."] = { "<cmd>Telescope neorg switch_workspace<CR>", "Switch Workspace" },
+		o = {
+			name = "Open",
+			c = { "<cmd>Neorg workspace code<CR>", "Code Notes" },
+			g = { "<cmd>Neorg workspace game<CR>", "Gamedev Notes" },
+			l = { "<cmd>Neorg workspace linux<CR>", "Linux Notes" },
+			u = { "<cmd>Neorg workspace university<CR>", "University Notes" },
+			w = { "<cmd>Neorg workspace writing<CR>", "Writing" },
+		},
+	},
+
 	p = {
-		name = "Project",
-		a = { "<cmd>!touch .nvimproj<cr>", "Add Project" },
+		name = "Projects & Sessions",
+		a = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
+		g = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View General Sessions" },
+		G = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save General Session" },
 		p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
 		r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
+		s = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View Project Sessions" },
+		S = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save Project Session" },
 	},
 
 	q = {
@@ -95,7 +134,6 @@ M.which_key = {
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
 		g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
@@ -104,21 +142,20 @@ M.which_key = {
 
 	t = {
 		name = "Toggle",
-        c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Toggle Auto-Completions"},
-		d = { "<cmd>set background=dark<cr>", "Set Dark Mode" },
-		l = { "<cmd>set background=light<cr>", "Set Light Mode" },
-		t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-		e = { "<cmd>NeoTreeFocusToggle<cr>", "Toggle Neotree" },
-		w = { "<cmd>lua SetWrapped()<CR>", "Set Wrapped Mode" },
+		c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Auto-Completions" },
+		l = { "<cmd>set colorcolumn=121<cr>", "Linewrap Indicator" },
+		t = { "<cmd>Twilight<cr>", "Twilight" },
+		e = { "<cmd>NeoTreeFocusToggle<cr>", "Neotree" },
+		w = { "<cmd>lua ToggleWrapped()<CR>", "Wrapped Mode" },
 		E = { "<cmd>NeoTreeShowToggle<cr>", "Show Neotree" },
-		W = { "<cmd>lua UnsetWrapped()<CR>", "Unset Wrapped Mode" },
-		z = {
-			name = "Zen Mode",
-			a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
-			f = { "<cmd>TZFocus<cr>", "Focus" },
-			m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
-			n = { "<cmd>TZNarrow<cr>", "Narrow" },
-		},
+		z = { "<cmd>ZenMode<cr>", "Zen Mode" },
+		-- z = {
+		-- 	name = "Zen Mode",
+		-- 	a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
+		-- 	f = { "<cmd>TZFocus<cr>", "Focus" },
+		-- 	m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
+		-- 	n = { "<cmd>TZNarrow<cr>", "Narrow" },
+		-- },
 	},
 
 	v = {
@@ -146,6 +183,80 @@ M.which_key = {
 	},
 
 	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
+}
+
+-- Mappings for Neorg mode (Only visible in Neorg mode).
+-- NOTE: These are only the labels. You need to change these in neorg.lua ["core.keybinds"] for them to take effect.
+M.neorg_leader = "<leader>n"
+
+-- Callback used to bind keys when entering neorg buffer. Can't be done directly through which-key.
+M.neorg_bindings = function(keybinds)
+	-- View Table of Contents
+	keybinds.remap_key("norg", "n", "<C-Space>", "<C-cr>")
+	keybinds.map("all", "n", "<leader>n<C-/>", "<cmd>:Neorg toc qflist<CR>")
+
+	-- Telescope Find Neorg Files
+	keybinds.map("all", "n", "<leader><leader>", "<cmd>:Telescope neorg find_norg_files<CR>")
+	keybinds.map("all", "n", "<leader>n,", "<cmd>:Telescope neorg search_headings<CR>")
+
+	-- Telescope Insert Normal Link
+	keybinds.map("norg", "n", "<leader>nil", "<cmd>:Telescope neorg insert_link<CR>")
+	keybinds.map("norg", "i", "<C-.>l", "<cmd>:Telescope neorg insert_link<CR>")
+
+	-- Telescope Insert File Link
+	keybinds.map("norg", "n", "<leader>nif", "<cmd>:Telescope neorg insert_file_link<CR>")
+	keybinds.map("norg", "i", "<C-.>f", "<cmd>:Telescope neorg insert_file_link<CR>")
+
+	-- Open Code Looking Glass
+	keybinds.remap_event("all", "n", "<leader>nvl", "core.looking-glass.magnify-code-block")
+	keybinds.remap_event("all", "i", "<C-.><cr>", "core.looking-glass.magnify-code-block")
+
+	-- Insert Meta Data
+	keybinds.map("norg", "n", "<leader>nim", "<cmd>:Neorg inject-metadata<CR>")
+end
+
+M.neorg_labels = {
+	n = {
+		name = "Neorg Mode",
+		[","] = { "Find Heading" },
+		["<C-/>"] = { "Open Table of Contents" },
+		i = {
+			name = "Insert",
+			d = { "Date" },
+			f = { "File Link" },
+			l = { "Link" },
+			m = { "Meta Data" },
+		},
+		l = {
+			name = "List",
+			i = { "Invert" },
+			t = { "Toggle (Un)ordered" },
+		},
+		m = {
+			name = "Mode",
+			h = { "Enter Heading Traversal Mode" },
+			n = { "Enter Neorg Mode" },
+		},
+		n = {
+			name = "Note",
+			n = { "New Note" },
+		},
+		t = {
+			name = "Task",
+			a = { "Mark Ambiguous" },
+			c = { "Mark Cancelled" },
+			d = { "Mark Done" },
+			h = { "Mark On Hold" },
+			i = { "Mark Important" },
+			p = { "Mark Pending" },
+			r = { "Mark Recurring" },
+			u = { "Mark Undone" },
+		},
+		v = {
+			name = "View",
+			l = { "Looking Glass" },
+		},
+	},
 }
 
 -- LSP Mappings to be registered with which-key.
@@ -185,6 +296,7 @@ M.set_qol = function()
 
 	keymap("", "<Space>", "<Nop>", noremap)
 	vim.g.mapleader = " "
+	vim.g.maplocalleader = ","
 
 	-- Normal --
 	-- Better window navigation
@@ -199,8 +311,15 @@ M.set_qol = function()
 	keymap("n", "<C-Left>", ":vertical resize -2<CR>", noremap)
 	keymap("n", "<C-Right>", ":vertical resize +2<CR>", noremap)
 
+	-- Better scrolling
+	keymap("n", "<C-n>", "<C-e>", noremap)
+	keymap("n", "<C-e>", "<C-y>", noremap)
+	keymap("n", "<C-k>", "<C-d>", noremap)
+	keymap("n", "<C-j>", "<C-u>", noremap)
+
 	-- Insert --
 	-- Easier Escape sequence.
+	keymap("n", "<C-u>", "<ESC>", noremap)
 	keymap("i", "<C-u>", "<ESC>", noremap)
 	keymap("v", "<C-u>", "<ESC>", noremap)
 

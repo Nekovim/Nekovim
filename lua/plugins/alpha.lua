@@ -1,7 +1,6 @@
 local M = {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
-	commit = "dafa11a6218c2296df044e00f88d9187222ba6b0",
 }
 
 function M.config()
@@ -15,10 +14,10 @@ function M.config()
 	}
 
 	dashboard.section.buttons.val = {
-		dashboard.button("SPC SPC", "  Find file", ":Telescope find_files <CR>"),
-		dashboard.button("SPC f n", "  New file", ":ene <BAR> startinsert <CR>"),
+		dashboard.button("SPC SPC", "  Notes", ":Telescope neorg switch_workspace<CR>"),
+		dashboard.button("SPC p p", "  Projects", ":Telescope projects theme=dropdown previewer=false<CR>"),
 		dashboard.button("SPC f r", "  Recently used files", ":Telescope oldfiles <CR>"),
-		dashboard.button("SPC p p", "  Find project", ":Telescope projects theme=dropdown previewer=false<CR>"),
+		dashboard.button("SPC f n", "  New file", ":ene <BAR> startinsert <CR>"),
 		dashboard.button("SPC p t", "  Find text", ":Telescope live_grep <CR>"),
 		dashboard.button("SPC h c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 		dashboard.button("SPC q q", "  Quit Neovim", ":qa<CR>"),

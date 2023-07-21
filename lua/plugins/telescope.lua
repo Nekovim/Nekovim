@@ -1,16 +1,13 @@
 local M = {
 	"nvim-telescope/telescope.nvim",
-	commit = "203bf5609137600d73e8ed82703d6b0e320a5f36",
 	event = "Bufenter",
 	cmd = { "Telescope" },
 	dependencies = {
 		{
 			"ahmedkhalf/project.nvim",
-			commit = "685bc8e3890d2feb07ccf919522c97f7d33b94e4",
 		},
 		{
 			"nvim-telescope/telescope-file-browser.nvim",
-			commit = "e0fcb12",
 			dependencies = { "nvim-lua/plenary.nvim" },
 		},
 	},
@@ -106,8 +103,8 @@ M.opts = {
 	},
 }
 
-function M.config()
-	require("telescope").setup(M.opts)
+function M.config(_, opts)
+	require("telescope").setup(opts)
 	require("telescope").load_extension("file_browser")
 end
 

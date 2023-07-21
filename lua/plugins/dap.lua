@@ -1,14 +1,15 @@
 local M = {}
 
+-- We need to append to the M both DAP and DAPUI's info and config stuff.
+-- This is done because the keys need to be in numerical order starting from 1.
+
 -- DAP
 M[#M + 1] = {
 	"mfussenegger/nvim-dap",
-	commit = "6b12294a57001d994022df8acbe2ef7327d30587",
 	event = "VeryLazy",
 	dependencies = {
 		{
 			"ravenxrz/DAPInstall.nvim",
-			commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de",
 			event = "VeryLazy",
 		},
 	},
@@ -64,6 +65,22 @@ M[#M + 1] = {
 		}
 
 		dap.configurations.c = dap.configurations.cpp
+
+		dap.adapters.godot = {
+			type = "server",
+			host = "127.0.0.1",
+			port = "6006",
+		}
+
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch",
+				name = "Launch scene",
+				project = "${workspaceFolder}",
+				launch_scene = true,
+			},
+		}
 
 		local dap_install = require("dap-install")
 		dap_install.setup({})

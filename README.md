@@ -1,32 +1,12 @@
-# Niamh's Neovim Config
-*Largely based off of Christian Chiarulli's [Neovim Basic IDE starter config](https://github.com/LunarVim/nvim-basic-ide).*
+# Nekovim
+Neovim for the for the feline minded individual.
 
 ## Plugins Used
-*Package Manager:* Lazy.nvim
+There are a host of plugins used in this configuration. These are currently all on by default.
 
-### General
-- Alpha
-- Comment.nvim
-- Gitsigns
-- Illuminate
-- Indentline
-- Lualine
-- Nvim Dev Icons
-- Whickkey
-
-### LSP & Syntax Highlighting
-- Autopairs
-- Cmp
-- LSPconfig
-- Mason
-- Null-ls
-- Rust Tools
-- Treesitter
-
-### Navigation & Project Management
-- Neotree
-- Project
-- Telescope
+You can find a list [here](https://github.com/NiamhFerns/nvim/wiki/Modules).
 
 ## Usage
-Just `git clone https://github.com/NiamhFerns/nvim.git` into your .config or wherever you store your nvim config and start nvim.
+Make sure you've backed up then removed your `.config/nvim` and removed your `.local/share/nvim` folder.
+
+Then run `git clone https://github.com/NiamhFerns/nekovim.git ~/.config/nvim` on Linux.

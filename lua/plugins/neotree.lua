@@ -10,7 +10,7 @@ local M = {
 	},
 }
 
-M.window_picker_opts = {
+local window_picker_opts = {
 	autoselect_one = true,
 	include_current_win = false,
 	selection_chars = "mneiokhjluyarstgzxcdvqwfpb",
@@ -288,9 +288,9 @@ M.opts = {
 	},
 }
 
-function M.config()
-	require("window-picker").setup(M.window_picker_opts)
-	require("neo-tree").setup(M.opts)
+function M.config(_, opts)
+	require("window-picker").setup(window_picker_opts)
+	require("neo-tree").setup(opts)
 end
 
 return M
