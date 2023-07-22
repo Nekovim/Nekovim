@@ -1,4 +1,4 @@
-P = function(v)
+TablePrint = function(v)
 	print(vim.inspect(v))
 	return v
 end
@@ -7,7 +7,7 @@ RELOAD = function(...)
 	return require("plenary.relaod").reload_module(...)
 end
 
-R = function(name)
+ReloadPlugin = function(name)
 	RELOAD(name)
 	return require(name)
 end
