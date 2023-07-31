@@ -6,13 +6,13 @@ local M = {}
 
 M.managed = {
 	-- Lua & System
-	"lua_ls", -- Lua LSP
-	"bashls", -- Bash LSP
+	lua = "lua_ls", -- Lua LSP
+	bash = "bashls", -- Bash LSP
 
 	-- Markup & Data Formats
 	-- "typst-lsp",            -- Tyspt LSP
-	"jsonls", -- JSON LSP
-	"yamlls", -- YAML LSP
+	json = "jsonls", -- JSON LSP
+	yaml = "yamlls", -- YAML LSP
 
 	-- Scripting/Interpreted
 	"pyright", -- Python LSP

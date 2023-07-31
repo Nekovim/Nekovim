@@ -20,37 +20,33 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "gd", "gdscript", "gdscript3" },
+	pattern = { "gd", "gdscript", "gdscript3" },
 	callback = function()
-        vim.cmd [[setlocal noexpandtab]]
-    end,
+		vim.cmd([[setlocal noexpandtab]])
+	end,
 })
 
 local hover_files = {
-    cpp = true,
-    c = true,
-    rust = true,
-    cs = false,
-    gdscript = true,
-    lua = false,
-    norg = false,
-    md = false,
-    go = false,
-    python = true,
+	cpp = true,
+	c = true,
+	cs = true,
+	gdscript = true,
+	go = true,
+	java = true,
+    javascript  = true,
+	lua = true,
+	rust = true,
+	md = false,
+	norg = false,
+	python = true,
+    typescript = true,
 }
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
-  callback = function()
-        if not hover_files[vim.bo.filetype] or hover_files[vim.bo.filetype] == nil then
-            return
-        end
-            vim.lsp.buf.hover()
-  end,
+	callback = function()
+		if (not hover_files[vim.bo.filetype]) or hover_files[vim.bo.filetype] == nil then
+			return
+		end
+		vim.lsp.buf.hover()
+	end,
 })
--- Autosave
--- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
--- 	pattern = {"*.txt", "*.norg", "*.md"},
--- 	callback = function ()
--- 	   vim.cmd.write()
--- 	end,
--- })

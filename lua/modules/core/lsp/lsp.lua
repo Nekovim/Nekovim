@@ -168,22 +168,26 @@ function M.config()
 		require("illuminate").on_attach(client)
 	end
 
-	local servers = vim.tbl_extend("force", require("utils").managed, require("utils").unmanaged.servers)
-	for _, server in pairs(servers) do
-		Opts = {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
+	local attach_servers = function(servers)
+		for _, server in pairs(servers) do
+			Opts = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+			}
 
-		server = vim.split(server, "@")[1]
+			server = vim.split(server, "@")[1]
 
-		local require_ok, conf_opts = pcall(require, "settings." .. server)
-		if require_ok then
-			Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
+			local require_ok, conf_opts = pcall(require, "settings." .. server)
+			if require_ok then
+				Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
+			end
+
+			lspconfig[server].setup(Opts)
 		end
-
-		lspconfig[server].setup(Opts)
 	end
+
+	attach_servers(require("utils").managed)
+	attach_servers(require("utils").unmanaged.servers)
 end
 
 return M
