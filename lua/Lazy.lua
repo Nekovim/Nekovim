@@ -24,6 +24,7 @@ lazy.modules = {
 	{ import = "modules.core" },
 	{ import = "modules.core.debug" },
 	{ import = "modules.core.flow" },
+	{ import = "modules.core.motions" },
 	{ import = "modules.core.git" },
 	{ import = "modules.core.languages" },
 	{ import = "modules.core.legible" },
@@ -33,7 +34,7 @@ lazy.modules = {
 	-- Looks
 	{ import = "modules.looks" },
 	{ import = "modules.looks.themes" },
-	{ import = "modules.looks.fluff" },
+	{ import = "modules.looks.ui" },
 
 	-- Writing
 	{ import = "modules.writing" },
