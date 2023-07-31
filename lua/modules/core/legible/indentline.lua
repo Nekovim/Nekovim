@@ -1,6 +1,6 @@
--- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#191724 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#393552 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1f1d2e gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineContextChar guifg=#ebbcba gui=nocombine]]
+vim.cmd([[highlight IndentBlanklineContextChar guifg=#ebbcba gui=nocombine]])
 
 local M = {
 	"lukas-reineke/indent-blankline.nvim",
@@ -16,12 +16,12 @@ M.opts = {
 	show_current_context = true,
 	show_current_context_start = false,
 
-    char = "▏",
-    -- char = "",
-	-- char_highlight_list = {
-	-- 	"IndentBlanklineIndent1",
-	-- 	"IndentBlanklineIndent2",
-	-- },
+	char = "▏",
+	context_char = "▏",
+	-- char = "",
+	char_highlight_list = {
+		"IndentBlanklineIndent1",
+	},
 	-- space_char_highlight_list = {
 	-- 	"IndentBlanklineIndent1",
 	-- 	"IndentBlanklineIndent2",
@@ -34,6 +34,9 @@ M.opts = {
 		"packer",
 		"NvimTree",
 		"norg",
+		"gd",
+		"gdscript",
+		"gdscript3",
 	},
 }
 

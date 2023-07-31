@@ -12,8 +12,21 @@ M.which_key = {
 		"Find Buffer",
 	},
 	["/"] = {
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Harpoon",
+		name = "Harpoon",
+		["<leader>"] = { "<cmd>Telescope harpoon marks<cr>", "Search Marks" },
+		a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Mark" },
+		n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next Mark" },
+		e = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Previous Mark" },
+		["1"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Mark 1" },
+		["2"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Mark 2" },
+		["3"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Mark 3" },
+		["4"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Mark 4" },
+		["5"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "Mark 5" },
+		["6"] = { "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "Mark 6" },
+		["7"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "Mark 7" },
+		["8"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Mark 8" },
+		["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Mark 9" },
+		["0"] = { "<cmd>lua require('harpoon.ui').nav_file(0)<cr>", "Mark 0" },
 	},
 	b = {
 		name = "Buffer",
@@ -35,6 +48,15 @@ M.which_key = {
 		t = { "<cmd>lua require'dapui'.toggle({reset = true})<CR>", "Toggle UI" },
 		r = { "<cmd>DapToggleRepl<CR>", "Toggle Repl" },
 		x = { "<cmd>DapStepOut<cr>", "Step Out" },
+	},
+
+	e = {
+		name = "Edgy",
+		L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels"},
+		b = { "<cmd>Neotree buffers<cr>", "Neotree Buffers" },
+		d = { "<cmd>Trouble<cr>", "Trouble Diagnostics" },
+		n = { "<cmd>Neotree toggle<cr>", "Neotree" },
+		o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
 	},
 
 	f = {
@@ -144,10 +166,8 @@ M.which_key = {
 		name = "Toggle",
 		c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Auto-Completions" },
 		l = { "<cmd>set colorcolumn=121<cr>", "Linewrap Indicator" },
-		t = { "<cmd>Twilight<cr>", "Twilight" },
-		e = { "<cmd>NeoTreeFocusToggle<cr>", "Neotree" },
+		T = { "<cmd>Twilight<cr>", "Twilight" },
 		w = { "<cmd>lua ToggleWrapped()<CR>", "Wrapped Mode" },
-		E = { "<cmd>NeoTreeShowToggle<cr>", "Show Neotree" },
 		z = { "<cmd>ZenMode<cr>", "Zen Mode" },
 		-- z = {
 		-- 	name = "Zen Mode",

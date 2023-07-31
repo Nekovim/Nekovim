@@ -15,7 +15,7 @@ function M.config()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
-    require("diagflow")
+	require("diagflow")
 
 	-- Set up the signs for diagnostics.
 	local signs = {
@@ -84,8 +84,8 @@ function M.config()
 			client.server_capabilities.documentFormattingProvider = false
 		end
 
-        -- TEMP FIX: IF CSHARP BREAKS THIS IS PROBABLY WHY!
-        -- https://nicolaiarocci.com/making-csharp-and-omnisharp-play-well-with-neovim/
+		-- TEMP FIX: IF CSHARP BREAKS THIS IS PROBABLY WHY!
+		-- https://nicolaiarocci.com/making-csharp-and-omnisharp-play-well-with-neovim/
 		if client.name == "omnisharp" then
 			client.server_capabilities.semanticTokensProvider = {
 				full = vim.empty_dict(),
@@ -166,17 +166,10 @@ function M.config()
 		-- lsp_keymaps(bufnr)
 		register_mappings(bufnr)
 		require("illuminate").on_attach(client)
-
-		-- Refresh codelens on TextChange or leaving insert mode.
-		-- vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
-		-- 	buffer = bufnr,
-		-- 	callback = vim.lsp.codelens.refresh,
-		-- })
-		--
-		-- vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 	end
 
-	for _, server in pairs(require("utils").servers) do
+	local servers = vim.tbl_extend("force", require("utils").managed, require("utils").unmanaged.servers)
+	for _, server in pairs(servers) do
 		Opts = {
 			on_attach = on_attach,
 			capabilities = capabilities,

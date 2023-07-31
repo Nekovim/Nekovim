@@ -4,33 +4,60 @@ require("utils.wrapping")
 -- Utils Table
 local M = {}
 
-M.servers = {
-    -- Lua & System
-	"lua_ls",               -- Lua LSP
-	"bashls",               -- Bash LSP 
+M.managed = {
+	-- Lua & System
+	"lua_ls", -- Lua LSP
+	"bashls", -- Bash LSP
 
-    -- Markup & Data Formats
-    -- "typst-lsp",            -- Tyspt LSP
-	"jsonls",               -- JSON LSP
-	"yamlls",               -- YAML LSP
+	-- Markup & Data Formats
+	-- "typst-lsp",            -- Tyspt LSP
+	"jsonls", -- JSON LSP
+	"yamlls", -- YAML LSP
 
-    -- Scripting/Interpreted
-	"pyright",              -- Python LSP
-    "omnisharp",            -- C#
-    -- "gdscript",             -- Godot Scripting Language
+	-- Scripting/Interpreted
+	"pyright", -- Python LSP
+	"csharp_ls", -- C# via csharp-language-server
+	-- "omnisharp",         -- C# via omnisharp-roslyn
 
-    -- Compiled
-	"clangd",               -- C/C++ LSP
-    "gopls",                -- Go LSP & Formatting
+	-- Compiled
+	"clangd", -- C/C++ LSP
+	"gopls", -- Go LSP & Formatting
 
-    -- Language Management
-	"cmake",                -- CMake LSP
+	-- Language Management
+	"cmake", -- CMake LSP
 
-    -- By & For Stupid People
-    "html",                 -- HTML LSP
-    "cssls",                -- CSS LSP
-    "tsserver",             -- Typescript & Javascript LSP
-    "eslint",               -- Typescript & Javascript Linting
+	-- By & For Stupid People
+	"html", -- HTML LSP
+	"cssls", -- CSS LSP
+	"tsserver", -- Typescript & Javascript LSP
+	"eslint", -- Typescript & Javascript Linting
+	"svelte",
+	"vuels",
+}
+
+-- Names only for lspconfig.
+M.unmanaged = {
+	servers = {
+		"gdscript",
+	}, -- Godot's Scripting Language
+	linters = {
+		"gdtoolkit",
+		-- "cmakelang",
+		-- "cmakelint",
+		-- "checkstyle",
+	},
+	formatters = {
+		"clang-format",
+		"csharpier",
+		"gdtoolkit",
+		-- "goimports",
+		"goimports-reviser",
+		-- "gofumpt",
+		"golines",
+		"stylua",
+		"black",
+		-- "cmakelang",
+	},
 }
 
 return M

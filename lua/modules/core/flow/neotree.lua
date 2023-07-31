@@ -1,12 +1,15 @@
 local M = {
 	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v2.x",
-	cmd = { "Neotree", "NeoTreeShowToggle", "NeoTreeFocusToggle" },
+	branch = "v3.x",
+	cmd = { "Neotree" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"kyazdani42/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
-		"s1n7ax/nvim-window-picker",
+		{
+			"s1n7ax/nvim-window-picker",
+			tag = "v1.5",
+		},
 	},
 }
 
@@ -22,10 +25,10 @@ local window_picker_opts = {
 		-- filter using buffer options
 		bo = {
 			-- if the file type is one of following, the window will be ignored
-			filetype = { "NvimTree", "neo-tree", "notify" },
+			filetype = { "NvimTree", "neo-tree", "neo-tree-popup", "notify", "edgy", "Trouble", "qf" },
 
 			-- if the buffer type is one of following, the window will be ignored
-			buftype = { "terminal" },
+			buftype = { "terminal", "quickfix" },
 		},
 
 		-- filter using window options
@@ -40,7 +43,7 @@ local window_picker_opts = {
 		file_name_contains = {},
 	},
 
-    -- Themeing
+	-- Themeing
 	fg_color = "#ebbcba",
 	current_win_hl_color = "#eb6f92",
 	other_win_hl_color = "#403d52",
@@ -55,7 +58,7 @@ M.opts = {
 	-- 	popup_border_style = "rounded",
 	enable_git_status = true,
 	enable_diagnostics = true,
-	open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
+	open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" }, -- when opening files, do not use windows containing these filetypes or buftypes
 	-- 	sort_case_insensitive = false, -- used when sorting files and directories in the tree
 	-- 	sort_function = nil, -- use a custom function for sorting files and directories in the tree
 	-- 	-- sort_function = function (a,b)
@@ -180,7 +183,7 @@ M.opts = {
 			["t"] = "open_tabnew",
 			-- ["<cr>"] = "open_drop",
 			-- ["t"] = "open_tab_drop",
-			--["w"] = "open_with_window_picker",
+			["w"] = "open_with_window_picker",
 			-- ["P"] = { "toggle_preview", config = { use_float = true } },
 
 			["l"] = "focus_preview",
@@ -228,14 +231,17 @@ M.opts = {
 		},
 		-- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
-		follow_current_file = true, -- This will find and focus the file in the active buffer every
+		follow_current_file = {
+			enabled = true,
+			leave_dirs_open = false,
+		}, -- This will find and focus the file in the active buffer every
 		group_empty_dirs = false, -- when true, empty folders will be grouped together
 		hijack_netrw_behavior = "disabled", -- netrw disabled, opening a directory opens neo-tree
 		-- in whatever position is specified in window.position
 		-- "open_current",  -- netrw disabled, opening a directory opens within the
 		-- window like netrw would, regardless of window.position
 		-- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-		-- 		use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+		use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
 		-- instead of relying on nvim autocmd events.
 		window = {
 			mappings = {
@@ -260,11 +266,11 @@ M.opts = {
 		},
 	},
 	buffers = {
-		follow_current_file = true, -- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
 		group_empty_dirs = true, -- when true, empty folders will be grouped together
 		show_unloaded = true,
 		window = {
+			position = "right",
 			mappings = {
 				["bd"] = "buffer_delete",
 				["<bs>"] = "navigate_up",

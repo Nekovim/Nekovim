@@ -28,7 +28,7 @@ M.opts = {
 
 function M.config(_, opts)
 	local lsp_opts = {
-		ensure_installed = require("utils").servers,
+		ensure_installed = require("utils").managed,
 		automatic_installation = true,
 	}
 

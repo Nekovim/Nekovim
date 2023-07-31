@@ -106,6 +106,7 @@ M.opts = {
 function M.config(_, opts)
 	require("telescope").setup(opts)
 	require("telescope").load_extension("file_browser")
+	require("telescope").load_extension("harpoon")
 end
 
 return M

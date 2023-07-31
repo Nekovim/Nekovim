@@ -22,17 +22,18 @@ function M.config()
 		debug = false,
 		sources = {
 			formatting.prettier.with({
-				extra_filetypes = { "toml" },
-				extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+				extra_args = { "--single-quote", "--jsx-single-quote" },
 			}),
 			formatting.black.with({ extra_args = { "--fast" } }),
 			formatting.stylua,
 			formatting.google_java_format,
 			formatting.clang_format,
 			formatting.csharpier,
-            formatting.gofmt,
-            formatting.goimports_reviser,
-            formatting.golines,
+			formatting.gofmt,
+			formatting.goimports_reviser,
+			formatting.golines,
+			formatting.gdformat,
+			-- diagnostics.gdlint,
 			diagnostics.flake8,
 		},
 	})
