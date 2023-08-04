@@ -2,6 +2,7 @@ local M = {
 	"nvim-neorg/neorg",
 	lazy = false,
 	event = "VimEnter",
+	tag = "v5.0.0",
 	build = ":Neorg sync-parsers",
 	dependencies = {
 		{
@@ -9,6 +10,7 @@ local M = {
 		},
 		{
 			"nvim-neorg/neorg-telescope",
+			commit = "d24f445"
 		},
 	},
 }
