@@ -6,6 +6,10 @@ local M = {
 			"nvim-lua/plenary.nvim",
 			lazy = true,
 		},
+		{
+			"davidmh/cspell.nvim",
+			event = "VeryLazy",
+		},
 	},
 }
 
@@ -16,6 +20,12 @@ function M.config()
 	local formatting = null_ls.builtins.formatting
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 	local diagnostics = null_ls.builtins.diagnostics
+	local cspell = require("cspell")
+	local cspell_config = {
+		diagnostics_postprocess = function(diagnostic)
+			diagnostic.severity = vim.diagnostic.severity["HINT"]
+		end,
+	}
 
 	-- https://github.com/prettier-solidity/prettier-plugin-solidity
 	null_ls.setup({
@@ -35,6 +45,9 @@ function M.config()
 			formatting.gdformat,
 			-- diagnostics.gdlint,
 			diagnostics.flake8,
+			-- Spelling
+			cspell.diagnostics.with(cspell_config),
+			cspell.code_actions.with(cspell_config),
 		},
 	})
 end
