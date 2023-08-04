@@ -28,6 +28,7 @@ M.which_key = {
 		["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Mark 9" },
 		["0"] = { "<cmd>lua require('harpoon.ui').nav_file(0)<cr>", "Mark 0" },
 	},
+
 	b = {
 		name = "Buffer",
 		c = { "<cmd>Bdelete<cr>", "Close Buffer" },
@@ -52,10 +53,11 @@ M.which_key = {
 
 	e = {
 		name = "Edgy",
-		L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels"},
+		L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels" },
 		b = { "<cmd>Neotree buffers<cr>", "Neotree Buffers" },
 		d = { "<cmd>Trouble<cr>", "Trouble Diagnostics" },
-		n = { "<cmd>Neotree toggle<cr>", "Neotree" },
+		N = { "<cmd>Neotree toggle<cr>", "Neotree" },
+		n = { "<cmd>Neotree focus<cr>", "Neotree" },
 		o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
 	},
 
@@ -281,6 +283,8 @@ M.neorg_labels = {
 
 -- LSP Mappings to be registered with which-key.
 M.lsp = {
+	["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+
 	c = {
 		name = "Code Actions",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },

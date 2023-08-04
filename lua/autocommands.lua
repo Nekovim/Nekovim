@@ -42,11 +42,11 @@ local hover_files = {
     typescript = true,
 }
 
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	callback = function()
-		if (not hover_files[vim.bo.filetype]) or hover_files[vim.bo.filetype] == nil then
-			return
-		end
-		vim.lsp.buf.hover()
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+-- 	callback = function()
+-- 		if (not hover_files[vim.bo.filetype]) or hover_files[vim.bo.filetype] == nil then
+-- 			return
+-- 		end
+-- 		vim.lsp.buf.hover()
+-- 	end,
+-- })
