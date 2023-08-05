@@ -60,19 +60,6 @@ function M.config()
 		border = "rounded",
 	})
 
-	local function register_mappings(bufnr)
-		local opts = {
-			mode = "n", -- NORMAL mode
-			prefix = "<leader>",
-			buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
-			silent = true, -- use `silent` when creating keymaps
-			noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
-			nowait = true, -- use `nowait` when creating keymaps
-		}
-
-		require("which-key").register(require("mappings").lsp, opts)
-	end
-
 	local lspconfig = require("lspconfig")
 
 	local on_attach = function(client, bufnr)
@@ -162,9 +149,11 @@ function M.config()
 				range = true,
 			}
 		end
+		
+		local mappings = require("mappings")
 
 		-- lsp_keymaps(bufnr)
-		register_mappings(bufnr)
+		mappings.lsp_register(bufnr, mappings.lsp_all)
 		require("illuminate").on_attach(client)
 	end
 

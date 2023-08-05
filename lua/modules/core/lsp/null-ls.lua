@@ -27,6 +27,13 @@ function M.config()
 		end,
 	}
 
+	local on_attach = function (client, bufnr)
+		local mappings = require("mappings")
+
+		-- lsp_keymaps(bufnr)
+		mappings.lsp_register(bufnr, mappings.lsp_diagnostics)
+	end
+
 	-- https://github.com/prettier-solidity/prettier-plugin-solidity
 	null_ls.setup({
 		debug = false,
@@ -49,6 +56,7 @@ function M.config()
 			cspell.diagnostics.with(cspell_config),
 			cspell.code_actions.with(cspell_config),
 		},
+		on_attach = on_attach
 	})
 end
 

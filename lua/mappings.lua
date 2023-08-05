@@ -282,7 +282,7 @@ M.neorg_labels = {
 }
 
 -- LSP Mappings to be registered with which-key.
-M.lsp = {
+M.lsp_all = {
 	["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 
 	c = {
@@ -291,9 +291,9 @@ M.lsp = {
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
 		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
 		e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 		I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
+		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
 		p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
 		q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
@@ -311,6 +311,34 @@ M.lsp = {
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 	},
 }
+
+M.lsp_diagnostics = {
+	["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+
+	c = {
+		name = "Code Actions",
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
+		e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+		n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
+		p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
+		q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
+	},
+}
+
+-- Register lsp bindings.
+M.lsp_register = function(bufnr, mappings)
+	local opts = {
+		mode = "n", -- NORMAL mode
+		prefix = "<leader>",
+		buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+		silent = true, -- use `silent` when creating keymaps
+		noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
+		nowait = true, -- use `nowait` when creating keymaps
+	}
+
+	require("which-key").register(mappings, opts)
+end
 
 -- Quality of life changes to default bindings.
 M.set_qol = function()
