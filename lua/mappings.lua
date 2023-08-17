@@ -28,6 +28,7 @@ M.which_key = {
 		["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Mark 9" },
 		["0"] = { "<cmd>lua require('harpoon.ui').nav_file(0)<cr>", "Mark 0" },
 	},
+	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 
 	b = {
 		name = "Buffer",
@@ -35,6 +36,7 @@ M.which_key = {
 		k = { "<cmd>Bdelete!<cr>", "Kill Buffer" },
 		n = { "<cmd>bnext<cr>", "Next Buffer" },
 		p = { "<cmd>bprevious<cr>", "Previous Buffer" },
+		s = { "<cmd>:w<CR>", "Save Buffer" },
 	},
 
 	d = {
@@ -56,15 +58,10 @@ M.which_key = {
 		L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels" },
 		b = { "<cmd>Neotree buffers<cr>", "Neotree Buffers" },
 		d = { "<cmd>Trouble<cr>", "Trouble Diagnostics" },
+		g = { "<cmd>Neotree git_status<cr>", "Neotree Git Status" },
 		N = { "<cmd>Neotree toggle<cr>", "Neotree" },
 		n = { "<cmd>Neotree focus<cr>", "Neotree" },
 		o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
-	},
-
-	f = {
-		name = "File",
-		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-		s = { "<cmd>:w<CR>", "Save" },
 	},
 
 	g = {
@@ -78,21 +75,13 @@ M.which_key = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"Diff",
 		},
-		l = {
-			name = "LazyGit",
-			b = { "<cmd>LazyGitFilterCurrentFile<cr>", "Current Buffer Commits" },
-			c = { "<cmd>LazyGitConfig<cr>", "Config" },
-			p = { "<cmd>LazyGitFilter<cr>", "Current Project Commits" },
-			t = { "<cmd>LazyGit<cr>", "Toggle" },
-		},
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+		e = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+		n = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
 		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		S = { "<cmd>Neotree float git_status<cr>", "Open Neotree Git Status" },
 		t = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle Gitsigns" },
 		u = {
 			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
@@ -131,6 +120,7 @@ M.which_key = {
 			c = { "<cmd>Neorg workspace code<CR>", "Code Notes" },
 			g = { "<cmd>Neorg workspace game<CR>", "Gamedev Notes" },
 			l = { "<cmd>Neorg workspace linux<CR>", "Linux Notes" },
+			p = { "<cmd>Neorg workspace personal<CR>", "Personal Notes" },
 			u = { "<cmd>Neorg workspace university<CR>", "University Notes" },
 			w = { "<cmd>Neorg workspace writing<CR>", "Writing" },
 		},
@@ -145,12 +135,6 @@ M.which_key = {
 		r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
 		s = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View Project Sessions" },
 		S = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save Project Session" },
-	},
-
-	q = {
-		name = "Quit",
-		q = { "<cmd>quitall<cr>", "quit" },
-		Q = { "<cmd>qa!<cr>", "Force Quit" },
 	},
 
 	s = {
@@ -171,17 +155,11 @@ M.which_key = {
 		T = { "<cmd>Twilight<cr>", "Twilight" },
 		w = { "<cmd>lua ToggleWrapped()<CR>", "Wrapped Mode" },
 		z = { "<cmd>ZenMode<cr>", "Zen Mode" },
-		-- z = {
-		-- 	name = "Zen Mode",
-		-- 	a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
-		-- 	f = { "<cmd>TZFocus<cr>", "Focus" },
-		-- 	m = { "<cmd>TZMinimalist<cr>", "Minimalist" },
-		-- 	n = { "<cmd>TZNarrow<cr>", "Narrow" },
-		-- },
 	},
 
 	v = {
 		name = "View",
+		g = { "<cmd>ChatGPT<cr>", "ChatGPT" },
 		l = { "<cmd>Lazy<cr>", "Lazy UI" },
 		i = { "<cmd>LspInfo<cr>", "LSP Info" },
 		m = { "<cmd>Mason<cr>", "Mason UI" },
@@ -197,14 +175,14 @@ M.which_key = {
 	w = {
 		name = "Window",
 		c = { "<cmd>q<cr>", "Close Window" },
-		e = { "<C-w>k", "Close Up" },
-		i = { "<C-w>l", "Close Right" },
+		e = { "<C-w>k", "Focus Up" },
+		i = { "<C-w>l", "Focus Right" },
 		k = { "<cmd>q!<cr>", "Kill Window" },
 		m = { "<C-w>h", "Focus Left" },
 		n = { "<C-w>j", "Focus Down" },
+		q = { "<cmd>quitall<cr>", "Quit Neovim" },
+		Q = { "<cmd>qa!<cr>", "Force Quit" },
 	},
-
-	["<C-/>"] = { "<cmd>nohlsearch<CR>", "Clear Search Highlight" },
 }
 
 -- Mappings for Neorg mode (Only visible in Neorg mode).
@@ -291,6 +269,7 @@ M.lsp_all = {
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
 		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
 		e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
 		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 		I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },

@@ -23,6 +23,11 @@ M.opts = {
         -- Make things readable.
 		["core.concealer"] = {
 			config = {
+				icons = {
+					code_block = {
+						conceal = true,
+					},
+				},
 				folds = false,
 				icon_preset = "basic",
 			},

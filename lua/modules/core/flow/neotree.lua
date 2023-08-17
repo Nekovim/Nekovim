@@ -280,7 +280,7 @@ M.opts = {
 	},
 	git_status = {
 		window = {
-			position = "float",
+			position = "right",
 			mappings = {
 				["A"] = "git_add_all",
 				["gu"] = "git_unstage_file",

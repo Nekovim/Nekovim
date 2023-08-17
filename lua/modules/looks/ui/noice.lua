@@ -30,10 +30,21 @@ M.opts = {
 		inc_rename = false, -- enables an input dialog for inc-rename.nvim
 		lsp_doc_border = false, -- add a border to hover docs and signature help
 	},
+
+	messages = {
+		enabled = true,
+		view = "mini",
+		view_error = "messages",
+		view_warn = "mini",
+		view_history = "messages",
+		view_search = "virtualtext"
+	}
 }
 
 M.config = function(_, opts)
-	require("notify").setup({ background_colour = "#26233a" })
+	require("notify").setup({ 
+		background_colour = "#26233a",
+	})
 	require("noice").setup(opts)
 end
 
