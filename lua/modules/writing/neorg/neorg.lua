@@ -38,6 +38,8 @@ M.opts = {
 			config = {
 				workspaces = require("neorg-workspaces").workspaces,
 				default_workspace = require("neorg-workspaces").default_workspace,
+				open_last_workspace = false,
+				use_popup = false,
 			},
 		},
 
