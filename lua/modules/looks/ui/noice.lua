@@ -38,12 +38,26 @@ M.opts = {
 		view_warn = "mini",
 		view_history = "messages",
 		view_search = "virtualtext"
+	},
+
+	notify = {
+		enabled = true,
+		view = "mini"
+	},
+
+	views = {
+		mini = {
+			timeout = 5000,
+		},
 	}
 }
 
 M.config = function(_, opts)
 	require("notify").setup({ 
+		render = "compact",
+		stages = "slide",
 		background_colour = "#26233a",
+		timeout = 5000,
 	})
 	require("noice").setup(opts)
 end
