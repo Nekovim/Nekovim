@@ -9,7 +9,7 @@ local M = {
 }
 
 M.opts = {
-	api_key_cmd = "gpg --decrypt /home/niamh/Secrets/gpt_secret.gpg",
+	api_key_cmd = require("secrets").api_key_cmd,
 	yank_register = "+",
 	edit_with_instructions = {
 		diff = false,

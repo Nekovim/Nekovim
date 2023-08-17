@@ -115,15 +115,6 @@ M.which_key = {
 		["<leader>"] = { "<cmd>Neorg index<CR>", "Default Workspace" },
 		["<BS>"] = { "<cmd>Neorg return<CR>", "Return" },
 		["."] = { "<cmd>Telescope neorg switch_workspace<CR>", "Switch Workspace" },
-		o = {
-			name = "Open",
-			c = { "<cmd>Neorg workspace code<CR>", "Code Notes" },
-			g = { "<cmd>Neorg workspace game<CR>", "Gamedev Notes" },
-			l = { "<cmd>Neorg workspace linux<CR>", "Linux Notes" },
-			p = { "<cmd>Neorg workspace personal<CR>", "Personal Notes" },
-			u = { "<cmd>Neorg workspace university<CR>", "University Notes" },
-			w = { "<cmd>Neorg workspace writing<CR>", "Writing" },
-		},
 	},
 
 	p = {

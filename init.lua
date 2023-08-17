@@ -1,4 +1,5 @@
 -- Useful functions for writing plugins.
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nekovim/?.lua"
 require("globals")
 
 -- Sane Options

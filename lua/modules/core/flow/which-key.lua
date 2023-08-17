@@ -82,6 +82,7 @@ function M.config(_, opts)
 
 	require("which-key").setup(opts)
 	require("which-key").register(require("mappings").which_key, mapping_opts)
+	require("which-key").register(require("custom-mappings"), mapping_opts)
 end
 
 return M
