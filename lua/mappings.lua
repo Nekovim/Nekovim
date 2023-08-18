@@ -369,10 +369,6 @@ M.set_qol = function()
 	keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 	keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-	-- Other Unsorted Junk
-	keymap("n", "<leader>qq", ":qa<CR>", noremap)
-	keymap("n", "<leader>qQ", ":qa!<CR>", noremap)
-
 	keymap("n", "<C-/>", ":nohlsearch<CR>", noremap)
 	keymap("i", "<C-/>", ":nohlsearch<CR>", noremap)
 end
