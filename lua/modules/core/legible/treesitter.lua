@@ -52,7 +52,7 @@ M.opts = {
     autotag = {
         enable = true,
     },
-	indent = { enable = true, disable = { "python", "css", "html" } },
+	indent = { enable = true, disable = { "python", "css", "html", "gdscript", "gdscript3", "gd" } },
 
 	context_commentstring = {
 		enable = true,
