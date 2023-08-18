@@ -39,6 +39,9 @@ lazy.modules = {
 	-- Writing
 	{ import = "modules.writing" },
 	{ import = "modules.writing.neorg" },
+
+	-- Tools
+	{ import = "modules.tools" },
 }
 
 lazy.opts = {
