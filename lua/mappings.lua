@@ -35,7 +35,9 @@ M.which_key = {
 		c = { "<cmd>Bdelete<cr>", "Close Buffer" },
 		k = { "<cmd>Bdelete!<cr>", "Kill Buffer" },
 		n = { "<cmd>bnext<cr>", "Next Buffer" },
+		N = { "<cmd>:ene <Bar startinsert <cr>", "New File" },
 		p = { "<cmd>bprevious<cr>", "Previous Buffer" },
+		r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 		s = { "<cmd>:w<CR>", "Save Buffer" },
 	},
 
@@ -321,29 +323,11 @@ M.set_qol = function()
 	vim.g.maplocalleader = ","
 
 	-- Normal --
-	-- Better window navigation
-	keymap("n", "<leader>wm", "<C-w>h", noremap)
-	keymap("n", "<leader>wn", "<C-w>j", noremap)
-	keymap("n", "<leader>we", "<C-w>k", noremap)
-	keymap("n", "<leader>wi", "<C-w>l", noremap)
-
 	-- Resize with arrows
 	keymap("n", "<C-Up>", ":resize +2<CR>", noremap)
 	keymap("n", "<C-Down>", ":resize -2<CR>", noremap)
 	keymap("n", "<C-Left>", ":vertical resize -2<CR>", noremap)
 	keymap("n", "<C-Right>", ":vertical resize +2<CR>", noremap)
-
-	-- Better scrolling
-	keymap("n", "<C-n>", "<C-e>", noremap)
-	keymap("n", "<C-e>", "<C-y>", noremap)
-	keymap("n", "<C-k>", "<C-d>", noremap)
-	keymap("n", "<C-j>", "<C-u>", noremap)
-
-	-- Insert --
-	-- Easier Escape sequence.
-	keymap("n", "<C-u>", "<ESC>", noremap)
-	keymap("i", "<C-u>", "<ESC>", noremap)
-	keymap("v", "<C-u>", "<ESC>", noremap)
 
 	-- Visual --
 	-- Stay in indent mode
@@ -373,10 +357,38 @@ M.set_qol = function()
 	keymap("i", "<C-/>", ":nohlsearch<CR>", noremap)
 end
 
--- Colemak bindings.
+-- qwerty specific bindings.
+M.set_qwerty = function()
+	local noremap = { noremap = true, silent = true }
+	local keymap = vim.api.nvim_set_keymap
+
+	-- Better scrolling
+	keymap("n", "<C-j>", "<C-e>", noremap)
+	keymap("n", "<C-k>", "<C-y>", noremap)
+	keymap("n", "<C-n>", "<C-d>", noremap)
+	keymap("n", "<C-e>", "<C-u>", noremap)
+
+	-- Easier Escape sequence.
+	keymap("n", "<C-u>", "<ESC>", noremap)
+	keymap("i", "<C-u>", "<ESC>", noremap)
+	keymap("v", "<C-u>", "<ESC>", noremap)
+end
+
+-- Colemak specific bindings.
 M.set_colemak = function()
 	local noremap = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_set_keymap
+
+	-- Easier Escape sequence.
+	keymap("n", "<C-u>", "<ESC>", noremap)
+	keymap("i", "<C-u>", "<ESC>", noremap)
+	keymap("v", "<C-u>", "<ESC>", noremap)
+
+	-- Better scrolling
+	keymap("n", "<C-n>", "<C-e>", noremap)
+	keymap("n", "<C-e>", "<C-y>", noremap)
+	keymap("n", "<C-k>", "<C-d>", noremap)
+	keymap("n", "<C-j>", "<C-u>", noremap)
 
 	-- NORMAL MODE --
 	-- Movement Keys
