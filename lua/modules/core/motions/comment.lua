@@ -11,6 +11,10 @@ local M = {
 
 function M.config()
     require("Comment").setup()
+	local ft = require("Comment.ft")
+
+	ft.set("processing", {"//%s", "/*%s*/"})
+
 	Pre_hook = function(ctx)
 		-- Only calculate commentstring for tsx filetypes
 		if vim.bo.filetype == "typescriptreact" then
