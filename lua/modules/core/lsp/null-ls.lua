@@ -53,8 +53,8 @@ function M.config()
 			-- diagnostics.gdlint,
 			diagnostics.flake8,
 			-- Spelling
-			cspell.diagnostics.with(cspell_config),
-			cspell.code_actions.with(cspell_config),
+			-- cspell.diagnostics.with(cspell_config),
+			-- cspell.code_actions.with(cspell_config),
 		},
 		on_attach = on_attach
 	})
