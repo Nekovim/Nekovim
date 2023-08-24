@@ -1,3 +1,3 @@
 return {
-	cmd = { "omnisharp" },
+  cmd = { "omnisharp" },
 }

@@ -1,14 +1,14 @@
 -- Utility Functions
 TablePrint = function(v)
-	print(vim.inspect(v))
-	return v
+  print(vim.inspect(v))
+  return v
 end
 
 RELOAD = function(...)
-	return require("plenary.relaod").reload_module(...)
+  return require("plenary.relaod").reload_module(...)
 end
 
 ReloadPlugin = function(name)
-	RELOAD(name)
-	return require(name)
+  RELOAD(name)
+  return require(name)
 end
