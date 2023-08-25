@@ -284,16 +284,18 @@ M.lsp_all = {
 }
 
 M.lsp_diagnostics = {
-  ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+  normal = {
+    ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 
-  c = {
-    name = "Code Actions",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
-    e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-    h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-    n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
-    p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
-    q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
+    c = {
+      name = "Code Actions",
+      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
+      e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+      h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+      n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
+      p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
+      q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
+    },
   },
 }
 

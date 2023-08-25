@@ -153,7 +153,7 @@ function M.config()
     local mappings = require "mappings"
 
     -- lsp_keymaps(bufnr)
-    mappings.lsp_register(bufnr, mappings.lsp_all)
+    mappings.lsp_register(bufnr, mappings.lsp_all.normal)
     require("illuminate").on_attach(client)
   end
 
