@@ -39,7 +39,7 @@ M.opts = {
       lsp_mappings.c.a = { "<cmd>lua require('rust-tools').code_action_group.code_action_group()<cr>", "Code Actions" }
       lsp_mappings.c.h = { "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>", "Code Hover" }
 
-      mappings.lsp_register(bufnr, lsp_mappings)
+      mappings.register(lsp_mappings, bufnr)
 
       vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
         buffer = bufnr,

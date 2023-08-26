@@ -5,8 +5,8 @@ local on_attach = function(client, bufnr)
   local mappings = require "mappings"
 
   -- lsp_keymaps(bufnr)
-  mappings.lsp_register(bufnr, mappings.lsp_java.normal)
-  mappings.lsp_register(bufnr, mappings.lsp_java.visual, "v")
+  mappings.register(mappings.lsp_java.normal, bufnr)
+  mappings.register(mappings.lsp_java.visual, bufnr, "v")
   require("illuminate").on_attach(client)
 end
 

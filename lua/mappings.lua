@@ -1,5 +1,20 @@
 local M = {}
 
+-- Register lsp bindings.
+M.register = function(mappings, bufnr, mode)
+  local opts = {
+    mode = mode or "n", -- NORMAL mode
+    prefix = "<leader>",
+    buffer = bufnr, -- nil for Global mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
+    nowait = true, -- use `nowait` when creating keymaps
+  }
+
+
+  require("which-key").register(mappings, opts)
+end
+
 -- Which-key bindings registered by which-key.lua.
 M.which_key = {
   ["<leader>"] = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Find File" },
@@ -254,32 +269,34 @@ M.neorg_labels = {
 
 -- LSP Mappings to be registered with which-key.
 M.lsp_all = {
-  ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+  normal = {
+    ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
 
-  c = {
-    name = "Code Actions",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
-    d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
-    D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
-    e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-    I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
-    l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
-    p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
-    q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
-    r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
+    c = {
+      name = "Code Actions",
+      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
+      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
+      D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
+      e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
+      f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+      h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+      I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
+      l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+      n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
+      p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
+      q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
+      r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
+      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+      S = {
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        "Workspace Symbols",
+      },
     },
-  },
 
-  r = {
-    name = "Refactor",
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    r = {
+      name = "Refactor",
+      r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    },
   },
 }
 
@@ -348,20 +365,6 @@ M.lsp_java = {
     },
   },
 }
-
--- Register lsp bindings.
-M.lsp_register = function(bufnr, mappings, mode)
-  local opts = {
-    mode = mode or "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
-    nowait = true, -- use `nowait` when creating keymaps
-  }
-
-  require("which-key").register(mappings, opts)
-end
 
 -- Quality of life changes to default bindings.
 M.set_qol = function()

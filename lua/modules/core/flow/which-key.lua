@@ -71,18 +71,10 @@ M.opts = {
 }
 
 function M.config(_, opts)
-  local mapping_opts = {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
-    nowait = true, -- use `nowait` when creating keymaps
-  }
-
   require("which-key").setup(opts)
-  require("which-key").register(require("mappings").which_key, mapping_opts)
-  require("which-key").register(require "custom-mappings", mapping_opts)
+  local mappings = require("mappings")
+  mappings.register(mappings.which_key)
+  mappings.register(require "custom-mappings")
 end
 
 return M
