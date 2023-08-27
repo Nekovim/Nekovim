@@ -33,8 +33,7 @@ M.opts = {
   server = {
     -- on_attack for lsp
     on_attach = function(_, bufnr)
-      -- These need to be here because rust tools has it's own weird thing going on.
-      local mappings = require("mappings.lsp").all.normal
+      local mappings = table.deepcopy(require("mappings.lsp").all.normal)
       mappings.c.a = { "<cmd>lua require('rust-tools').code_action_group.code_action_group()<cr>", "Code Actions" }
       mappings.c.h = { "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>", "Code Hover" }
 
