@@ -1,0 +1,18 @@
+local M = {}
+
+-- Register lsp bindings.
+M.register = function(mappings, bufnr, mode)
+  local opts = {
+    mode = mode or "n", -- NORMAL mode
+    prefix = "<leader>",
+    buffer = bufnr, -- nil for Global mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
+    nowait = true, -- use `nowait` when creating keymaps
+  }
+
+
+  require("which-key").register(mappings, opts)
+end
+
+return M

@@ -71,10 +71,10 @@ function M.config()
       client.server_capabilities.documentFormattingProvider = false
     end
 
-    local mappings = require "mappings"
+    local mappings = require "mappings.lsp"
 
     -- lsp_keymaps(bufnr)
-    mappings.register(mappings.lsp_all.normal, bufnr)
+    require("mappings.utils").register(mappings.all.normal, bufnr)
     require("illuminate").on_attach(client)
   end
 

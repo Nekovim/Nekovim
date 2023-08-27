@@ -2,11 +2,12 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = os.getenv "HOME" .. "/.local/share/java/workspaces/" .. project_name
 
 local on_attach = function(client, bufnr)
-  local mappings = require "mappings"
+  local register = require("mappings.utils").register
+  local mappings = require "mappings.lsp"
 
   -- lsp_keymaps(bufnr)
-  mappings.register(mappings.lsp_java.normal, bufnr)
-  mappings.register(mappings.lsp_java.visual, bufnr, "v")
+  register(mappings.java.normal, bufnr)
+  register(mappings.java.visual, bufnr, "v")
   require("illuminate").on_attach(client)
 end
 

@@ -47,8 +47,8 @@ M.opts = {
     ["core.keybinds"] = {
       config = { -- Custom User Keybinds
         default_keybinds = true,
-        neorg_leader = require("mappings").neorg_leader,
-        hook = require("mappings").neorg_bindings,
+        neorg_leader = require("mappings.neorg").neorg_leader,
+        hook = require("mappings.neorg").neorg_bindings,
       },
     },
 
