@@ -1,6 +1,10 @@
 -- Useful functions for writing plugins.
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nekovim/?.lua"
-require("tools.table")
+
+-- Extra lua functionality.
+require("lua-utils")
+
+-- Uesful global functions & tables.
 require("globals")
 
 -- Sane Options
