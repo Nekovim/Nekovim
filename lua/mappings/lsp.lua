@@ -7,7 +7,7 @@ local Label = {
   REFACTOR = "r",
 }
 
-local base = {
+local lsp_bindings = {
   normal = {
     ["hover"] = {
       key = "<cr>",
@@ -41,7 +41,7 @@ local base = {
         command = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
       },
       ["implementation"] = {
-        key = "I",
+        key = "i",
         command = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
       },
       ["codelens"] = {
@@ -95,19 +95,24 @@ local base = {
   visual = {},
 }
 
-base.fetch_from = function(mappings, label, mode, extension)
+---@param mappings table A table of strings of the default lsp_bindings you want applied.
+---@param label Label|nil The label those bindings live under (nil for top level).
+---@param mode "normal"|"insert"|"visual"|nil The mode you want to bind your keys in.
+---@param extension table|nil Any additional custom bindings you'd like added under this label.
+---@return table
+lsp_bindings.fetch_from = function(mappings, label, mode, extension)
   mode = mode or "normal"
   --
   local ret = {}
 
   if label ~= nil then
-    ret.name = base[mode][label].name
+    ret.name = lsp_bindings[mode][label].name
     for _, mapping in ipairs(mappings) do
-      ret[base[mode][label][mapping].key] = base[mode][label][mapping].command
+      ret[lsp_bindings[mode][label][mapping].key] = lsp_bindings[mode][label][mapping].command
     end
   else
     for _, mapping in pairs(mappings) do
-      ret[base[mode][mapping].key] = base[mode][mapping].command
+      ret[lsp_bindings[mode][mapping].key] = lsp_bindings[mode][mapping].command
     end
   end
 
@@ -118,13 +123,55 @@ base.fetch_from = function(mappings, label, mode, extension)
   return ret
 end
 
--- Per-LSP mappings derived from base mappings.
+-- Per-LSP mappings derived from base lsp_bindings.
 
 local M = {}
 
+M.csharp_ls = {
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+      "actions",
+      "goto-definition",
+      "goto-declaration",
+      "line-diagnostics",
+      "format",
+      "hover",
+      "implementation",
+      "codelens",
+      "next-diagnostic",
+      "prev-diagnostic",
+      "quickfix",
+      "references",
+      "document-symbols",
+      "workspace-symbols",
+    }, Label.CODE_ACTIONS),
+
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
+}
+
+M.gdscript = {
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+      "actions",
+      "line-diagnostics",
+      "format",
+      "hover",
+      "next-diagnostic",
+      "prev-diagnostic",
+    }, Label.CODE_ACTIONS),
+
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
+}
+
 M.java = {
   normal = {
-    [Label.CODE_ACTIONS] = base.fetch_from(
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
       {
         "actions",
         "goto-definition",
@@ -155,7 +202,7 @@ M.java = {
     },
 
     -- Refactoring Bindings.
-    [Label.REFACTOR] = base.fetch_from(
+    [Label.REFACTOR] = lsp_bindings.fetch_from(
       {
         "rename",
       },
@@ -181,13 +228,36 @@ M.java = {
   },
 }
 
+M.lua_ls = {
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+      "actions",
+      "line-diagnostics",
+      "format",
+      "hover",
+      "next-diagnostic",
+      "prev-diagnostic",
+      "references",
+      "document-symbols",
+      "workspace-symbols",
+    }, Label.CODE_ACTIONS),
+
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
+}
+
 M.rust = {
   normal = {
     -- Root bindings
-    [base.normal["hover"].key] = { "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>", "Hover Actions" },
+    [lsp_bindings.normal["hover"].key] = {
+      "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>",
+      "Hover Actions",
+    },
 
     -- Code Actions
-    [Label.CODE_ACTIONS] = base.fetch_from(
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
       {
         "goto-definition",
         "goto-declaration",
@@ -197,7 +267,6 @@ M.rust = {
         "codelens",
         "next-diagnostic",
         "prev-diagnostic",
-        "quickfix",
         "references",
         "document-symbols",
         "workspace-symbols",
@@ -205,11 +274,11 @@ M.rust = {
       Label.CODE_ACTIONS,
       "normal",
       {
-        [base.normal[Label.CODE_ACTIONS]["actions"].key] = {
-          "<cmd>lua lua require('rust-tools').code_action_group.code_action_group()<cr>",
+        [lsp_bindings.normal[Label.CODE_ACTIONS]["actions"].key] = {
+          "<cmd>lua require('rust-tools').code_action_group.code_action_group()<cr>",
           "Code Actions",
         },
-        [base.normal[Label.CODE_ACTIONS]["hover"].key] = {
+        [lsp_bindings.normal[Label.CODE_ACTIONS]["hover"].key] = {
           "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>",
           "Hover Actions",
         },
@@ -217,7 +286,7 @@ M.rust = {
     ),
 
     -- Refactoring Bindings.
-    [Label.REFACTOR] = base.fetch_from({
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
   },
@@ -229,8 +298,8 @@ M.rust = {
 
 -- LSP Mappings to be registered with which-key.
 M.default = {
-  normal = base.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = base.fetch_from({
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
       "actions",
       "line-diagnostics",
       "format",
@@ -238,11 +307,11 @@ M.default = {
       "next-diagnostic",
       "prev-diagnostic",
     }, Label.CODE_ACTIONS),
-  }),
 
-  [Label.REFACTOR] = base.fetch_from({
-    "rename",
-  }, Label.REFACTOR),
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
 }
 
 return M

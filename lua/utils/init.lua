@@ -6,57 +6,59 @@ local M = {}
 
 M.managed = {
   -- Lua & System
-  lua = "lua_ls", -- Lua LSP
-  bash = "bashls", -- Bash LSP
+  lua_ls = "lua_ls", -- Lua LSP
+  bashls = "bashls", -- Bash LSP
 
   -- Markup & Data Formats
   -- "typst-lsp",            -- Tyspt LSP
-  json = "jsonls", -- JSON LSP
-  yaml = "yamlls", -- YAML LSP
+  jsonls = "jsonls", -- JSON LSP
+  yamlls = "yamlls", -- YAML LSP
+  html = "html", -- HTML LSP
 
   -- Scripting/Interpreted
-  "pyright", -- Python LSP
-  "csharp_ls", -- C# via csharp-language-server
+  tsserver = "tsserver", -- Typescript & Javascript LSP
+  eslint = "eslint", -- Typescript & Javascript Linting
+  svelte = "svelte",
+  vuels = "vuels",
+  pyright = "pyright", -- Python LSP
+
+  -- Mixed
+  csharp_ls = "csharp_ls", -- C# via csharp-language-server
   -- "omnisharp",         -- C# via omnisharp-roslyn
 
   -- Compiled
-  "clangd", -- C/C++ LSP
-  "gopls", -- Go LSP & Formatting
+  clangd = "clangd", -- C/C++ LSP
+  gopls = "gopls", -- Go LSP & Formatting
 
-  -- Language Management
-  "cmake", -- CMake LSP
+  -- Build Tools
+  cmake = "cmake", -- CMake LSP
 
-  -- By & For Stupid People
-  "html", -- HTML LSP
-  "cssls", -- CSS LSP
-  "tsserver", -- Typescript & Javascript LSP
-  "eslint", -- Typescript & Javascript Linting
-  "svelte",
-  "vuels",
+  --Styling
+  cssls = "cssls", -- CSS LSP
 }
 
 -- Names only for lspconfig.
 M.unmanaged = {
   servers = {
-    "gdscript",
-  }, -- Godot's Scripting Language
+    gdscript = "gdscript", -- gdscript LSP handled by Godot
+  },
   linters = {
-    "gdtoolkit",
     -- "cmakelang",
     -- "cmakelint",
     -- "checkstyle",
+    gdtoolkit = "gdtoolkit",
   },
   formatters = {
-    "clang-format",
-    "csharpier",
-    "gdtoolkit",
-    -- "goimports",
-    "goimports-reviser",
-    -- "gofumpt",
-    "golines",
-    "stylua",
-    "black",
+    black = "black",
+    ["clang-format"] = "clang-format",
     -- "cmakelang",
+    csharpier = "csharpier",
+    gdtoolkit = "gdtoolkit",
+    golines = "golines",
+    ["goimports-reviser"] = "goimports-reviser",
+    -- gofumpt = "gofumpt",
+    -- goimports = "goimports",
+    stylua = "stylua",
   },
 }
 
