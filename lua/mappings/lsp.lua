@@ -1,4 +1,4 @@
-local CODE_ACTIONS = "c"
+-- Base Mappings used for assigning all other LSP mappings.
 
 ---@enum Label
 local Label = {
@@ -6,8 +6,6 @@ local Label = {
   CODE_ACTIONS = "c",
   REFACTOR = "r",
 }
-
-local M = {}
 
 local base = {
   normal = {
@@ -79,6 +77,10 @@ local base = {
       },
     },
 
+    [Label.DEBUG] = {
+      name = "Debug",
+    },
+
     [Label.REFACTOR] = {
       name = "Refactor",
       ["rename"] = {
@@ -98,7 +100,7 @@ base.fetch_from = function(mappings, label, mode, extension)
   --
   local ret = {}
 
-  if label then
+  if label ~= nil then
     ret.name = base[mode][label].name
     for _, mapping in ipairs(mappings) do
       ret[base[mode][label][mapping].key] = base[mode][label][mapping].command
@@ -109,12 +111,75 @@ base.fetch_from = function(mappings, label, mode, extension)
     end
   end
 
-  if extension then
+  if extension ~= nil then
     ret = vim.tbl_extend("force", ret, extension)
   end
   --
   return ret
 end
+
+-- Per-LSP mappings derived from base mappings.
+
+local M = {}
+
+M.java = {
+  normal = {
+    [Label.CODE_ACTIONS] = base.fetch_from(
+      {
+        "actions",
+        "goto-definition",
+        "goto-declaration",
+        "line-diagnostics",
+        "format",
+        "hover",
+        "implementation",
+        "codelens",
+        "next-diagnostic",
+        "prev-diagnostic",
+        "quickfix",
+        "references",
+        "document-symbols",
+        "workspace-symbols",
+      },
+      Label.CODE_ACTIONS,
+      "normal",
+      {
+        c = { "<cmd>JdtCompile<cr>", "Compile" },
+        o = { "<cmd>lua require('jdtls').organize_imports()<cr>", "Organize Imports" },
+      }
+    ),
+
+    [Label.DEBUG] = {
+      f = { "<cmd>lua require('jdtls').test_class()<cr>", "Test File" },
+      n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
+    },
+
+    -- Refactoring Bindings.
+    [Label.REFACTOR] = base.fetch_from(
+      {
+        "rename",
+      },
+      Label.REFACTOR,
+      "normal",
+      {
+        c = { "<cmd>lua require('jdtls').extract_constant()<cr>", "Extract Constant" },
+        e = { "<cmd>lua require('jdtls').extract_variable()<cr>", "Extract Variable" },
+        m = { "<cmd>lua require('jdtls').extract_method()<cr>", "Extract Method" },
+      }
+    ),
+  },
+
+  insert = nil,
+
+  visual = {
+    [Label.REFACTOR] = {
+      name = "Refactor",
+      c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
+      e = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
+      m = { "<cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
+    },
+  },
+}
 
 M.rust = {
   normal = {
@@ -154,109 +219,30 @@ M.rust = {
     -- Refactoring Bindings.
     [Label.REFACTOR] = base.fetch_from({
       "rename",
-    }, Label.REFACTOR, "normal"),
+    }, Label.REFACTOR),
   },
+
   insert = nil,
+
   visual = nil,
 }
 
 -- LSP Mappings to be registered with which-key.
-M.all = {
-  normal = {
-    ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
+M.default = {
+  normal = base.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = base.fetch_from({
+      "actions",
+      "line-diagnostics",
+      "format",
+      "hover",
+      "next-diagnostic",
+      "prev-diagnostic",
+    }, Label.CODE_ACTIONS),
+  }),
 
-    c = {
-      name = "Code Actions",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
-      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
-      D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
-      e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-      f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-      h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-      I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
-      l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-      n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
-      p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
-      q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
-      r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
-      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-      S = {
-        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        "Workspace Symbols",
-      },
-    },
-
-    r = {
-      name = "Refactor",
-      r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    },
-  },
-}
-
-M.diagnostics = {
-  normal = {
-    ["<cr>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-
-    c = {
-      name = "Code Actions",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
-      e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-      h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-      n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
-      p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
-      q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
-    },
-  },
-}
-
-M.java = {
-  normal = {
-    c = {
-      name = "Code Actions",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
-      c = { "<cmd>JdtCompile<cr>", "Compile" },
-      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Declaration" },
-      D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Definition" },
-      e = { "<cmd>lua vim.diagnostic.open_float()<cr>", "View Line Diagnostics" },
-      f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-      h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
-      I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "View Implementations" },
-      l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-      n = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "Next Diagnostic" },
-      o = { "<cmd>lua require('jdtls').organize_imports()<cr>", "Organize Imports" },
-      p = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Previous Diagnistoc" },
-      q = { "<cmd>lua vim.lsp.diagnostic.setloclist<cr>", "QuickFix" },
-      r = { "<cmd>lua vim.lsp.buf.references()<cr>", "View References" },
-      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-      S = {
-        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        "Workspace Symbols",
-      },
-    },
-
-    d = {
-      name = "Debug",
-      f = { "<cmd>lua require('jdtls').test_class()<cr>", "Test File" },
-      n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
-    },
-
-    r = {
-      name = "Refactor",
-      c = { "<cmd>lua require('jdtls').extract_constant()<cr>", "Extract Constant" },
-      e = { "<cmd>lua require('jdtls').extract_variable()<cr>", "Extract Variable" },
-      m = { "<cmd>lua require('jdtls').extract_method()<cr>", "Extract Method" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    },
-  },
-  insert = nil,
-  visual = {
-    r = {
-      name = "Refactor",
-      c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
-      e = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
-      m = { "<cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
-    },
-  },
+  [Label.REFACTOR] = base.fetch_from({
+    "rename",
+  }, Label.REFACTOR),
 }
 
 return M

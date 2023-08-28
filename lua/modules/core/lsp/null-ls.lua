@@ -29,7 +29,7 @@ function M.config()
 
   local on_attach = function(client, bufnr)
     local mappings = require "mappings.lsp"
-    require("mappings.utils").register(mappings.diagnostics.normal, bufnr)
+    require("mappings.utils").register(mappings.default.normal, bufnr)
   end
 
   -- https://github.com/prettier-solidity/prettier-plugin-solidity
