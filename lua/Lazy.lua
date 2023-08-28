@@ -21,7 +21,7 @@ lazy.modules = {
   { import = "modules.depends" },
 
   -- Core
-  { import = "modules.core" },
+  -- { import = "modules.core" },
   { import = "modules.core.debug" },
   { import = "modules.core.flow" },
   { import = "modules.core.motions" },
@@ -32,13 +32,13 @@ lazy.modules = {
   { import = "modules.core.debug" },
 
   -- Looks
-  { import = "modules.looks" },
+  -- { import = "modules.looks" },
   { import = "modules.looks.look-and-feel" },
   { import = "modules.looks.themes" },
   { import = "modules.looks.ui" },
 
   -- Writing
-  { import = "modules.writing" },
+  -- { import = "modules.writing" },
   { import = "modules.writing.neorg" },
 
   -- Tools
