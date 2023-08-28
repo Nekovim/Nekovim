@@ -33,11 +33,8 @@ M.opts = {
   server = {
     -- on_attack for lsp
     on_attach = function(_, bufnr)
-      local mappings = table.deepcopy(require("mappings.lsp").all.normal)
-      mappings.c.a = { "<cmd>lua require('rust-tools').code_action_group.code_action_group()<cr>", "Code Actions" }
-      mappings.c.h = { "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>", "Code Hover" }
-
-      require("mappings.utils").register(mappings, bufnr)
+      local mappings = require("mappings.lsp").rust
+      require("mappings.utils").register_all(mappings, bufnr)
 
       vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
         buffer = bufnr,

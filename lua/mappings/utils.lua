@@ -15,4 +15,11 @@ M.register = function(mappings, bufnr, mode)
   require("which-key").register(mappings, opts)
 end
 
+M.register_all = function(mappings, bufnr)
+  TablePrint(mappings)
+  M.register(mappings.normal, bufnr)
+  M.register(mappings.insert, bufnr, "i")
+  M.register(mappings.visual, bufnr, "v")
+end
+
 return M

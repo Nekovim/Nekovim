@@ -74,7 +74,7 @@ function M.config(_, opts)
   require("which-key").setup(opts)
   local mappings = require "mappings.global"
   local register = require("mappings.utils").register
-  register(mappings.which_key)
+  register(mappings.which_key.normal)
   register(require "custom-mappings")
 end
 
