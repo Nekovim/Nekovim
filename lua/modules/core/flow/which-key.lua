@@ -72,9 +72,10 @@ M.opts = {
 
 function M.config(_, opts)
   require("which-key").setup(opts)
-  local mappings = require("mappings")
-  mappings.register(mappings.which_key)
-  mappings.register(require "custom-mappings")
+  local mappings = require "mappings.global"
+  local register = require("mappings.utils").register
+  register(mappings.which_key.normal)
+  register(require "custom-mappings")
 end
 
 return M

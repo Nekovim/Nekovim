@@ -1,5 +1,10 @@
 -- Useful functions for writing plugins.
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nekovim/?.lua"
+
+-- Extra lua functionality.
+require("lua-utils")
+
+-- Uesful global functions & tables.
 require("globals")
 
 -- Sane Options
@@ -7,8 +12,8 @@ require("options")
 require("autocommands")
 
 -- Key Mappings
-require("mappings").set_qol()
-require("mappings").set_colemak()
+require("mappings.global").set_qol()
+require("mappings.global").set_colemak()
 
 -- Plugins
 require("Lazy")

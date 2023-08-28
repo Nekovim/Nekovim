@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*.norg",
   callback = function()
-    require("which-key").register(require("mappings").neorg_labels, {
+    require("which-key").register(require("mappings.neorg").neorg_labels, {
       mode = "n",
       prefix = "<leader>",
       buffer = 0,
