@@ -1,18 +1,12 @@
 local M = {
   "nvim-telescope/telescope.nvim",
-  event = "Bufenter",
   cmd = { "Telescope" },
   dependencies = {
-    {
-      "ahmedkhalf/project.nvim",
-    },
     {
       "nvim-telescope/telescope-file-browser.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
     },
-    {
-      "nvim-telescope/telescope-ui-select.nvim",
-    },
+    { "nvim-telescope/telescope-ui-select.nvim" },
   },
 }
 
@@ -113,7 +107,6 @@ function M.config(_, opts)
   require("telescope").setup(opts)
   require("telescope").load_extension "file_browser"
   require("telescope").load_extension "ui-select"
-  require("telescope").load_extension "harpoon"
 end
 
 return M
