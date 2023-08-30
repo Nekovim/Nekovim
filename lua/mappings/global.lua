@@ -41,20 +41,6 @@ M.which_key = {
       s = { "<cmd>:w<CR>", "Save Buffer" },
     },
 
-    d = {
-      name = "Debug",
-      ["."] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
-      ["/"] = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoint" },
-      c = { "<cmd>DapContinue<cr>", "Run Dap" },
-      i = { "<cmd>DapStepInto<cr>", "Step Into" },
-      l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
-      o = { "<cmd>DapStepOver<cr>", "Step Over" },
-      q = { "<cmd>DapTerminate<cr><cmd>lua require('dapui').close()<cr>", "Terminate" },
-      t = { "<cmd>lua require'dapui'.toggle({reset = true})<CR>", "Toggle UI" },
-      r = { "<cmd>DapToggleRepl<CR>", "Toggle Repl" },
-      x = { "<cmd>DapStepOut<cr>", "Step Out" },
-    },
-
     e = {
       name = "Edgy",
       L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels" },

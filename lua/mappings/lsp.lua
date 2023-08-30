@@ -79,6 +79,46 @@ local lsp_bindings = {
 
     [Label.DEBUG] = {
       name = "Debug",
+      ["toggle-breakpoint"] = {
+        key = ".",
+        command = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+      },
+      ["clear-breakpoints"] = {
+        key = "/",
+        command = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear Breakpoins" },
+      },
+      ["run-dap"] = {
+        key = "c",
+        command = { "<cmd>DapContinue<cr>", "Run Dap" },
+      },
+      ["step-into"] = {
+        key = "i",
+        command = { "<cmd>DapStepInto<cr>", "Step Into" },
+      },
+      ["run-last"] = {
+        key = "l",
+        command = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
+      },
+      ["step-over"] = {
+        key = "o",
+        command = { "<cmd>DapStepOver<cr>", "Step Over" },
+      },
+      ["terminate"] = {
+        key = "q",
+        command = { "<cmd>DapTerminate<cr><cmd>lua require('dapui').close()<cr>", "Terminate" },
+      },
+      ["toggle-dapui"] = {
+        key = "t",
+        command = { "<cmd>lua require'dapui'.toggle({reset = true})<CR>", "Toggle UI" },
+      },
+      ["toggle-repl"] = {
+        key = "r",
+        command = { "<cmd>DapToggleRepl<CR>", "Toggle Repl" },
+      },
+      ["step-out"] = {
+        key = "x",
+        command = { "<cmd>DapStepOut<cr>", "Step Out" },
+      },
     },
 
     [Label.REFACTOR] = {
@@ -146,6 +186,19 @@ M.csharp_ls = {
       "workspace-symbols",
     }, Label.CODE_ACTIONS),
 
+    [Label.DEBUG] = lsp_bindings.fetch_from({
+      "toggle-breakpoint",
+      "clear-breakpoints",
+      "run-dap",
+      "step-into",
+      "run-last",
+      "step-over",
+      "terminate",
+      "toggle-dapui",
+      "toggle-repl",
+      "step-out",
+    }, Label.DEBUG),
+
     [Label.REFACTOR] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
@@ -196,10 +249,26 @@ M.java = {
       }
     ),
 
-    [Label.DEBUG] = {
-      f = { "<cmd>lua require('jdtls').test_class()<cr>", "Test File" },
-      n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
-    },
+    [Label.DEBUG] = lsp_bindings.fetch_from(
+      {
+        "toggle-breakpoint",
+        "clear-breakpoints",
+        "run-dap",
+        "step-into",
+        "run-last",
+        "step-over",
+        "terminate",
+        "toggle-dapui",
+        "toggle-repl",
+        "step-out",
+      },
+      Label.DEBUG,
+      "normal",
+      {
+        f = { "<cmd>lua require('jdtls').test_class()<cr>", "Test File" },
+        n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
+      }
+    ),
 
     -- Refactoring Bindings.
     [Label.REFACTOR] = lsp_bindings.fetch_from(
@@ -284,6 +353,19 @@ M.rust = {
         },
       }
     ),
+
+    [Label.DEBUG] = lsp_bindings.fetch_from({
+      "toggle-breakpoint",
+      "clear-breakpoints",
+      "run-dap",
+      "step-into",
+      "run-last",
+      "step-over",
+      "terminate",
+      "toggle-dapui",
+      "toggle-repl",
+      "step-out",
+    }, Label.DEBUG),
 
     -- Refactoring Bindings.
     [Label.REFACTOR] = lsp_bindings.fetch_from({
