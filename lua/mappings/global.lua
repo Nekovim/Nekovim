@@ -11,6 +11,10 @@ M.which_key = {
       "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
       "Find Buffer",
     },
+    ["`"] = {
+      "<cmd>:TSJToggle<cr>",
+      "Splitjoin Toggle",
+    },
     ["/"] = {
       name = "Harpoon",
       ["<leader>"] = { "<cmd>Telescope harpoon marks<cr>", "Search Marks" },

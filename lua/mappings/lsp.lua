@@ -164,7 +164,6 @@ lsp_bindings.fetch_from = function(mappings, label, mode, extension)
 end
 
 -- Per-LSP mappings derived from base lsp_bindings.
-
 local M = {}
 
 M.csharp_ls = {
