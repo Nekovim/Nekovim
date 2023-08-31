@@ -111,13 +111,11 @@ M.which_key = {
 
     p = {
       name = "Projects & Sessions",
+      ["<cr>"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session"},
       a = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
-      g = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View General Sessions" },
-      G = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save General Session" },
       p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
       r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
-      s = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "View Project Sessions" },
-      S = { "<cmd>lua vim.print('Not yet implemented.')<cr>", "Save Project Session" },
+      s = { "<cmd>lua require('persistence').save()<cr>", "Save Session" },
     },
 
     s = {
