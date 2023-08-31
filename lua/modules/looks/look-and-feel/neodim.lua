@@ -1,6 +1,7 @@
 local M = {
   "zbirenbaum/neodim",
   event = "LspAttach",
+  commit = vim.version().minor < 10 and "f11c110" or nil,
 }
 
 M.opts = {
