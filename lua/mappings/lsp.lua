@@ -166,6 +166,18 @@ end
 -- Per-LSP mappings derived from base lsp_bindings.
 local M = {}
 
+M.cmp = {
+  ["next-item"] = "<C-e>",
+  ["prev-item"] = "<C-n>",
+  ["scroll-doc-down"] = "<C-b>",
+  ["scroll-doc-up"] = "<C-f>",
+  ["complete"] = "<C-Space>",
+  ["close"] = "<CR>",
+  ["confirm"] = "<C-cr>",
+  ["super-tab"] = "<Tab>",
+  ["super-tab-alt"] = "<S-Tab>",
+}
+
 M.csharp_ls = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
     [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
