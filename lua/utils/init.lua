@@ -24,7 +24,7 @@ M.managed = {
 
   -- Mixed
   csharp_ls = "csharp_ls", -- C# via csharp-language-server
-  -- "omnisharp",         -- C# via omnisharp-roslyn
+  -- omnisharp = "omnisharp",         -- C# via omnisharp-roslyn
 
   -- Compiled
   clangd = "clangd", -- C/C++ LSP

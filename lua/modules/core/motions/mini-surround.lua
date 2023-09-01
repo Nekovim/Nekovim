@@ -13,7 +13,7 @@ M.opts = {
   highlight_duration = 500,
 
   -- Module mappings. Use `''` (empty string) to disable one.
-  mappings = require("mappings.global").mini_surround,
+  mappings = require("mappings.plugins").mini_surround,
 
   -- Number of lines within which surrounding is searched
   n_lines = 20,

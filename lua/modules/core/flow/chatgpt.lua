@@ -13,7 +13,7 @@ M.opts = {
   yank_register = "+",
   edit_with_instructions = {
     diff = false,
-    keymaps = require("mappings.global").chatgpt.with_instructions,
+    keymaps = require("mappings.plugins").chatgpt.with_instructions,
   },
   chat = {
     welcome_message = "Hello and welcome to ChatGPT.",
@@ -32,7 +32,7 @@ M.opts = {
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
       },
     },
-    keymaps = require("mappings.global").chatgpt.chat,
+    keymaps = require("mappings.plugins").chatgpt.chat,
   },
   popup_layout = {
     default = "center",
