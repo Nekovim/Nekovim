@@ -32,7 +32,7 @@ M.opts = {
   },
   server = {
     -- on_attack for lsp
-    on_attach = function(_, bufnr)
+    on_attach = function(client, bufnr)
       local mappings = require("mappings.lsp").rust
       require("mappings.utils").register_all(mappings, bufnr)
 
@@ -42,6 +42,8 @@ M.opts = {
       })
 
       vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+      require("illuminate").on_attach(client)
+      require("nvim-navic").attach(client, bufnr)
     end,
 
     flags = {

@@ -29,6 +29,16 @@ local location = {
   padding = 0,
 }
 
+local function navic()
+  if require("nvim-navic").is_available() then
+    local loc = require("nvim-navic").get_location()
+    if loc ~= "" then
+      return "> " .. loc
+    end
+    return " "
+  end
+end
+
 local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
@@ -46,7 +56,20 @@ M.opts = {
     theme = "auto",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard" },
+    disabled_filetypes = {
+      "alpha",
+      "dashboard",
+      "neo-tree",
+      "Outline",
+      "Trouble",
+      "TelescopePrompt",
+      "dap-repl",
+      "dapui_console",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
+      "dapui_watches",
+    },
     always_divide_middle = true,
   },
   sections = {
@@ -57,11 +80,20 @@ M.opts = {
     lualine_y = { location },
     lualine_z = { "progress" },
   },
+
+  winbar = {
+    lualine_a = { "filename" },
+    lualine_b = { navic },
+  },
+
+  inactive_winbar = {
+    lualine_a = { "filename" },
+    lualine_b = { navic },
+  },
 }
 
 function M.config(_, opts)
-  local lualine = require "lualine"
-  lualine.setup(opts)
+  require("lualine").setup(opts)
 end
 
 return M

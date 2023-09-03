@@ -2,9 +2,8 @@ local M = {
   "neovim/nvim-lspconfig",
   lazy = true,
   dependencies = {
-    {
-      "hrsh7th/cmp-nvim-lsp",
-    },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "SmiteshP/nvim-navic" },
   },
 }
 
@@ -76,6 +75,7 @@ function M.config()
     -- lsp_keymaps(bufnr)
     require("mappings.utils").register(mappings.normal, bufnr)
     require("illuminate").on_attach(client)
+    require("nvim-navic").attach(client, bufnr)
   end
 
   local attach_servers = function(servers)
