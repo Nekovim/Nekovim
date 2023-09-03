@@ -111,7 +111,7 @@ M.which_key = {
 
     p = {
       name = "Projects & Sessions",
-      ["<cr>"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session"},
+      ["<cr>"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
       a = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
       p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
       r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
@@ -165,12 +165,8 @@ M.which_key = {
       Q = { "<cmd>qa!<cr>", "Force Quit" },
     },
   },
-  insert = {
-
-  },
-  visual = {
-
-  },
+  insert = {},
+  visual = {},
 }
 
 -- Quality of life changes to default bindings.

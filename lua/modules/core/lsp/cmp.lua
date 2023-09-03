@@ -76,6 +76,8 @@ function M.config()
     region_check_events = "CursorMoved",
   }
 
+  local cmp_mappings = require("mappings.plugins").cmp
+
   -- Has to be this way without M.opts because CMP is weird. (I think...? Maybe.)
   cmp.setup {
     snippet = {
@@ -96,19 +98,19 @@ function M.config()
     end,
 
     mapping = cmp.mapping.preset.insert {
-      ["<C-e>"] = cmp.mapping.select_prev_item(),
-      ["<C-n>"] = cmp.mapping.select_next_item(),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-cr>"] = cmp.mapping {
+      [cmp_mappings["prev-item"]] = cmp.mapping.select_prev_item(),
+      [cmp_mappings["next-item"]] = cmp.mapping.select_next_item(),
+      [cmp_mappings["scroll-doc-up"]] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+      [cmp_mappings["scroll-doc-down"]] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+      [cmp_mappings["complete"]] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      [cmp_mappings["close"]] = cmp.mapping {
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       },
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true },
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      [cmp_mappings["confirm"]] = cmp.mapping.confirm { select = true },
+      [cmp_mappings["super-tab"]] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm { select = true }
         -- cmp.select_next_item()
@@ -125,7 +127,7 @@ function M.config()
         "i",
         "s",
       }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      [cmp_mappings["super-tab-alt"]] = cmp.mapping(function(fallback)
         if luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else

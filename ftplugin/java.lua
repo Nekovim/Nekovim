@@ -9,6 +9,7 @@ local on_attach = function(client, bufnr)
   register(mappings.java.normal, bufnr)
   register(mappings.java.visual, bufnr, "v")
   require("illuminate").on_attach(client)
+  require("nvim-navic").attach(client, bufnr)
 end
 
 local bundles = {
