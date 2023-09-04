@@ -9,7 +9,6 @@ local valid_names = {
 }
 
 M.config = function(_, opts)
-  require("gruvbox").setup(opts)
   if valid_names[require("user-options").primary_theme] then
     pcall(vim.cmd.colorscheme, require("user-options").primary_theme)
   end
