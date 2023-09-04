@@ -11,7 +11,7 @@ local valid_names = {
   ["ayu-mirage"] = true,
 }
 
-M.config = function(_, opts)
+M.config = function()
   if valid_names[require("user-options").primary_theme] then
     pcall(vim.cmd.colorscheme, require("user-options").primary_theme)
   end
