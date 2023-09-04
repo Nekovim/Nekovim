@@ -35,9 +35,15 @@ M.opts = {
       },
     },
   },
-  -- overrides = function(colors) -- add/modify highlights
-  --   return {}
-  -- end,
+  overrides = function(colors) -- add/modify highlights
+    return {
+      String = { italic = true },
+      Boolean = { italic = true, bold = false, },
+      Conditional = { italic = true },
+      Repeat = { italic = true },
+      ["@parameter"] = { italic = true, fg = colors.palette.oniViolet },
+    }
+  end,
   theme = "wave", -- Load "wave" theme when 'background' option is not set
   background = { -- map the value of 'background' option to a theme
     dark = "dragon", -- try "dragon" !
