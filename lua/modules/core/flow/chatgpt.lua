@@ -1,6 +1,6 @@
 local M = {
   "jackMort/ChatGPT.nvim",
-  event = "VeryLazy",
+  cmd = { "ChatGPT", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   dependencies = {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
@@ -9,7 +9,6 @@ local M = {
 }
 
 M.opts = {
-  api_key_cmd = require("secrets").api_key_cmd,
   yank_register = "+",
   edit_with_instructions = {
     diff = false,
@@ -126,6 +125,7 @@ M.opts = {
 }
 
 M.config = function(_, opts)
+  opts.api_key_cmd = require("secrets").api_key_cmd
   require("chatgpt").setup(opts)
 end
 
