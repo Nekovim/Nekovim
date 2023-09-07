@@ -1,13 +1,13 @@
 local M = {}
 
 M.cmp = {
-  ["next-item"] = "<C-e>",
-  ["prev-item"] = "<C-n>",
+  ["next-item"] = "<C-n>",
+  ["prev-item"] = "<C-e>",
   ["scroll-doc-down"] = "<C-b>",
   ["scroll-doc-up"] = "<C-f>",
   ["complete"] = "<C-Space>",
-  ["close"] = "<CR>",
-  ["confirm"] = "<C-cr>",
+  ["close"] = "<C-cr>",
+  ["confirm"] = "<CR>",
   ["super-tab"] = "<Tab>",
   ["super-tab-alt"] = "<S-Tab>",
 }
