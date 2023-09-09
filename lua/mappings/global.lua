@@ -144,13 +144,6 @@ M.which_key = {
       l = { "<cmd>Lazy<cr>", "Lazy UI" },
       i = { "<cmd>LspInfo<cr>", "LSP Info" },
       m = { "<cmd>Mason<cr>", "Mason UI" },
-      t = {
-        name = "Theme",
-        ["."] = { "<cmd>Telescope colorscheme theme=dropdown<cr>", "Find Theme" },
-        c = { "<cmd>colorscheme catppuccin<cr>", "Catppuccin" },
-        r = { "<cmd>colorscheme rose-pine<cr>", "Rose Pine" },
-        t = { "<cmd>colorscheme tokyonight-night<cr>", "Tokyo Night" },
-      },
     },
 
     w = {
