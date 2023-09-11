@@ -14,12 +14,12 @@ end
 
 local bundles = {
   vim.fn.glob(
-    os.getenv "HOME" .. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+    vim.fn.stdpath "data" .. "/debugging/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
     1
   ),
 }
 
-vim.list_extend(bundles, vim.split(vim.fn.glob(os.getenv "HOME" .. "/vscode-java-test/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath "data" .. "/debugging/vscode-java-test/server/*.jar", 1), "\n"))
 
 local config = {
   on_attach = on_attach,
