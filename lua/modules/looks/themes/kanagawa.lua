@@ -30,18 +30,21 @@ M.opts = {
       dragon = {},
       all = {
         ui = {
-          bg_gutter = "none"
-        }
+          bg_gutter = "none",
+        },
       },
     },
   },
   overrides = function(colors) -- add/modify highlights
     return {
       String = { italic = true },
-      Boolean = { italic = true, bold = false, },
+      Boolean = { italic = true, bold = false },
       Conditional = { italic = true },
       Repeat = { italic = true },
       ["@parameter"] = { italic = true, fg = colors.palette.oniViolet },
+      ["@neorg.markup.bold.norg"] = { fg = colors.palette.waveAqua2, bold = true },
+      ["@neorg.markup.italic.norg"] = { fg = colors.palette.oniViolet, italic = true },
+      ["@neorg.links.location.url.norg"] = { fg = colors.palette.fujiGray, italic = true },
     }
   end,
   theme = "wave", -- Load "wave" theme when 'background' option is not set
