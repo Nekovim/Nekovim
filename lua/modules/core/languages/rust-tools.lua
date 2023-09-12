@@ -1,5 +1,5 @@
 -- Update this path
-local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/"
+local extension_path = vim.fn.stdpath "data" .. "/home/niamh/.local/share/nvim/mason/packages/codelldb/extension"
 local codelldb_path = extension_path .. "adapter/codelldb"
 local liblldb_path = extension_path .. "lldb/lib/liblldb.so" -- MacOS: This may be .dylib
 
