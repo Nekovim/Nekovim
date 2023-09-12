@@ -31,7 +31,8 @@ M.opts = {
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
 }
-function M.config(_, opts)
+
+M.config = function(_, opts)
   require("mason").setup(opts)
   require("mason-lspconfig").setup {
     ensure_installed = require("utils").ensure_installed.lsp,
