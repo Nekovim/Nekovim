@@ -96,8 +96,7 @@ function M.config()
     end
   end
 
-  attach_servers(require("utils").managed)
-  attach_servers(require("utils").unmanaged.servers)
+  attach_servers(require("utils").auto_configure)
 end
 
 return M

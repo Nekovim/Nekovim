@@ -30,41 +30,41 @@ M[#M + 1] = {
       -- dapui.close()
     end
 
-    dap.configurations.c = {
-      {
-        name = "Launch file",
-        type = "codelldb",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-      },
-    }
-
-    dap.adapters.lldb = {
-      type = "executable",
-      command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
-      name = "lldb",
-    }
-
-    dap.configurations.cpp = {
-      {
-        name = "Launch",
-        type = "lldb",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-        args = {},
-        -- add other configs hereby
-      },
-    }
-
-    dap.configurations.c = dap.configurations.cpp
+    -- dap.configurations.c = {
+    --   {
+    --     name = "Launch file",
+    --     type = "codelldb",
+    --     request = "launch",
+    --     program = function()
+    --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    --     end,
+    --     cwd = "${workspaceFolder}",
+    --     stopOnEntry = false,
+    --   },
+    -- }
+    --
+    -- dap.adapters.lldb = {
+    --   type = "executable",
+    --   command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
+    --   name = "lldb",
+    -- }
+    --
+    -- dap.configurations.cpp = {
+    --   {
+    --     name = "Launch",
+    --     type = "lldb",
+    --     request = "launch",
+    --     program = function()
+    --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    --     end,
+    --     cwd = "${workspaceFolder}",
+    --     stopOnEntry = false,
+    --     args = {},
+    --     -- add other configs hereby
+    --   },
+    -- }
+    --
+    -- dap.configurations.c = dap.configurations.cpp
 
     dap.adapters.godot = {
       type = "server",
@@ -82,9 +82,9 @@ M[#M + 1] = {
       },
     }
 
-    local dap_install = require "dap-install"
-    dap_install.setup {}
-    dap_install.config("python", {})
+    -- local dap_install = require "dap-install"
+    -- dap_install.setup {}
+    -- dap_install.config("python", {})
   end,
 }
 
