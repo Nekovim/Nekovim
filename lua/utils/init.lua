@@ -1,10 +1,41 @@
 -- Load Utility Functions
 require "utils.wrapping"
 
--- Utils Table
-local M = {}
+local install_and_configure = {
+  "lua_ls",
+  "bashls",
+  "jsonls",
+  "yamlls",
+  "html",
+  "tsserver",
+  "eslint",
+  "svelte",
+  "vuels",
+  "pyright",
+  "csharp_ls",
+  "clangd",
+  "gopls",
+  "cmake",
+  "cssls",
+}
 
-M.managed = {
+local auto_configure = {
+  "gdscript"
+}
+
+local ensure_installed = {
+  "jdtls",
+}
+
+local M = {
+  auto_configure = vim.list_extend(install_and_configure, auto_configure),
+  ensure_installed = vim.list_extend(install_and_configure, ensure_installed),
+}
+
+-- Utils Table
+local N = {}
+
+N.managed = {
   -- Lua & System
   lua_ls = "lua_ls", -- Lua LSP
   bashls = "bashls", -- Bash LSP
@@ -38,7 +69,7 @@ M.managed = {
 }
 
 -- Names only for lspconfig.
-M.unmanaged = {
+N.unmanaged = {
   servers = {
     gdscript = "gdscript", -- gdscript LSP handled by Godot
   },
@@ -62,4 +93,4 @@ M.unmanaged = {
   },
 }
 
-return M
+return N
