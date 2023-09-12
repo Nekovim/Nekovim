@@ -14,12 +14,12 @@ end
 
 local bundles = {
   vim.fn.glob(
-    vim.fn.stdpath "data" .. "/debugging/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+    vim.fn.stdpath "data" .. "/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar",
     1
   ),
 }
 
-vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath "data" .. "/debugging/vscode-java-test/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath "data" .. "/mason/share/java-test/*.jar", 1), "\n"))
 
 local config = {
   on_attach = on_attach,
@@ -38,7 +38,7 @@ local config = {
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    vim.fn.stdpath "data" .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar", -- IMPORTANT
+    vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", 1), -- IMPORTANT
     "-configuration",
     vim.fn.stdpath "data" .. "/mason/packages/jdtls/config_linux", -- IMPORTANT
     "-data",
