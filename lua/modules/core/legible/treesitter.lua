@@ -37,6 +37,9 @@ M.opts = {
     "cmake",
     "css",
     "svelte",
+    "vim",
+    "regex",
+    "dart"
   }, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
@@ -52,7 +55,7 @@ M.opts = {
   autotag = {
     enable = true,
   },
-  indent = { enable = true, disable = { "python", "css", "html", "gdscript", "gdscript3", "gd" } },
+  indent = { enable = true, disable = { "python", "css", "html", "gdscript", "gdscript3", "gd", "dart" } },
 
   context_commentstring = {
     enable = true,

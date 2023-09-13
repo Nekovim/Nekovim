@@ -5,6 +5,7 @@ vim.cmd [[highlight IndentBlanklineContextChar guifg=#ebbcba gui=nocombine]]
 local M = {
   "lukas-reineke/indent-blankline.nvim",
   event = "BufReadPre",
+  enabled = false,
 }
 
 M.opts = {
@@ -37,6 +38,7 @@ M.opts = {
     "gd",
     "gdscript",
     "gdscript3",
+    "dart"
   },
 }
 
