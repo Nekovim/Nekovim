@@ -1,6 +1,7 @@
 -- Load Utility Functions
 require "utils.wrapping"
 
+-- Mason will install this and lspconfig will auto setup in correct buffer.
 local install_and_configure = {
   "lua_ls",
   "bashls",
@@ -19,10 +20,12 @@ local install_and_configure = {
   "cssls",
 }
 
+-- lspconfig will autoset up but will NOT be installed by mason.
 local auto_configure = {
   "gdscript",
 }
 
+-- Mason will ensure all of these are installed but they will not be managed by lsp config.
 local ensure_installed = {
   lsp = {
     "jdtls",
@@ -32,7 +35,7 @@ local ensure_installed = {
     "javatest",
     "javadbg",
     "python",
-    "codelldb"
+    "codelldb",
   },
   tools = {
     "gdtoolkit",
