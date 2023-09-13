@@ -204,6 +204,23 @@ M.csharp_ls = {
   }),
 }
 
+M.dart = {
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+      "actions",
+      "line-diagnostics",
+      "format",
+      "hover",
+      "next-diagnostic",
+      "prev-diagnostic",
+    }, Label.CODE_ACTIONS, "normal", {}),
+
+    [Label.REFACTOR] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
+}
+
 M.gdscript = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
     [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
