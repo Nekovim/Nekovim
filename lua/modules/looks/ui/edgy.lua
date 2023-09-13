@@ -57,6 +57,7 @@ M.opts = {
         return vim.b[buf].neo_tree_source == "filesystem"
       end,
       pinned = true,
+      open = "Neotree show",
       size = { height = 0.5 },
     },
     {
@@ -66,15 +67,15 @@ M.opts = {
         return vim.b[buf].neo_tree_source == "buffers"
       end,
       pinned = true,
-      open = "Neotree position=top buffers",
+      open = "Neotree buffers",
     },
     {
       ft = "Outline",
-      pinned = true,
+      pinned = false,
       open = "SymbolsOutlineOpen",
     },
     -- any other neo-tree windows
-    "neo-tree",
+    -- "neo-tree",
   },
 }
 

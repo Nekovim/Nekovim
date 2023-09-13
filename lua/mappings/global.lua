@@ -47,6 +47,8 @@ M.which_key = {
 
     e = {
       name = "Edgy",
+      ["<CR>"] = { "<cmd>lua require('edgy').open('left')<cr>", "Open Left" },
+      ["<BS>"] = { "<cmd>lua require('edgy').close('left')<cr>", "Close Left" },
       L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels" },
       b = { "<cmd>Neotree buffers<cr>", "Neotree Buffers" },
       d = { "<cmd>Trouble<cr>", "Trouble Diagnostics" },
