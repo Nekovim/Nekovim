@@ -39,7 +39,7 @@ M.opts = {
     return {
       String = { italic = true },
       Boolean = { italic = true, bold = false },
-      Conditional = { italic = true },
+      Conditional = { italic = true, fg = colors.palette.oniViolet },
       Repeat = { italic = true },
       ["@parameter"] = { italic = true, fg = colors.palette.oniViolet },
       ["@neorg.markup.bold.norg"] = { fg = colors.palette.waveAqua2, bold = true },
