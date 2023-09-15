@@ -3,6 +3,7 @@
 ---@enum Label
 local Label = {
   DEBUG = "d",
+  LSP = "l",
   PROJECT = "p",
   CODE_ACTIONS = "c",
   REFACTOR = "r",
@@ -207,14 +208,29 @@ M.csharp_ls = {
 
 M.dart = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
-      "actions",
-      "line-diagnostics",
-      "format",
-      "hover",
-      "next-diagnostic",
-      "prev-diagnostic",
-    }, Label.CODE_ACTIONS, "normal", {}),
+    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
+      {
+        "actions",
+        "line-diagnostics",
+        "format",
+        "hover",
+        "next-diagnostic",
+        "prev-diagnostic",
+      },
+      Label.CODE_ACTIONS,
+      "normal",
+      {
+        c = { "<cmd>:PlutterSuper<cr>", "Goto Superclass" },
+      }
+    ),
+
+    [Label.LSP] = {
+      name = "LSP Actions",
+      a = { "<cmd>:FlutterDevToolsActivate<cr>", "Flutter DevTools Activate" },
+      d = { "<cmd>:FlutterDevTools<cr>", "Flutter DevTools Start" },
+      r = { "<cmd>:FlutterLspRestart<cr>", "Restart Server" },
+      R = { "<cmd>:FlutterReanalyze<cr>", "Flutter Reanalyze" },
+    },
 
     [Label.PROJECT] = {
       name = "Project",
@@ -230,7 +246,7 @@ M.dart = {
     [Label.REFACTOR] = {
       name = "Refactor",
       r = { "<cmd>:FlutterRename", "Rename" },
-    }
+    },
   }),
 }
 
@@ -297,6 +313,15 @@ M.java = {
         n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
       }
     ),
+
+    [Label.LSP] = {
+      name = "LSP Actions",
+      c = { "<cmd>:JdtUpdateConfig<cr>", "JDTLS Update Config"},
+      d = { "<cmd>:JdtUpdateDebugConfig<cr>", "JDTLS Update Debug Config"},
+      h = { "<cmd>:JdtUpdateHotcode<cr>", "JDTLS Update Hotcode"},
+      R = { "<cmd>:JdtSetRuntime<cr>", "JDTLS Set Java Runtime"},
+      r = { "<cmd>:JdtRestart<cr>", "Restart Server"},
+    },
 
     [Label.PROJECT] = {
       name = "Project",
