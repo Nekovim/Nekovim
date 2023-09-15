@@ -3,6 +3,7 @@
 ---@enum Label
 local Label = {
   DEBUG = "d",
+  PROJECT = "p",
   CODE_ACTIONS = "c",
   REFACTOR = "r",
 }
@@ -215,9 +216,21 @@ M.dart = {
       "prev-diagnostic",
     }, Label.CODE_ACTIONS, "normal", {}),
 
-    [Label.REFACTOR] = lsp_bindings.fetch_from({
-      "rename",
-    }, Label.REFACTOR),
+    [Label.PROJECT] = {
+      name = "Project",
+      D = { "<cmd>:FlutterDetach<cr>", "Flutter Detach" },
+      d = { "<cmd>:FlutterDevices<cr>", "Flutter Devices" },
+      e = { "<cmd>:FlutterEmulators<cr>", "Flutter Emulators" },
+      q = { "<cmd>:FlutterQuit<cr>", "Flutter Quit" },
+      R = { "<cmd>:FlutterReload<cr>", "Flutter Reload" },
+      r = { "<cmd>:FlutterRun<cr>", "Flutter Run" },
+      s = { "<cmd>:FlutterRestart<cr>", "Flutter Restart" },
+    },
+
+    [Label.REFACTOR] = {
+      name = "Refactor",
+      r = { "<cmd>:FlutterRename", "Rename" },
+    }
   }),
 }
 
@@ -260,7 +273,6 @@ M.java = {
       Label.CODE_ACTIONS,
       "normal",
       {
-        c = { "<cmd>JdtCompile<cr>", "Compile" },
         o = { "<cmd>lua require('jdtls').organize_imports()<cr>", "Organize Imports" },
       }
     ),
@@ -285,6 +297,11 @@ M.java = {
         n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
       }
     ),
+
+    [Label.PROJECT] = {
+      name = "Project",
+      c = { "<cmd>JdtCompile<cr>", "Compile" },
+    },
 
     -- Refactoring Bindings.
     [Label.REFACTOR] = lsp_bindings.fetch_from(
