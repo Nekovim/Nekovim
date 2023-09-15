@@ -2,11 +2,11 @@
 
 ---@enum Label
 local Label = {
-  DEBUG = "d",
-  LSP = "l",
-  PROJECT = "p",
-  CODE_ACTIONS = "c",
-  REFACTOR = "r",
+  CODE_ACTIONS = { key = "c", name = "Code Actions" },
+  DEBUG = { key = "d", name = "Debug" },
+  LSP = { key = "l", name = "LSP Actions" },
+  PROJECT = { key = "p", name = "Project" },
+  REFACTOR = { key = "r", name = "Refactor" },
 }
 
 local lsp_bindings = {
@@ -16,8 +16,8 @@ local lsp_bindings = {
       command = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Actions" },
     },
 
-    [Label.CODE_ACTIONS] = {
-      name = "Code Actions",
+    [Label.CODE_ACTIONS.key] = {
+      name = Label.CODE_ACTIONS.name,
       ["actions"] = {
         key = "a",
         command = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
@@ -79,8 +79,8 @@ local lsp_bindings = {
       },
     },
 
-    [Label.DEBUG] = {
-      name = "Debug",
+    [Label.DEBUG.key] = {
+      name = Label.DEBUG.name,
       ["toggle-breakpoint"] = {
         key = ".",
         command = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
@@ -123,8 +123,8 @@ local lsp_bindings = {
       },
     },
 
-    [Label.REFACTOR] = {
-      name = "Refactor",
+    [Label.REFACTOR.key] = {
+      name = Label.REFACTOR.name,
       ["rename"] = {
         key = "r",
         command = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -148,9 +148,11 @@ lsp_bindings.fetch_from = function(mappings, label, mode, extension)
   local ret = {}
 
   if label ~= nil then
-    ret.name = lsp_bindings[mode][label].name
+---@diagnostic disable-next-line: undefined-field
+    ret.name = label.name
     for _, mapping in ipairs(mappings) do
-      ret[lsp_bindings[mode][label][mapping].key] = lsp_bindings[mode][label][mapping].command
+---@diagnostic disable-next-line: undefined-field
+      ret[lsp_bindings[mode][label.key][mapping].key] = lsp_bindings[mode][label.key][mapping].command
     end
   else
     for _, mapping in pairs(mappings) do
@@ -170,7 +172,7 @@ local M = {}
 
 M.csharp_ls = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from({
       "actions",
       "goto-definition",
       "goto-declaration",
@@ -187,7 +189,7 @@ M.csharp_ls = {
       "workspace-symbols",
     }, Label.CODE_ACTIONS),
 
-    [Label.DEBUG] = lsp_bindings.fetch_from({
+    [Label.DEBUG.key] = lsp_bindings.fetch_from({
       "toggle-breakpoint",
       "clear-breakpoints",
       "run-dap",
@@ -200,7 +202,7 @@ M.csharp_ls = {
       "step-out",
     }, Label.DEBUG),
 
-    [Label.REFACTOR] = lsp_bindings.fetch_from({
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
   }),
@@ -208,7 +210,7 @@ M.csharp_ls = {
 
 M.dart = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {
         "actions",
         "line-diagnostics",
@@ -224,16 +226,16 @@ M.dart = {
       }
     ),
 
-    [Label.LSP] = {
-      name = "LSP Actions",
+    [Label.LSP.key] = {
+      name = Label.LSP.name,
       a = { "<cmd>:FlutterDevToolsActivate<cr>", "Flutter DevTools Activate" },
       d = { "<cmd>:FlutterDevTools<cr>", "Flutter DevTools Start" },
       r = { "<cmd>:FlutterLspRestart<cr>", "Restart Server" },
       R = { "<cmd>:FlutterReanalyze<cr>", "Flutter Reanalyze" },
     },
 
-    [Label.PROJECT] = {
-      name = "Project",
+    [Label.PROJECT.key] = {
+      name = Label.PROJECT.name,
       D = { "<cmd>:FlutterDetach<cr>", "Flutter Detach" },
       d = { "<cmd>:FlutterDevices<cr>", "Flutter Devices" },
       e = { "<cmd>:FlutterEmulators<cr>", "Flutter Emulators" },
@@ -243,8 +245,8 @@ M.dart = {
       s = { "<cmd>:FlutterRestart<cr>", "Flutter Restart" },
     },
 
-    [Label.REFACTOR] = {
-      name = "Refactor",
+    [Label.REFACTOR.key] = {
+      name = Label.REFACTOR.name,
       r = { "<cmd>:FlutterRename", "Rename" },
     },
   }),
@@ -252,7 +254,7 @@ M.dart = {
 
 M.gdscript = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from({
       "actions",
       "line-diagnostics",
       "format",
@@ -269,7 +271,7 @@ M.gdscript = {
 
 M.java = {
   normal = {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {
         "actions",
         "goto-definition",
@@ -293,7 +295,7 @@ M.java = {
       }
     ),
 
-    [Label.DEBUG] = lsp_bindings.fetch_from(
+    [Label.DEBUG.key] = lsp_bindings.fetch_from(
       {
         "toggle-breakpoint",
         "clear-breakpoints",
@@ -314,8 +316,8 @@ M.java = {
       }
     ),
 
-    [Label.LSP] = {
-      name = "LSP Actions",
+    [Label.LSP.key] = {
+      name = Label.LSP.name,
       c = { "<cmd>:JdtUpdateConfig<cr>", "JDTLS Update Config"},
       d = { "<cmd>:JdtUpdateDebugConfig<cr>", "JDTLS Update Debug Config"},
       h = { "<cmd>:JdtUpdateHotcode<cr>", "JDTLS Update Hotcode"},
@@ -323,13 +325,13 @@ M.java = {
       r = { "<cmd>:JdtRestart<cr>", "Restart Server"},
     },
 
-    [Label.PROJECT] = {
-      name = "Project",
+    [Label.PROJECT.key] = {
+      name = Label.PROJECT.name,
       c = { "<cmd>JdtCompile<cr>", "Compile" },
     },
 
     -- Refactoring Bindings.
-    [Label.REFACTOR] = lsp_bindings.fetch_from(
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from(
       {
         "rename",
       },
@@ -346,7 +348,7 @@ M.java = {
   insert = nil,
 
   visual = {
-    [Label.REFACTOR] = {
+    [Label.REFACTOR.key] = {
       name = "Refactor",
       c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
       e = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
@@ -357,7 +359,7 @@ M.java = {
 
 M.lua_ls = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from({
       "actions",
       "line-diagnostics",
       "format",
@@ -369,7 +371,7 @@ M.lua_ls = {
       "workspace-symbols",
     }, Label.CODE_ACTIONS),
 
-    [Label.REFACTOR] = lsp_bindings.fetch_from({
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
   }),
@@ -384,7 +386,7 @@ M.rust = {
     },
 
     -- Code Actions
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from(
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {
         "goto-definition",
         "goto-declaration",
@@ -401,18 +403,18 @@ M.rust = {
       Label.CODE_ACTIONS,
       "normal",
       {
-        [lsp_bindings.normal[Label.CODE_ACTIONS]["actions"].key] = {
+        [lsp_bindings.normal[Label.CODE_ACTIONS.key]["actions"].key] = {
           "<cmd>lua require('rust-tools').code_action_group.code_action_group()<cr>",
           "Code Actions",
         },
-        [lsp_bindings.normal[Label.CODE_ACTIONS]["hover"].key] = {
+        [lsp_bindings.normal[Label.CODE_ACTIONS.key]["hover"].key] = {
           "<cmd>lua require('rust-tools').hover_actions.hover_actions()<cr>",
           "Hover Actions",
         },
       }
     ),
 
-    [Label.DEBUG] = lsp_bindings.fetch_from({
+    [Label.DEBUG.key] = lsp_bindings.fetch_from({
       "toggle-breakpoint",
       "clear-breakpoints",
       "run-dap",
@@ -426,7 +428,7 @@ M.rust = {
     }, Label.DEBUG),
 
     -- Refactoring Bindings.
-    [Label.REFACTOR] = lsp_bindings.fetch_from({
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
   },
@@ -439,7 +441,7 @@ M.rust = {
 -- LSP Mappings to be registered with which-key.
 M.default = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
-    [Label.CODE_ACTIONS] = lsp_bindings.fetch_from({
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from({
       "actions",
       "line-diagnostics",
       "format",
@@ -448,7 +450,7 @@ M.default = {
       "prev-diagnostic",
     }, Label.CODE_ACTIONS),
 
-    [Label.REFACTOR] = lsp_bindings.fetch_from({
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from({
       "rename",
     }, Label.REFACTOR),
   }),
