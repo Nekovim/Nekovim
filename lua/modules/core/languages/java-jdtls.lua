@@ -62,7 +62,13 @@ M.opts = {
 
 M.config = function(_, opts)
   opts.root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew" }
-  require("jdtls").start_or_attach(opts)
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "java" },
+    callback = function()
+      require("jdtls").start_or_attach(opts)
+    end,
+  })
 end
 
 return M
