@@ -9,6 +9,14 @@ local M = {
 }
 
 M.opts = {
+  decorations = {
+    statusline = {
+      app_version = true,
+      device = true,
+      project_config = true,
+    }
+  },
+
   lsp = {
     on_attach = function(client, bufnr)
       local mappings = require("mappings.lsp").dart
@@ -22,6 +30,7 @@ M.opts = {
 
   debugger = {
     enabled = true,
+    run_via_dap = true,
     -- register_configurations = function(_)
     --   require("dap").configurations.dart = {}
     --   require("dap.ext.vscode").load_launchjs()
