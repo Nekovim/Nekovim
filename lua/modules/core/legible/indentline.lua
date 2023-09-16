@@ -38,7 +38,6 @@ M.opts = {
     "gd",
     "gdscript",
     "gdscript3",
-    "dart"
   },
 }
 
