@@ -148,10 +148,10 @@ lsp_bindings.fetch_from = function(mappings, label, mode, extension)
   local ret = {}
 
   if label ~= nil then
----@diagnostic disable-next-line: undefined-field
+    ---@diagnostic disable-next-line: undefined-field
     ret.name = label.name
     for _, mapping in ipairs(mappings) do
----@diagnostic disable-next-line: undefined-field
+      ---@diagnostic disable-next-line: undefined-field
       ret[lsp_bindings[mode][label.key][mapping].key] = lsp_bindings[mode][label.key][mapping].command
     end
   else
@@ -226,8 +226,22 @@ M.dart = {
       }
     ),
 
+    [Label.DEBUG.key] = lsp_bindings.fetch_from({
+      "toggle-breakpoint",
+      "clear-breakpoints",
+      "run-dap",
+      "step-into",
+      "run-last",
+      "step-over",
+      "terminate",
+      "toggle-dapui",
+      "toggle-repl",
+      "step-out",
+    }, Label.DEBUG),
+
     [Label.LSP.key] = {
       name = Label.LSP.name,
+      ["."] = { "<cmd>:Telescope flutter commands<cr>", "Flutter Commands" },
       a = { "<cmd>:FlutterDevToolsActivate<cr>", "Flutter DevTools Activate" },
       d = { "<cmd>:FlutterDevTools<cr>", "Flutter DevTools Start" },
       r = { "<cmd>:FlutterLspRestart<cr>", "Restart Server" },
@@ -318,11 +332,11 @@ M.java = {
 
     [Label.LSP.key] = {
       name = Label.LSP.name,
-      c = { "<cmd>:JdtUpdateConfig<cr>", "JDTLS Update Config"},
-      d = { "<cmd>:JdtUpdateDebugConfig<cr>", "JDTLS Update Debug Config"},
-      h = { "<cmd>:JdtUpdateHotcode<cr>", "JDTLS Update Hotcode"},
-      R = { "<cmd>:JdtSetRuntime<cr>", "JDTLS Set Java Runtime"},
-      r = { "<cmd>:JdtRestart<cr>", "Restart Server"},
+      c = { "<cmd>:JdtUpdateConfig<cr>", "JDTLS Update Config" },
+      d = { "<cmd>:JdtUpdateDebugConfig<cr>", "JDTLS Update Debug Config" },
+      h = { "<cmd>:JdtUpdateHotcode<cr>", "JDTLS Update Hotcode" },
+      R = { "<cmd>:JdtSetRuntime<cr>", "JDTLS Set Java Runtime" },
+      r = { "<cmd>:JdtRestart<cr>", "Restart Server" },
     },
 
     [Label.PROJECT.key] = {

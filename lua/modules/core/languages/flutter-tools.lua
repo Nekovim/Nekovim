@@ -3,6 +3,7 @@ local M = {
   ft = { "dart" },
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "mfussenegger/nvim-dap",
     "nvim-telescope/telescope.nvim",
   },
 }
@@ -18,6 +19,14 @@ M.opts = {
     end,
     capabilities = nil,
   },
+
+  debugger = {
+    enabled = true,
+    -- register_configurations = function(_)
+    --   require("dap").configurations.dart = {}
+    --   require("dap.ext.vscode").load_launchjs()
+    -- end
+  }
 }
 
 M.config = function(_, opts)
