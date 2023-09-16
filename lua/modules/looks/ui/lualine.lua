@@ -69,6 +69,7 @@ M.opts = {
       "dapui_breakpoints",
       "dapui_scopes",
       "dapui_watches",
+      "flutterToolsOutline",
     },
     always_divide_middle = true,
   },

@@ -47,6 +47,8 @@ M.which_key = {
 
     e = {
       name = "Edgy",
+      ["<CR>"] = { "<cmd>lua require('edgy').open('left')<cr>", "Open Left" },
+      ["<BS>"] = { "<cmd>lua require('edgy').close('left')<cr>", "Close Left" },
       L = { "<cmd>SymbolsOutlineOpen<cr><cmd>Neotree show<cr><cmd>Neotree buffers<cr>", "Open All Left Panels" },
       b = { "<cmd>Neotree buffers<cr>", "Neotree Buffers" },
       d = { "<cmd>Trouble<cr>", "Trouble Diagnostics" },
@@ -111,11 +113,10 @@ M.which_key = {
 
     p = {
       name = "Projects & Sessions",
-      ["<cr>"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
-      a = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
-      p = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
-      r = { "<cmd>ProjectRoot<cr>", "Set as Project Root" },
-      s = { "<cmd>lua require('persistence').save()<cr>", "Save Session" },
+      ["<cr>"] = { "<cmd>lua require('persistence').save()<cr>", "Save Session" },
+      ["<bs>"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
+      ["."] = { "<cmd>Telescope projects theme=dropdown previewer=false<cr>", "Open Project" },
+      ["/"] = { "<cmd>!mkdir .nvimproj<cr>", "Add Project" },
     },
 
     s = {

@@ -1,6 +1,7 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
   event = "BufReadPost",
+  commit = "33eb472",
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -37,6 +38,9 @@ M.opts = {
     "cmake",
     "css",
     "svelte",
+    "vim",
+    "regex",
+    "dart",
   }, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
