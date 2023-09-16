@@ -6,7 +6,7 @@ M.cmp = {
   ["scroll-doc-down"] = "<C-b>",
   ["scroll-doc-up"] = "<C-f>",
   ["complete"] = "<C-Space>",
-  ["close"] = "<C-cr>",
+  ["close"] = "<C-u>",
   ["confirm"] = "<CR>",
   ["super-tab"] = "<Tab>",
   ["super-tab-alt"] = "<S-Tab>",
@@ -41,7 +41,7 @@ M.chatgpt = {
   },
 }
 
-M.mini_surround = {
+M["mini.surround"] = {
   add = "sa", -- Add surrounding in Normal and Visual modes
   delete = "sd", -- Delete surrounding
   find = "sf", -- Find surrounding (to the right)
@@ -52,6 +52,16 @@ M.mini_surround = {
 
   suffix_last = "l", -- Suffix to search with "prev" method
   suffix_next = "n", -- Suffix to search with "next" method
+}
+
+M["mini.indentscope"] = {
+  -- Textobjects
+  object_scope = "",
+  object_scope_with_border = "",
+
+  -- Motions (jump to respective border line; if not present - body line)
+  goto_top = "",
+  goto_bottom = "",
 }
 
 return M

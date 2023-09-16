@@ -1,65 +1,58 @@
 -- Load Utility Functions
 require "utils.wrapping"
 
--- Utils Table
-local M = {}
-
-M.managed = {
-  -- Lua & System
-  lua_ls = "lua_ls", -- Lua LSP
-  bashls = "bashls", -- Bash LSP
-
-  -- Markup & Data Formats
-  -- "typst-lsp",            -- Tyspt LSP
-  jsonls = "jsonls", -- JSON LSP
-  yamlls = "yamlls", -- YAML LSP
-  html = "html", -- HTML LSP
-
-  -- Scripting/Interpreted
-  tsserver = "tsserver", -- Typescript & Javascript LSP
-  eslint = "eslint", -- Typescript & Javascript Linting
-  svelte = "svelte",
-  vuels = "vuels",
-  pyright = "pyright", -- Python LSP
-
-  -- Mixed
-  csharp_ls = "csharp_ls", -- C# via csharp-language-server
-  -- omnisharp = "omnisharp",         -- C# via omnisharp-roslyn
-
-  -- Compiled
-  clangd = "clangd", -- C/C++ LSP
-  gopls = "gopls", -- Go LSP & Formatting
-
-  -- Build Tools
-  cmake = "cmake", -- CMake LSP
-
-  --Styling
-  cssls = "cssls", -- CSS LSP
+-- Mason will install this and lspconfig will auto setup in correct buffer.
+local install_and_configure = {
+  "lua_ls",
+  "bashls",
+  "jsonls",
+  "yamlls",
+  "html",
+  "tsserver",
+  "eslint",
+  "svelte",
+  "vuels",
+  "pyright",
+  "csharp_ls",
+  "clangd",
+  "gopls",
+  "cmake",
+  "cssls",
 }
 
--- Names only for lspconfig.
-M.unmanaged = {
-  servers = {
-    gdscript = "gdscript", -- gdscript LSP handled by Godot
+-- lspconfig will autoset up but will NOT be installed by mason.
+local auto_configure = {
+  "gdscript",
+}
+
+-- Mason will ensure all of these are installed but they will not be managed by lsp config.
+local ensure_installed = {
+  lsp = {
+    "jdtls",
+    "rust_analyzer",
   },
-  linters = {
-    -- "cmakelang",
-    -- "cmakelint",
-    -- "checkstyle",
-    gdtoolkit = "gdtoolkit",
+  dap = {
+    "javatest",
+    "javadbg",
+    "python",
+    "codelldb",
   },
-  formatters = {
-    black = "black",
-    ["clang-format"] = "clang-format",
-    -- "cmakelang",
-    csharpier = "csharpier",
-    gdtoolkit = "gdtoolkit",
-    golines = "golines",
-    ["goimports-reviser"] = "goimports-reviser",
-    -- gofumpt = "gofumpt",
-    -- goimports = "goimports",
-    stylua = "stylua",
+  tools = {
+    "gdtoolkit",
+    "black",
+    "flake8",
+    "prettier",
+    "clang-format",
+    "csharpier",
+    "google-java-format",
+    "stylua",
+    "goimports-revirser",
+    "golines",
   },
 }
 
-return M
+ensure_installed.lsp = vim.list_extend(ensure_installed.lsp, install_and_configure)
+return {
+  auto_configure = vim.list_extend(auto_configure, install_and_configure),
+  ensure_installed = ensure_installed,
+}
