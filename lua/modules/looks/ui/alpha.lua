@@ -67,7 +67,7 @@ function M.config()
   dashboard.section.buttons.val = {
     dashboard.button("SPC .", "  Notes", ":Telescope neorg switch_workspace<CR>"),
     dashboard.button("SPC p BS", "󰻶  Last Session", ":lua require('persistence').load({ last = true })<CR>"),
-    dashboard.button("SPC p p", "  Projects", ":Telescope projects theme=dropdown previewer=false<CR>"),
+    dashboard.button("SPC p .", "  Projects", ":Telescope projects theme=dropdown previewer=false<CR>"),
     dashboard.button("SPC b r", "  Recently Used Files", ":Telescope oldfiles <CR>"),
     dashboard.button("SPC b N", "  New File", ":ene <BAR> startinsert <CR>"),
     dashboard.button("SPC h c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),

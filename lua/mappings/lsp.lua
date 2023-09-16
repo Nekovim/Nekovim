@@ -132,8 +132,6 @@ local lsp_bindings = {
     },
   },
 
-  insert = {},
-
   visual = {},
 }
 
@@ -250,13 +248,13 @@ M.dart = {
 
     [Label.PROJECT.key] = {
       name = Label.PROJECT.name,
-      D = { "<cmd>:FlutterDetach<cr>", "Flutter Detach" },
+      c = { "<cmd>:FlutterRun<cr>", "Flutter Run" },
       d = { "<cmd>:FlutterDevices<cr>", "Flutter Devices" },
       e = { "<cmd>:FlutterEmulators<cr>", "Flutter Emulators" },
+      l = { "<cmd>:FlutterDetach<cr>", "Flutter Detach" },
       q = { "<cmd>:FlutterQuit<cr>", "Flutter Quit" },
       R = { "<cmd>:FlutterReload<cr>", "Flutter Reload" },
-      r = { "<cmd>:FlutterRun<cr>", "Flutter Run" },
-      s = { "<cmd>:FlutterRestart<cr>", "Flutter Restart" },
+      r = { "<cmd>:FlutterRestart<cr>", "Flutter Restart" },
     },
 
     [Label.REFACTOR.key] = {
@@ -359,8 +357,6 @@ M.java = {
     ),
   },
 
-  insert = nil,
-
   visual = {
     [Label.REFACTOR.key] = {
       name = "Refactor",
@@ -446,10 +442,6 @@ M.rust = {
       "rename",
     }, Label.REFACTOR),
   },
-
-  insert = nil,
-
-  visual = nil,
 }
 
 -- LSP Mappings to be registered with which-key.
