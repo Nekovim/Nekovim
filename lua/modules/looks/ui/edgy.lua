@@ -71,8 +71,10 @@ M.opts = {
     },
     {
       ft = "Outline",
-      pinned = false,
-      open = "SymbolsOutlineOpen",
+    },
+    {
+      title = "Flutter Outline",
+      ft = "flutterToolsOutline",
     },
     -- any other neo-tree windows
     -- "neo-tree",
