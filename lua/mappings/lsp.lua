@@ -281,7 +281,7 @@ M.gdscript = {
   }),
 }
 
-M.java = {
+M.jdtls = {
   normal = {
     [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {

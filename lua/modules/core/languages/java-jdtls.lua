@@ -15,16 +15,8 @@ local M = {
 }
 
 M.opts = {
-  on_attach = function(client, bufnr)
-    local register = require("mappings.utils").register
-    local mappings = require "mappings.lsp"
-
-    -- lsp_keymaps(bufnr)
-    register(mappings.java.normal, bufnr)
-    register(mappings.java.visual, bufnr, "v")
-    require("illuminate").on_attach(client)
-    require("nvim-navic").attach(client, bufnr)
-  end,
+  on_attach = require("settings.servers").default_on_attach,
+  capabilities = require("settings.servers").default_capabilities,
 
   cmd = {
     "java", -- IMPORTANT: or '/path/to/java17_or_newer/bin/java'

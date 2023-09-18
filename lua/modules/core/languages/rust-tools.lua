@@ -42,6 +42,8 @@ M.opts = {
       vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
     end,
 
+    capabilities = require("settings.servers").default_capabilities,
+
     flags = {
       debounce_text_changes = 150,
     },
