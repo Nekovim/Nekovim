@@ -9,7 +9,7 @@ local M = {
 
 -- No opts required.
 function M.config()
-  local cmp_nvim_lsp = require "cmp_nvim_lsp"
+  require "cmp_nvim_lsp"
   require "diagflow"
 
   -- Set up the signs for diagnostics.
@@ -56,52 +56,6 @@ function M.config()
   })
 
   local lspconfig = require "lspconfig"
-
-  -- local on_attach = function(client, bufnr)
-  --   if client.name == "tsserver" then
-  --     client.server_capabilities.documentFormattingProvider = false
-  --   end
-  --
-  --   if client.name == "lua_ls" then
-  --     client.server_capabilities.documentFormattingProvider = false
-  --   end
-  --
-  --   if client.name == "eslint" then
-  --     vim.api.nvim_create_autocmd("BufWritePre", {
-  --       buffer = bufnr,
-  --       command = "EslintFixAll",
-  --     })
-  --   end
-  --
-  --   local mappings = require("mappings.lsp")[client.name] or require("mappings.lsp").default
-  --
-  --   -- lsp_keymaps(bufnr)
-  --   require("mappings.utils").register(mappings.normal, bufnr)
-  --   require("illuminate").on_attach(client)
-  --   require("nvim-navic").attach(client, bufnr)
-  -- end
-  --
-  -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-  -- capabilities = cmp_nvim_lsp.default_capabilities(nil)
-
-  -- local attach_servers = function(servers)
-  --   for _, server in pairs(servers) do
-  --     Opts = {
-  --       on_attach = on_attach,
-  --       capabilities = capabilities,
-  --     }
-  --
-  --     server = vim.split(server, "@")[1]
-  --
-  --     local require_ok, conf_opts = pcall(require, "settings." .. server)
-  --     if require_ok then
-  --       Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
-  --     end
-  --
-  --     lspconfig[server].setup(Opts)
-  --   end
-  -- end
   local attach_servers = function(servers)
     local retrieve = require("settings.servers").retrieve
     for _, server in pairs(servers) do
