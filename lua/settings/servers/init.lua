@@ -5,8 +5,7 @@ M.default_capabilities.textDocument.completion.completionItem.snippetSupport = t
 
 M.default_on_attach = function(client, bufnr)
   local mappings = require("mappings.lsp")[client.name] or require("mappings.lsp").default
-
-  require("mappings.utils").register(mappings.normal, bufnr)
+  require("mappings.utils").register_all(mappings, bufnr)
   require("illuminate").on_attach(client)
   require("nvim-navic").attach(client, bufnr)
 end
