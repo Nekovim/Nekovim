@@ -18,14 +18,8 @@ M.opts = {
   },
 
   lsp = {
-    on_attach = function(client, bufnr)
-      local mappings = require("mappings.lsp").dart
-      require("mappings.utils").register_all(mappings, bufnr)
-
-      require("illuminate").on_attach(client)
-      require("nvim-navic").attach(client, bufnr)
-    end,
-    capabilities = nil,
+    on_attach = require("settings.servers").default_on_attach,
+    capabilities = require("settings.servers").default_capabilities,
   },
 
   debugger = {

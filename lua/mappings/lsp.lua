@@ -206,7 +206,7 @@ M.csharp_ls = {
   }),
 }
 
-M.dart = {
+M.dartls = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
     [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {
