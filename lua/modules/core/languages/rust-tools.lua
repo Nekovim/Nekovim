@@ -33,17 +33,13 @@ M.opts = {
   server = {
     -- on_attack for lsp
     on_attach = function(client, bufnr)
-      local mappings = require("mappings.lsp").rust
-      require("mappings.utils").register_all(mappings, bufnr)
-
+      require("settings.servers").default_on_attach(client, bufnr)
       vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
         buffer = bufnr,
         callback = vim.lsp.codelens.refresh,
       })
 
       vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-      require("illuminate").on_attach(client)
-      require("nvim-navic").attach(client, bufnr)
     end,
 
     flags = {

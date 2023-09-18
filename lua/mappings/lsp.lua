@@ -387,7 +387,7 @@ M.lua_ls = {
   }),
 }
 
-M.rust = {
+M.rust_analyzer = {
   normal = {
     -- Root bindings
     [lsp_bindings.normal["hover"].key] = {
