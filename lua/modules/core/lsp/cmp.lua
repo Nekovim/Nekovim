@@ -27,10 +27,7 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
     },
   },
-  event = {
-    "InsertEnter",
-    "CmdlineEnter",
-  },
+  lazy = false,
 }
 
 function M.config()

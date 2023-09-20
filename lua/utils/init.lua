@@ -5,11 +5,11 @@ require "utils.wrapping"
 local install_and_configure = {
   "lua_ls",
   "bashls",
+  "eslint",
   "jsonls",
   "yamlls",
   "html",
   "tsserver",
-  "eslint",
   "svelte",
   "vuels",
   "pyright",

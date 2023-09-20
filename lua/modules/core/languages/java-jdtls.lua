@@ -12,11 +12,16 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath "data" .. "/mason/
 local M = {
   "mfussenegger/nvim-jdtls",
   ft = "java",
+  dependencies = {
+    { "hrsh7th/nvim-cmp" },
+  },
 }
 
 M.opts = {
-  on_attach = require("settings.servers").default_on_attach,
-  capabilities = require("settings.servers").default_capabilities,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    require("settings.servers").default_on_attach(client, bufnr)
+  end,
 
   cmd = {
     "java", -- IMPORTANT: or '/path/to/java17_or_newer/bin/java'
@@ -53,6 +58,7 @@ M.opts = {
 }
 
 M.config = function(_, opts)
+  opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
   opts.root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew" }
 
   vim.api.nvim_create_autocmd({ "FileType" }, {

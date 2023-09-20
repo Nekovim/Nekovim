@@ -2,14 +2,13 @@ local M = {
   "neovim/nvim-lspconfig",
   lazy = true,
   dependencies = {
-    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/nvim-cmp" },
     { "SmiteshP/nvim-navic" },
   },
 }
 
 -- No opts required.
 function M.config()
-  require "cmp_nvim_lsp"
   require "diagflow"
 
   -- Set up the signs for diagnostics.

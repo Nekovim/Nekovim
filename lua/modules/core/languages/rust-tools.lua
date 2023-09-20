@@ -8,8 +8,9 @@ local M = {
   ft = "rust",
   dependencies = {
     {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
+      { "nvim-lua/plenary.nvim" },
+      { "neovim/nvim-lspconfig" },
+      { "hrsh7th/nvim-cmp" },
     },
   },
 }
@@ -31,7 +32,6 @@ M.opts = {
     },
   },
   server = {
-    -- on_attack for lsp
     on_attach = function(client, bufnr)
       require("settings.servers").default_on_attach(client, bufnr)
       vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
@@ -42,8 +42,6 @@ M.opts = {
       vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
     end,
 
-    capabilities = require("settings.servers").default_capabilities,
-
     flags = {
       debounce_text_changes = 150,
     },
@@ -51,6 +49,8 @@ M.opts = {
 }
 
 function M.config(_, opts)
+  opts.server.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
   opts.dap = {
     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
   }
