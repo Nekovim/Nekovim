@@ -444,6 +444,36 @@ M.rust_analyzer = {
   },
 }
 
+M.tsserver = {
+  normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
+    [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
+      {
+        "actions",
+        "line-diagnostics",
+        "format",
+        "hover",
+        "next-diagnostic",
+        "prev-diagnostic",
+        "references",
+        "document-symbols",
+        "workspace-symbols",
+      },
+      Label.CODE_ACTIONS,
+      "normal",
+      {
+        F = {
+          "<cmd>EslintFixAll<cr>",
+          "Eslint Fix All",
+        },
+      }
+    ),
+
+    [Label.REFACTOR.key] = lsp_bindings.fetch_from({
+      "rename",
+    }, Label.REFACTOR),
+  }),
+}
+
 -- LSP Mappings to be registered with which-key.
 M.default = {
   normal = lsp_bindings.fetch_from({ "hover" }, nil, "normal", {
