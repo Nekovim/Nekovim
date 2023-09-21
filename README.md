@@ -9,7 +9,7 @@ You can find a list [here](https://github.com/NiamhFerns/nvim/wiki/Modules).
 ## Usage
 Make sure you've backed up then removed your `.config/nvim` and removed your `.local/share/nvim` folder.
 
-Then run `git clone https://github.com/NiamhFerns/nekovim.git ~/.config/nvim` on Linux.
+Then run `git clone https://github.com/Nekovim/Nekovim.git ~/.config/nvim` on Linux.
 
 ### Custom User Config
 [See here.](https://github.com/Nekovim/nekovim-user-config)
