@@ -134,6 +134,7 @@ M.which_key = {
       name = "Toggle",
       c = { "<cmd>lua require('cmp').setup.buffer { enabled = false }<cr>", "Auto-Completions" },
       l = { "<cmd>set colorcolumn=121<cr>", "Linewrap Indicator" },
+      s = { "<cmd>LspLensToggle<cr>", "Lsp Lens" },
       T = { "<cmd>Twilight<cr>", "Twilight" },
       w = { "<cmd>lua ToggleWrapped()<CR>", "Wrapped Mode" },
       z = { "<cmd>ZenMode<cr>", "Zen Mode" },
