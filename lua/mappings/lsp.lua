@@ -449,6 +449,7 @@ M.tsserver = {
     [Label.CODE_ACTIONS.key] = lsp_bindings.fetch_from(
       {
         "actions",
+        "goto-declaration",
         "line-diagnostics",
         "format",
         "hover",
