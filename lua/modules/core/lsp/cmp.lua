@@ -32,6 +32,8 @@ local M = {
 
 function M.config()
   local cmp = require "cmp"
+  local cmp_mappings = require("mappings.plugins").cmp
+
   local luasnip = require "luasnip"
   require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -73,9 +75,14 @@ function M.config()
     region_check_events = "CursorMoved",
   }
 
-  local cmp_mappings = require("mappings.plugins").cmp
+  vim.keymap.set({ "i", "s" }, "<C-cr><cr>", function()
+    luasnip.expand_or_jump()
+  end, { silent = true })
+  for language, snippets in pairs(require("utils.snippets")) do
+    luasnip.add_snippets(language, snippets)
+  end
 
-  -- Has to be this way without M.opts because CMP is weird. (I think...? Maybe.)
+
   cmp.setup {
     snippet = {
       expand = function(args)
@@ -108,13 +115,13 @@ function M.config()
       -- Set `select` to `false` to only confirm explicitly selected items.
       [cmp_mappings["confirm"]] = cmp.mapping.confirm { select = true },
       [cmp_mappings["super-tab"]] = cmp.mapping(function(fallback)
-        if cmp.visible() then
+        if luasnip.jumpable() then
+          luasnip.jump(1)
+        elseif cmp.visible() then
           cmp.confirm { select = true }
-        -- cmp.select_next_item()
+        cmp.select_next_item()
         elseif luasnip.expandable() then
           luasnip.expand()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         elseif check_backspace() then
           fallback()
         else
