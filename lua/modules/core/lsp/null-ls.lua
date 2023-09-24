@@ -48,6 +48,7 @@ function M.config()
       formatting.goimports_reviser,
       formatting.golines,
       formatting.gdformat,
+      diagnostics.gdlint,
       -- diagnostics.gdlint,
       diagnostics.flake8,
       -- Spelling
