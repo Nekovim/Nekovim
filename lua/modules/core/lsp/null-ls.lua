@@ -36,24 +36,33 @@ function M.config()
   null_ls.setup {
     debug = false,
     sources = {
+      -- Lua
+      formatting.stylua,
+
+      -- Javascript, Typescript, HTML, CSS, JSX, JSON
       formatting.prettier.with {
         extra_args = { "--single-quote", "--jsx-single-quote" },
       },
+
+      -- Python
       formatting.black.with { extra_args = { "--fast" } },
-      formatting.stylua,
+      diagnostics.flake8,
+
+      -- Java
       formatting.google_java_format,
+      -- C/C++
       formatting.clang_format,
+
+      -- C#
       formatting.csharpier,
+
+      -- Golang
       formatting.gofmt,
       formatting.goimports_reviser,
       formatting.golines,
+      -- Godot
       formatting.gdformat,
       diagnostics.gdlint,
-      -- diagnostics.gdlint,
-      diagnostics.flake8,
-      -- Spelling
-      -- cspell.diagnostics.with(cspell_config),
-      -- cspell.code_actions.with(cspell_config),
     },
     on_attach = on_attach,
   }
