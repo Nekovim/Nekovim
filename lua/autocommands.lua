@@ -20,8 +20,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "gd", "gdscript", "gdscript3" },
+  pattern = { "gd", "gdscript", "gdscript3", "go" },
   callback = function()
     vim.cmd [[setlocal noexpandtab]]
+    vim.cmd [[set tabstop=4]]
+    vim.cmd [[set shiftwidth=4]]
   end,
 })
