@@ -41,7 +41,7 @@ vim.opt.iskeyword:append "-" -- treats words with `-` as single words
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
-vim.opt.listchars:append "tab:󰞘  "
+vim.opt.listchars:append "tab:▏ "
 
 vim.cmd [[set fcs=eob:\ ]]
 vim.cmd [[set updatetime=700]]
