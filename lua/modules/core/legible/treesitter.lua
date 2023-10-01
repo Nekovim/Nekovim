@@ -21,6 +21,7 @@ M.opts = {
     "python",
     "javascript",
     "typescript",
+    "tsx",
     "gdscript",
     "markdown",
     "markdown_inline",
