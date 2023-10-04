@@ -34,6 +34,7 @@ M.config = function(_, opts)
       "dapui_breakpoints",
       "dapui_scopes",
       "dapui_watches",
+      "norg"
     },
     callback = function()
       vim.b.miniindentscope_disable = true
