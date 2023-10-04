@@ -40,6 +40,7 @@ lazy.modules = {
   -- Writing
   -- { import = "modules.writing" },
   { import = "modules.writing.neorg" },
+  { import = "modules.writing.obsidian" },
 
   -- Tools
   { import = "modules.tools" },
