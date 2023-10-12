@@ -5,7 +5,7 @@ require "utils.wrapping"
 local install_and_configure = {
   "lua_ls",
   "bashls",
-  "emmet_ls",
+  -- "emmet_ls",
   "eslint",
   "jsonls",
   "yamlls",
