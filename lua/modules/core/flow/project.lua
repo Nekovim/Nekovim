@@ -10,8 +10,14 @@ M.opts = {
   -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
   detection_methods = { "pattern" },
 
+  before_project_selected = function ()
+    local persistence = require "persistence"
+    persistence.save()
+  end,
+
   on_project_selected = function(prompt_bufnr, opts)
     local persistence = require "persistence"
+    persistence.start()
     local sfile = persistence.get_current()
     if vim.fn.filereadable(sfile) ~= 0 then
       persistence.load()

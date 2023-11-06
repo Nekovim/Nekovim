@@ -1,10 +1,7 @@
 local M = {
     "folke/persistence.nvim",
     event = "VimEnter",
-}
-
-M.opts = {
-    dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"),
+    config = true,
 }
 
 return M
