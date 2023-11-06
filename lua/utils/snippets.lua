@@ -36,5 +36,7 @@ M.javascript = {
 }
 M.typescript = {}
 M.typescript = vim.tbl_extend("keep", M.typescript, M.javascript)
+M.typescriptreact = {}
+M.typescriptreact = vim.tbl_extend("keep", M.typescriptreact, M.javascript)
 
 return M
