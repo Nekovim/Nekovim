@@ -2,6 +2,11 @@ local M = {
   "folke/which-key.nvim",
   lazy = false,
   event = "VeryLazy",
+  dependencies = {
+    {
+      "kyazdani42/nvim-web-devicons",
+    },
+  },
 }
 
 M.opts = {
@@ -27,31 +32,54 @@ M.opts = {
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   -- operators = { gc = "Comments" },
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    ["<space>"] = "SPC",
-    ["<cr>"] = "RET",
-    ["<CR>"] = "RET",
-    ["<bs>"] = "BS",
-    ["<BS>"] = "BS",
-    ["<tab>"] = "TAB",
-  },
   icons = {
+    mappings = false,
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
     group = "+", -- symbol prepended to a group
+    keys = {
+      Up = " ",
+      Down = " ",
+      Left = " ",
+      Right = " ",
+      C = "󰘴 ",
+      M = "󰘵 ",
+      D = "󰘳 ",
+      S = "󰘶 ",
+      CR = "󰌑 ",
+      Esc = "󱊷 ",
+      ScrollWheelDown = "󱕐 ",
+      ScrollWheelUp = "󱕑 ",
+      NL = "󰌑 ",
+      BS = "󰁮",
+      Space = "󱁐 ",
+
+      Tab = "󰌒 ",
+      F1 = "󱊫",
+      F2 = "󱊬",
+      F3 = "󱊭",
+      F4 = "󱊮",
+
+      F5 = "󱊯",
+      F6 = "󱊰",
+      F7 = "󱊱",
+      F8 = "󱊲",
+      F9 = "󱊳",
+      F10 = "󱊴",
+      F11 = "󱊵",
+      F12 = "󱊶",
+    },
   },
-  popup_mappings = {
+  keys = {
     scroll_down = "<c-n>", -- binding to scroll down inside the popup
     scroll_up = "<c-u>", -- binding to scroll up inside the popup
   },
-  window = {
-    border = "rounded", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+  win = {
+    -- border = "rounded", -- none, single, double, shadow
+    -- position = "bottom", -- bottom, top
+    -- margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0,
+    -- winblend = 0,
   },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -59,26 +87,17 @@ M.opts = {
     spacing = 3, -- spacing between columns
     align = "center", -- align columns left, center or right
   },
-  ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
-  -- triggers = {"<leader>"} -- or specify a list manuallyneovim call local lua function from keymapping
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
+ triggers = {
+   { "<auto>", mode = "nixsotc" },
+   { "g", mode = { "n", "v" } },
+ }
 }
 
 function M.config(_, opts)
   require("which-key").setup(opts)
   local mappings = require "mappings.global"
-  local register = require("mappings.utils").register
-  register(mappings.which_key.normal)
-  register(require "custom-mappings")
+  opts.spec = mappings.which_key
 end
 
 return M

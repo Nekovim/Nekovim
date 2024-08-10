@@ -21,7 +21,7 @@ function M.config()
 
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
     { name = "DiagnosticSignInfo", text = "" },
   }
 
@@ -73,7 +73,7 @@ function M.config()
     local mappings = require("mappings.lsp")[client.name] or require("mappings.lsp").default
 
     -- lsp_keymaps(bufnr)
-    require("mappings.utils").register(mappings.normal, bufnr)
+    -- require("mappings.utils").register(mappings.normal, bufnr)
     require("illuminate").on_attach(client)
     require("nvim-navic").attach(client, bufnr)
   end

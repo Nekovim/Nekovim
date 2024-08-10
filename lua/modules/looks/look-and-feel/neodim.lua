@@ -1,7 +1,7 @@
 local M = {
   "zbirenbaum/neodim",
   event = "LspAttach",
-  commit = vim.version().minor < 10 and "f11c110" or nil,
+  commit = "0543414",
 }
 
 M.opts = {
@@ -18,7 +18,7 @@ M.opts = {
 }
 
 M.config = function(_, opts)
-  opts.blend_color = "#" .. string.format("%x", vim.api.nvim_get_hl_by_name("Comment", true).foreground)
+  opts.blend_color = "#908CAA"
   require("neodim").setup(opts)
 end
 

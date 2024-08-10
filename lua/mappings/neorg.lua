@@ -31,47 +31,47 @@ M.neorg_bindings = function(keybinds)
 end
 
 M.neorg_labels = {
-  n = {
-    name = "Neorg Mode",
-    [","] = { "Find Heading" },
-    ["<C-/>"] = { "Open Table of Contents" },
-    i = {
-      name = "Insert",
-      d = { "Date" },
-      f = { "File Link" },
-      l = { "Link" },
-      m = { "Meta Data" },
-    },
-    l = {
-      name = "List",
-      i = { "Invert" },
-      t = { "Toggle (Un)ordered" },
-    },
-    m = {
-      name = "Mode",
-      h = { "Enter Heading Traversal Mode" },
-      n = { "Enter Neorg Mode" },
-    },
-    n = {
-      name = "Note",
-      n = { "New Note" },
-    },
-    t = {
-      name = "Task",
-      a = { "Mark Ambiguous" },
-      c = { "Mark Cancelled" },
-      d = { "Mark Done" },
-      h = { "Mark On Hold" },
-      i = { "Mark Important" },
-      p = { "Mark Pending" },
-      r = { "Mark Recurring" },
-      u = { "Mark Undone" },
-    },
-    v = {
-      name = "View",
-      l = { "Looking Glass" },
-    },
-  },
+	-- Neorg Mode
+		{ "<leader>n", group = "Neorg Mode", nowait = true, remap =false, mode = "n" },
+    {"<leader>n,", desc = "Find Heading", nowait = true, remap =false, mode = "n" },
+    {"<leader>n<C-/>", desc = "Open Table of Contents", nowait = true, remap =false, mode = "n" },
+
+  -- Neorg Mode -> Insert
+		{ "<leader>ni", group = "Insert" , nowait = true, remap =false, mode = "n"},
+    {"<leader>nid", desc = "Date" , nowait = true, remap =false, mode = "n"},
+    {"<leader>nif", desc = "File Link" , nowait = true, remap =false, mode = "n"},
+    {"<leader>nil", desc = "Link" , nowait = true, remap =false, mode = "n"},
+    {"<leader>nim", desc = "Meta Data" , nowait = true, remap =false, mode = "n"},
+
+  -- Neorg Mode -> List
+		{ "<leader>nl", group = "List", nowait = true, remap =false, mode = "n" },
+    {"<leader>nli", desc = "Invert", nowait = true, remap =false, mode = "n" },
+    {"<leader>nlt", desc = "Toggle (Un)ordered", nowait = true, remap =false, mode = "n" },
+
+  -- Neorg Mode -> Mode
+		{ "<leader>nm", group = "Mode", nowait = true, remap =false, mode = "n" },
+    {"<leader>nmh", desc = "Enter Heading Traversal Mode", nowait = true, remap =false, mode = "n" },
+    {"<leader>nmn", desc = "Enter Neorg Mode", nowait = true, remap =false, mode = "n" },
+
+
+  -- Neorg Mode -> Note
+		{ "<leader>nn", group = "Note", nowait = true, remap =false, mode = "n" },
+    { "<leader>nnn", desc = "New Note", nowait = true, remap =false, mode = "n" },
+
+  -- Neorg Mode -> Task
+		{ "<leader>nt", group = "Task", nowait = true, remap =false, mode = "n" },
+    {"<leader>nta", desc = "Mark Ambiguous", nowait = true, remap =false, mode = "n" },
+    {"<leader>ntc", desc = "Mark Cancelled", nowait = true, remap =false, mode = "n" },
+    {"<leader>ntd", desc = "Mark Done", nowait = true, remap =false, mode = "n" },
+    {"<leader>nth", desc = "Mark On Hold", nowait = true, remap =false, mode = "n" },
+    {"<leader>nti", desc = "Mark Important", nowait = true, remap =false, mode = "n" },
+    {"<leader>ntp", desc = "Mark Pending", nowait = true, remap =false, mode = "n" },
+    {"<leader>ntr", desc = "Mark Recurring", nowait = true, remap =false, mode = "n" },
+    {"<leader>ntu", desc = "Mark Undone", nowait = true, remap =false, mode = "n" },
+
+  -- Neorg Mode -> View
+		{ "<leader>nv", group = "View", nowait = true, remap =false, mode = "n" },
+    {"<leader>nvl", desc = "Looking Glass", nowait = true, remap =false, mode = "n" },
 }
 
 return M

@@ -121,7 +121,7 @@ M.opts = {
     },
     diagnostics = {
       symbols = {
-        hint = "",
+        hint = " ",
         info = " ",
         warn = " ",
         error = " ",

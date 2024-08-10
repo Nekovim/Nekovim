@@ -47,11 +47,22 @@ lazy.modules = {
 
 lazy.opts = {
   install = { colorscheme = { require("user-options").primary_theme } },
-  defaults = { lazy = true, version = "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
+  defaults = { lazy = true, version = "*" },
   ui = { wrap = "true" },
   checker = { enabled = true },
   change_detection = { enabled = true },
   debug = false,
+  pkg = {
+    enabled = true,
+    cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
+    versions = true, -- Honor versions in pkg sources
+    -- the first package source that is found for a plugin will be used.
+    sources = {
+      "lazy",
+      -- "rockspec",
+      "packspec",
+    },
+  },
 }
 
 -- load lazy
