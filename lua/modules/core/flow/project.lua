@@ -1,5 +1,5 @@
 local M = {
-  "NiamhFerns/project.nvim",
+  "ahmedkhalf/project.nvim",
   event = "VimEnter",
   dependencies = {
     { "nvim-telescope/telescope.nvim" },

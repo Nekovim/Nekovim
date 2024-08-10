@@ -1,5 +1,5 @@
 -- Useful functions for writing plugins.
-package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nekovim/?.lua"
+package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/nekovim/?.lua"
 
 -- Extra lua functionality.
 require("lua-utils")
