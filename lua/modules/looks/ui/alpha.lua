@@ -68,7 +68,7 @@ function M.config()
     dashboard.button("SPC p .", "  Projects", ":Telescope projects theme=dropdown previewer=false<CR>"),
     dashboard.button("SPC b r", "󰄉  Recently Used Files", ":Telescope oldfiles <CR>"),
     dashboard.button("SPC b N", "  New File", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("SPC h c", "  Configuration", ":e ~/AppData/local/nvim/init.lua <CR>"),
+    dashboard.button("SPC h c", "  Configuration", ":e" .. vim.fn.stdpath("config") .. "/init.lua<CR>"),
     dashboard.button("SPC w q", "󰈆  Quit Neovim", ":qa<CR>"),
   }
 

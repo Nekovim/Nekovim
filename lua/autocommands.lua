@@ -6,18 +6,18 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- Norg Mappings in Which-Key
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = "*.norg",
-  callback = function()
-    require("which-key").register(require("mappings.neorg").neorg_labels, {
-      mode = "n",
-      prefix = "<leader>",
-      buffer = 0,
-      noremap = true,
-      silent = true,
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+--   pattern = "*.norg",
+--   callback = function()
+--     require("which-key").register(require("mappings.neorg").neorg_labels, {
+--       mode = "n",
+--       prefix = "<leader>",
+--       buffer = 0,
+--       noremap = true,
+--       silent = true,
+--     })
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gd", "gdscript", "gdscript3" },
