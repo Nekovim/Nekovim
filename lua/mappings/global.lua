@@ -346,7 +346,7 @@ M.which_key = {
 	{ "<leader>ht", "<cmd>Telescope help_tags<cr>", desc = "Tags", nowait = true, remap = false, mode = "n" },
 	{
 		"<leader>hc",
-		"<cmd>:e" .. vim.fn.stdpath("config") .. "/init.lua<CR>",
+		"<cmd>:e " .. vim.fn.stdpath("config") .. "/init.lua<CR>",
 		desc = "Personal Config",
 		nowait = true,
 		remap = false,
