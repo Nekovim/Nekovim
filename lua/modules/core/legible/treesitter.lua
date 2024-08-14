@@ -61,6 +61,7 @@ M.opts = {
 
 function M.config(_, opts)
   require "nvim-treesitter"
+  require("nvim-treesitter.install").compilers = {"clang"}
   require("nvim-treesitter.configs").setup(opts)
   vim.g.skip_ts_context_commentstring_module = true
 end
