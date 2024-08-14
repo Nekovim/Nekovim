@@ -7,28 +7,28 @@ local install_and_configure = {
   "bashls",
   "jsonls",
   "yamlls",
-  "html",
+  "clangd",
+  "cmake",
+  "pyright",
+  -- "csharp_ls",
+  "gopls",
   "tsserver",
-  "eslint",
   "svelte",
   "vuels",
-  "pyright",
-  "csharp_ls",
-  "clangd",
-  "gopls",
-  "cmake",
+  "eslint",
+  "html",
   "cssls",
 }
 
 -- lspconfig will autoset up but will NOT be installed by mason.
 local auto_configure = {
-  "gdscript",
+  -- "gdscript",
 }
 
 -- Mason will ensure all of these are installed but they will not be managed by lsp config.
 local ensure_installed = {
   lsp = {
-    "jdtls",
+    -- "jdtls",
     "rust_analyzer",
   },
   dap = {
@@ -43,8 +43,8 @@ local ensure_installed = {
     "flake8",
     "prettier",
     "clang-format",
-    "csharpier",
-    "google-java-format",
+    -- "csharpier",
+    -- "google-java-format",
     "stylua",
     "goimports-revirser",
     "golines",
