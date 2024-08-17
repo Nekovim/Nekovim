@@ -45,12 +45,12 @@ function M.config(_, opts)
 
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done {})
 
-  npairs.add_rules {
-    ---@diagnostic disable-next-line: redefined-local
-    Rule("<", ">"):with_pair(cond.before_regex "%a+"):with_move(function(opts)
-      return opts.char == ">"
-    end),
-  }
+  -- npairs.add_rules {
+  --   ---@diagnostic disable-next-line: redefined-local
+  --   Rule("<", ">"):with_pair(cond.before_regex "%a+"):with_move(function(opts)
+  --     return opts.char == ">"
+  --   end),
+  -- }
 end
 
 return M

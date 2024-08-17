@@ -1,22 +1,17 @@
 local M = {}
 
--- Register lsp bindings.
-M.register = function(mappings, bufnr, mode, prefix)
-  local opts = {
-    mode = mode or "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = bufnr, -- nil for Global mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymapsneovim call local lua function from keymapping
-    nowait = true, -- use `nowait` when creating keymaps
-  }
+M.map_keys = function(mappings, bufnr)
+  -- See Which-Key V3 spec for bindings. 
+  -- mapping = { 1 = keys, 2 = command, mode = n/i/v/x }
+  -- or (the one we avoid)
+  -- mapping = { 1 = keys, group = "Group Name" }
 
-  require("which-key").register(mappings, opts)
-end
-
-M.register_all = function(mappings, bufnr)
-  M.register(mappings.normal, bufnr)
-  M.register(mappings.visual, bufnr, "v")
+  for _, mapping in ipairs(mappings) do
+    -- Based on which-key spec.
+    if mapping.group == nil then
+      vim.keymap.set(mapping.mode, mapping[1], mapping[2], { noremap = true, silent = true, buffer = bufnr})
+    end
+  end
 end
 
 return M

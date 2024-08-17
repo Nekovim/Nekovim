@@ -70,13 +70,7 @@ function M.config()
       client.server_capabilities.documentFormattingProvider = false
     end
 
-    local mappings = require("mappings.lsp")[client.name] or require("mappings.lsp").default
-    for i, mapping in ipairs(mappings) do
-      mapping.buffer = bufnr
-    end
-
-    -- lsp_keymaps(bufnr)
-    require("which-key").add(mappings)
+    require("mappings.utils").map_keys(require("mappings.lsp")[client] or require("mappings.lsp").default, bufnr)
     require("illuminate").on_attach(client)
     require("nvim-navic").attach(client, bufnr)
   end

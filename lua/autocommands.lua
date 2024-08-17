@@ -19,6 +19,18 @@ vim.api.nvim_create_autocmd("User", {
 --   end,
 -- })
 
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "lua", "rust", "typescript", "javascript", "vue", "gd", "gdscript", "gdscript3" },
+--   callback = function()
+--     local mappings = require("mappings.lsp")[vim.bo.filetype] or require("mappings.lsp").default
+--     -- for _, mapping in ipairs(mappings) do
+--     --   mapping.buffer = true
+--     -- end
+--
+--     require("which-key").add(mappings)
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gd", "gdscript", "gdscript3" },
   callback = function()

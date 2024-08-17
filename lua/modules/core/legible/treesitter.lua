@@ -6,6 +6,9 @@ local M = {
       "kyazdani42/nvim-web-devicons",
       event = "VeryLazy",
     },
+    {
+      "windwp/nvim-ts-autotag",
+    },
   },
 }
 
@@ -34,6 +37,7 @@ M.opts = {
     "css",
     "svelte",
     "vim",
+    "vue",
     "regex",
     "dart",
   }, -- put the language you want in this array
@@ -45,12 +49,7 @@ M.opts = {
     enable = true, -- false will disable the whole extension
     disable = {}, -- list of language that will be disabled
   },
-  autopairs = {
-    enable = true,
-  },
-  autotag = {
-    enable = true,
-  },
+
   indent = { enable = true, disable = { "python", "css", "html", "gdscript", "gdscript3", "gd" } },
 
   context_commentstring = {
@@ -61,8 +60,11 @@ M.opts = {
 
 function M.config(_, opts)
   require "nvim-treesitter"
-  require("nvim-treesitter.install").compilers = {"clang"}
+  require("nvim-treesitter.install").compilers = { "clang" }
   require("nvim-treesitter.configs").setup(opts)
+  require("nvim-ts-autotag").setup {
+    enable_close_on_slash = true,
+  }
   vim.g.skip_ts_context_commentstring_module = true
 end
 

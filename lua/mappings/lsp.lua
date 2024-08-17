@@ -184,8 +184,6 @@ local lsp_bindings = {
 ---@param extension table|nil Any additional custom bindings you'd like added under this label.
 ---@param mode string|nil Normal, insert, visual, etc.
 ---@return table
-
--- The problem with this is that it requires the user know the mode, group, and mapping. Ideally mappings should all be individual to prevent this issue.
 lsp_bindings.fetch = function(key, mappings, extension, mode)
   mode = mode or "n"
   -- --
@@ -221,7 +219,7 @@ end
 
 local M = {}
 
-M.lua_ls = lsp_bindings.fetch(
+M.lua = lsp_bindings.fetch(
   Label.CODE_ACTIONS.key,
   {
     "actions",
