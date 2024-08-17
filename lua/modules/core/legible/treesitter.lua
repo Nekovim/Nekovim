@@ -50,6 +50,10 @@ M.opts = {
     disable = {}, -- list of language that will be disabled
   },
 
+  autopairs = {
+    enable = true
+  },
+
   indent = { enable = true, disable = { "python", "css", "html", "gdscript", "gdscript3", "gd" } },
 
   context_commentstring = {
@@ -60,11 +64,9 @@ M.opts = {
 
 function M.config(_, opts)
   require "nvim-treesitter"
+  require("nvim-ts-autotag").setup()
   require("nvim-treesitter.install").compilers = { "clang" }
   require("nvim-treesitter.configs").setup(opts)
-  require("nvim-ts-autotag").setup {
-    enable_close_on_slash = true,
-  }
   vim.g.skip_ts_context_commentstring_module = true
 end
 

@@ -88,10 +88,10 @@ M.opts = {
     align = "center", -- align columns left, center or right
   },
   show_help = true, -- show help message on the command line when the popup is visible
- triggers = {
-   { "<auto>", mode = "nixsotc" },
-   { "g", mode = { "n", "v" } },
- }
+  triggers = {
+    { "<auto>", mode = "nixsotc" },
+    { "g", mode = { "n", "v" } },
+  },
 }
 
 function M.config(_, opts)
