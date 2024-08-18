@@ -53,7 +53,13 @@ local ensure_installed = {
 }
 
 ensure_installed.lsp = vim.list_extend(ensure_installed.lsp, install_and_configure)
-return {
+M = {
   auto_configure = vim.list_extend(auto_configure, install_and_configure),
   ensure_installed = ensure_installed,
 }
+
+M.restart_lsp = function (lsp)
+  
+end
+
+return M

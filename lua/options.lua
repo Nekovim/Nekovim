@@ -1,4 +1,15 @@
 vim.opt.backup = false -- creates a backup file
+-- vim.g.clipboard = {
+--       name = 'osc52',
+--       copy = {
+--         ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+--         ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+--       },
+--       paste = {
+--         ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+--         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+--       },
+--     } -- allows neovim to access the system clipboard
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp

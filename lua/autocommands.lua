@@ -37,3 +37,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.cmd [[setlocal noexpandtab]]
   end,
 })
+
+if vim.loop.os_uname().release:lower():find "microsoft" and true or false then
+  vim.cmd [[
+    augroup Yank
+      autocmd!
+      autocmd TextYankPost * :call system('clip.exe ',@")
+    augroup END
+  ]]
+end

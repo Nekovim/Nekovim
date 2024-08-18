@@ -5,7 +5,7 @@ return {
       hybridMode = false,
     },
     typescript = {
-      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+      tsdk = "/usr/lib/node_modules/typescript/lib",
     },
   },
 }

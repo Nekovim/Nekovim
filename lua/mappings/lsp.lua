@@ -283,6 +283,24 @@ M.rust = lsp_bindings.fetch(
   )
 )
 
+M.vue = lsp_bindings.fetch(
+  Label.CODE_ACTIONS.key,
+  {
+    "actions",
+    "line-diagnostics",
+    "format",
+    "hover",
+    "next-diagnostic",
+    "prev-diagnostic",
+    "references",
+    "document-symbols",
+    "workspace-symbols",
+  },
+  lsp_bindings.fetch(Label.REFACTOR.key, {
+    "rename",
+  })
+)
+
 M.default = lsp_bindings.fetch(
   Label.CODE_ACTIONS.key,
   {
