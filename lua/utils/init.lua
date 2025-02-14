@@ -7,13 +7,13 @@ local install_and_configure = {
   "bashls",
   "jsonls",
   "yamlls",
-  "clangd",
-  "cmake",
+  -- "clangd",
+  -- "cmake",
   "pyright",
   -- "csharp_ls",
-  "gopls",
+  -- "gopls",
   "tsserver",
-  "svelte",
+  -- "svelte",
   -- "vuels",
   "volar",
   "eslint",
@@ -36,19 +36,19 @@ local ensure_installed = {
     "javatest",
     "javadbg",
     "python",
-    "codelldb",
+    -- "codelldb",
   },
   tools = {
-    "gdtoolkit",
+    -- "gdtoolkit",
     "black",
     "flake8",
     "prettier",
-    "clang-format",
+    -- "clang-format",
     -- "csharpier",
     -- "google-java-format",
     "stylua",
-    "goimports-revirser",
-    "golines",
+    -- "goimports-revirser",
+    -- "golines",
   },
 }
 
@@ -59,7 +59,7 @@ M = {
 }
 
 M.restart_lsp = function (lsp)
-  
+
 end
 
 return M
