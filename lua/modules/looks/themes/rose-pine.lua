@@ -4,6 +4,7 @@ local M = {
   name = "rose-pine",
   priority = 1000,
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  enabled = true
 }
 
 local valid_names = {

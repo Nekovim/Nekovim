@@ -12,7 +12,7 @@ local install_and_configure = {
   "pyright",
   -- "csharp_ls",
   -- "gopls",
-  "tsserver",
+  "ts_ls",
   -- "svelte",
   -- "vuels",
   "volar",

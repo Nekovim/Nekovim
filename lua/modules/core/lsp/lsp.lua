@@ -62,7 +62,7 @@ function M.config()
   local lspconfig = require "lspconfig"
 
   local on_attach = function(client, bufnr)
-    if client.name == "tsserver" then
+    if client.name == "ts_ls" then
       client.server_capabilities.documentFormattingProvider = false
     end
 
@@ -70,7 +70,7 @@ function M.config()
       client.server_capabilities.documentFormattingProvider = false
     end
 
-    require("mappings.utils").map_keys(require("mappings.lsp")[client] or require("mappings.lsp").default, bufnr)
+    require("which-key").add(require("mappings.lsp")[client.name] or require("mappings.lsp").default)
     require("illuminate").on_attach(client)
     require("nvim-navic").attach(client, bufnr)
   end
