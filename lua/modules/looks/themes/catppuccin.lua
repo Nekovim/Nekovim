@@ -3,7 +3,6 @@ local M = {
   name = "catppuccin",
   lazy = false,
   priority = 1000,
-  enabled = true
 }
 
 local valid_names = {

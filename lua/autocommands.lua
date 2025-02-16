@@ -38,6 +38,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "ts",  },
+  callback = function()
+    vim.cmd [[set tabstop=2]]
+    vim.cmd [[set softtabstop=2]]
+    vim.cmd [[set shiftwidth=2]]
+  end,
+})
+
 if vim.loop.os_uname().release:lower():find "microsoft" and true or false then
   vim.cmd [[
     augroup Yank
