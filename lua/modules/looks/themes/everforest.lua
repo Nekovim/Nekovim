@@ -2,7 +2,6 @@ local M = {
   "neanias/everforest-nvim",
   lazy = false,
   priority = 1000,
-  enabled = false
 }
 
 local valid_names = {
