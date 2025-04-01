@@ -94,6 +94,7 @@ function M.config()
   end
 
   attach_servers(require("utils").auto_configure)
+  vim.lsp.inlay_hint.enable(true)
 end
 
 return M

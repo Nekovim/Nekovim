@@ -1,6 +1,7 @@
 local M = {
   "kevinhwang91/nvim-ufo",
   event = "VimEnter",
+  enabled = false,
   dependencies = {
     {
       "kevinhwang91/promise-async",
